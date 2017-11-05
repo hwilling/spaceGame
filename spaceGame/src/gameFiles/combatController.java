@@ -15,6 +15,9 @@ public class combatController {
 				players[i] = false;
 			}
 		}
+	}
+	
+	public void playGame(){
 		boolean gameOver = false;
 		//game
 		while(!gameOver){
@@ -23,4 +26,7 @@ public class combatController {
 	}
 	
 	//TODO functions for in game events
+	public void moveShip(){
+		
+	}
 }

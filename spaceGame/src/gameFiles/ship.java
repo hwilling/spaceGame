@@ -4,6 +4,7 @@ public class ship {
 	
 	String name;
 	int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg;
+	int xCoord, yCoord;
 	
 	ship(String name){
 		this.name = name;
@@ -39,4 +40,18 @@ public class ship {
 	int getDamageValue(){
 		return dmg;
 	}
+	/************************Coordinate functions for ship*************************************/
+	int getXCoord(){
+		return xCoord;
+	}
+	void setXCoord(int newCoord){
+		xCoord = newCoord;
+	}
+	int getYCoord(){
+		return yCoord;
+	}
+	void setYCoord(int newCoord){
+		yCoord = newCoord;
+	}
+	/*******************************************************************************************/
 }
