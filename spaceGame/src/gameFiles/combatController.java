@@ -27,22 +27,19 @@ public class combatController {
 	
 	//TODO functions for in game events
 	public void moveShip(ship shipToMove, int dx, int dy){
-		int xdif, ydif;
 		int shipx = shipToMove.getXCoord();
 		int shipy = shipToMove.getYCoord();
-		xdif = shipx - dx;
-		if(xdif < 0){
-			xdif = xdif * -1;
-		}
-		ydif = shipy - dy;
-		if(ydif < 0){
-			ydif = ydif * -1;
-		}
-		int movesUsed = 0;
+		int movesUsed = getMoves(shipx, shipy, dx, dy);
 		if(shipToMove.getMovesRemaining() >= movesUsed){
 			shipToMove.setXCoord(dx);
 			shipToMove.setYCoord(dy);
 			shipToMove.modMovesRemaining(-1 * movesUsed);
 		}
+	}
+	public int getMoves(int x, int y, int dx, int dy){
+		int movesUsed = 0;
+		double dist = Math.sqrt((Math.pow((dx - x), 2) + (Math.pow(dy - y, 2))));
+		movesUsed = (int) Math.floor(dist);
+		return movesUsed;
 	}
 }

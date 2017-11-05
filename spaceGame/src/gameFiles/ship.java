@@ -6,14 +6,14 @@ public class ship {
 	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg;
 	private int xCoord, yCoord;
 	
-	ship(String name){
+	public ship(String name){
 		this.name = name;
 	}
 	
-	int getHP(){
+	public int getHP(){
 		return hpCurrent;
 	}
-	void modHP(int modAmount){
+	public void modHP(int modAmount){
 		hpCurrent += modAmount;
 		//make sure hp does not go over max amount
 		if(hpCurrent > hpMax){
@@ -21,36 +21,36 @@ public class ship {
 		}
 		//TODO function to destroy ship if hp is less than 0 (switch this to controller?)
 	}
-	int getMovesRemaining(){
+	public int getMovesRemaining(){
 		return movesRemaining;
 	}
-	void modMovesRemaining(int modAmount){
+	public void modMovesRemaining(int modAmount){
 		movesRemaining += modAmount;
 	}
-	int getCurrentActions(){
+	public int getCurrentActions(){
 		return currentActions;
 	}
-	void modCurrentActions(int modAmount){
+	public void modCurrentActions(int modAmount){
 		currentActions += modAmount;
 	}
-	void turnReset(){
+	public void turnReset(){
 		movesRemaining = speed;
 		currentActions = maxActions;
 	}
-	int getDamageValue(){
+	public int getDamageValue(){
 		return dmg;
 	}
 	/************************Coordinate functions for ship*************************************/
-	int getXCoord(){
+	public int getXCoord(){
 		return xCoord;
 	}
-	void setXCoord(int newCoord){
+	public void setXCoord(int newCoord){
 		xCoord = newCoord;
 	}
-	int getYCoord(){
+	public int getYCoord(){
 		return yCoord;
 	}
-	void setYCoord(int newCoord){
+	public void setYCoord(int newCoord){
 		yCoord = newCoord;
 	}
 	/*******************************************************************************************/
