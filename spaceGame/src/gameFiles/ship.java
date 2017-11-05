@@ -2,9 +2,9 @@ package gameFiles;
 
 public class ship {
 	
-	String name;
-	int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg;
-	int xCoord, yCoord;
+	private String name;
+	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg;
+	private int xCoord, yCoord;
 	
 	ship(String name){
 		this.name = name;

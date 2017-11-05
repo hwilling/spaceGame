@@ -1,7 +1,7 @@
 package gameFiles;
 
 public class combatController {
-	boolean players[];
+	private boolean players[];
 	//ship[] player1Ships, player2Ships;
 	combatController(int numPlayers, ship[] player1Ships, ship[] player2Ships){
 		players = new boolean[numPlayers];
@@ -26,7 +26,23 @@ public class combatController {
 	}
 	
 	//TODO functions for in game events
-	public void moveShip(){
-		
+	public void moveShip(ship shipToMove, int dx, int dy){
+		int xdif, ydif;
+		int shipx = shipToMove.getXCoord();
+		int shipy = shipToMove.getYCoord();
+		xdif = shipx - dx;
+		if(xdif < 0){
+			xdif = xdif * -1;
+		}
+		ydif = shipy - dy;
+		if(ydif < 0){
+			ydif = ydif * -1;
+		}
+		int movesUsed = 0;
+		if(shipToMove.getMovesRemaining() >= movesUsed){
+			shipToMove.setXCoord(dx);
+			shipToMove.setYCoord(dy);
+			shipToMove.modMovesRemaining(-1 * movesUsed);
+		}
 	}
 }
