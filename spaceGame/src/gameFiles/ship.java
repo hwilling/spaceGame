@@ -3,7 +3,7 @@ package gameFiles;
 public class ship {
 	
 	String name;
-	int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions;
+	int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg;
 	
 	ship(String name){
 		this.name = name;
@@ -35,5 +35,8 @@ public class ship {
 	void turnReset(){
 		movesRemaining = speed;
 		currentActions = maxActions;
+	}
+	int getDamageValue(){
+		return dmg;
 	}
 }
