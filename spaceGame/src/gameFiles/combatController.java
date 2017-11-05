@@ -29,17 +29,17 @@ public class combatController {
 	public void moveShip(ship shipToMove, int dx, int dy){
 		int shipx = shipToMove.getXCoord();
 		int shipy = shipToMove.getYCoord();
-		int movesUsed = getMoves(shipx, shipy, dx, dy);
+		int movesUsed = getDist(shipx, shipy, dx, dy);
 		if(shipToMove.getMovesRemaining() >= movesUsed){
 			shipToMove.setXCoord(dx);
 			shipToMove.setYCoord(dy);
 			shipToMove.modMovesRemaining(-1 * movesUsed);
 		}
 	}
-	public int getMoves(int x, int y, int dx, int dy){
-		int movesUsed = 0;
+	public int getDist(int x, int y, int dx, int dy){
+		int distToTarget = 0;
 		double dist = Math.sqrt((Math.pow((dx - x), 2) + (Math.pow(dy - y, 2))));
-		movesUsed = (int) Math.floor(dist);
-		return movesUsed;
+		distToTarget = (int) Math.floor(dist);
+		return distToTarget;
 	}
 }
