@@ -3,7 +3,7 @@ package gameFiles;
 public class combatController {
 	private boolean players[];
 	//ship[] player1Ships, player2Ships;
-	combatController(int numPlayers, ship[] player1Ships, ship[] player2Ships){
+	public combatController(int numPlayers, ship[] player1Ships, ship[] player2Ships){
 		players = new boolean[numPlayers];
 		//player1Ships = new ship[player1Ships.length];
 		//player2Ships = new ship[player2Ships.length];
@@ -36,10 +36,23 @@ public class combatController {
 			shipToMove.modMovesRemaining(-1 * movesUsed);
 		}
 	}
+	public void shoot(ship attacker, ship target){
+		int attackx = attacker.getXCoord();
+		int attacky = attacker.getYCoord();
+		int targetx = target.getXCoord();
+		int targety = target.getYCoord();
+		int distToTarget = getDist(attackx, attacky, targetx, targety);
+		
+		if(distToTarget <= attacker.getRange()){
+			target.modHP(-1 * attacker.getDamageValue());
+		}
+	}
+	//used to find distance between two points on the board
 	public int getDist(int x, int y, int dx, int dy){
 		int distToTarget = 0;
 		double dist = Math.sqrt((Math.pow((dx - x), 2) + (Math.pow(dy - y, 2))));
 		distToTarget = (int) Math.floor(dist);
 		return distToTarget;
 	}
+	//
 }
