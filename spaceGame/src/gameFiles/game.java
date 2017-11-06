@@ -14,5 +14,5 @@ public class game {
 		//TODO start game using combatController class
 	}
 	
-	//TODO any functions used in main
+	//TODO any functions used in 
 }

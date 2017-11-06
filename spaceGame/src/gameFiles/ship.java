@@ -12,8 +12,12 @@ public class ship {
 	public String getName(){
 		return name;
 	}
+	//hitpoints
 	public int getHP(){
 		return hpCurrent;
+	}
+	public void setHP(int newHP){
+		hpCurrent = newHP;
 	}
 	public void modHP(int modAmount){
 		hpCurrent += modAmount;
@@ -22,6 +26,15 @@ public class ship {
 			hpCurrent = hpMax;
 		}
 		//TODO function to destroy ship if hp is less than 0 (switch this to controller?)
+	}
+	public int getMaxHP(){
+		return hpMax;
+	}
+	public void setMaxHP(int newMaxHP){
+		hpMax = newMaxHP;
+	}
+	public void modMaxHP(int modVal){
+		hpMax += modVal;
 	}
 	//movement
 	public int getMovesRemaining(){
@@ -33,12 +46,34 @@ public class ship {
 	public void modMovesRemaining(int modAmount){
 		movesRemaining += modAmount;
 	}
+	//speed
+	public int getSpeed(){
+		return speed;
+	}
+	public void setSpeed(int newSpeed){
+		speed = newSpeed;
+	}
+	public void modSpeed(int modVal){
+		speed += modVal;
+	}
 	//actions
 	public int getCurrentActions(){
 		return currentActions;
 	}
+	public void setCurrentActions(int newActionAmount){
+		currentActions = newActionAmount;
+	}
 	public void modCurrentActions(int modAmount){
 		currentActions += modAmount;
+	}
+	public int getMaxActions(){
+		return maxActions;
+	}
+	public void setMaxActions(int newMaxAction){
+		maxActions = newMaxAction;
+	}
+	public void modMaxActions(int modVal){
+		maxActions += modVal;
 	}
 	//reset values at start of turn
 	public void turnReset(){
