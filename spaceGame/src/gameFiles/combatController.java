@@ -61,7 +61,20 @@ public class combatController {
 		distToTarget = (int) Math.floor(dist);
 		return distToTarget;
 	}
-	//
+	
+	//used to switch player turn
+	public void switchPlayer() {
+		for(int i = 0; i < players.length; i++) {
+			int next = i + 1;
+			if(players[i] == true) {
+				players[i] = false;
+				if(next > players.length) {
+					next = 0;
+				}
+				players[next] = true;
+			}
+		}
+	}
 	
 	//Press Spacebar to initiate an attack
 	public void keyPressed(KeyEvent e) {
