@@ -139,6 +139,7 @@ public class ship {
 		if(key == KeyEvent.VK_DOWN) {
 			yCoord = 1;
 			movesRemaining = -1;
+		
 		}
 	}
 }
