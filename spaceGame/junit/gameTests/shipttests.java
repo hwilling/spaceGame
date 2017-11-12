@@ -2,6 +2,8 @@ package gameTests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,8 +14,8 @@ public class shipttests {
 
 	private ship testee = new ship("testShip");
 	private ship testee2 = new ship("other testShip");
-	private ship ships1[] = {testee};
-	private ship ships2[] = {testee2};
+	private ArrayList<ship> ships1 = new ArrayList<ship>();
+	private ArrayList<ship> ships2 = new ArrayList<ship>();
 	private int numPlayers = 2;
 	private int setDMGVal = 8;
 	private int setMovesVal = 10;
@@ -121,6 +123,15 @@ public class shipttests {
 		testee.setYCoord(5);
 		testCC.shoot(testee, testee2);
 		assertEquals(setHPVal - setDMGVal, testee2.getHP());
+	}
+	
+	@Test
+	public void testWins(){
+		ships1.add(testee);
+		ships2.add(testee2);
+		combatController testController = new combatController(numPlayers, ships1, ships2);
+		assertEquals(0, testController.whoWins());
+		assertEquals(false, testController.endGame());
 	}
 
 }

@@ -4,14 +4,18 @@ package gameFiles;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class combatController {
 	private boolean players[];
+	private ArrayList<ship> player1Ships, player2Ships;
 	//ship[] player1Ships, player2Ships;
-	public combatController(int numPlayers, ship[] player1Ships, ship[] player2Ships){
+	public combatController(int numPlayers, ArrayList<ship> player1Ships, ArrayList<ship> player2Ships){
 		players = new boolean[numPlayers];
 		//player1Ships = new ship[player1Ships.length];
 		//player2Ships = new ship[player2Ships.length];
+		this.player1Ships = new ArrayList<ship>(player1Ships);
+		this.player2Ships = new ArrayList<ship>(player2Ships);
 		for(int i = 0; i < players.length; i++){
 			if(i == 0){
 				players[i] = true;
@@ -71,6 +75,28 @@ public class combatController {
 				}
 				players[next] = true;
 			}
+		}
+	}
+	
+	public boolean endGame(){
+		int whoWinsVal = whoWins();
+		if(whoWinsVal != 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public int whoWins(){
+		if(player1Ships.isEmpty()){
+			return 1;
+		}
+		else if(player2Ships.isEmpty()){
+			return 2;
+		}
+		else{
+			return 0;
 		}
 	}
 	
