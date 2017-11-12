@@ -2,8 +2,8 @@ package gameFiles;
 
 public class board {
 	
-	int x, y;
-	ship[][] spaces;
+	private int x, y;
+	private ship[][] spaces;
 	
 	public board(int x, int y){
 		this.x = x;

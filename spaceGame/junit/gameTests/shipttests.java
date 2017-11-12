@@ -96,9 +96,13 @@ public class shipttests {
 		testee2.setYCoord(6);
 		assertEquals(1, testCC.getDist(testee.getXCoord(), testee.getYCoord(), testee2.getXCoord(), testee2.getYCoord()));
 		//TODO up
+		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 5, 10));
 		//TODO down
+		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 5, 10));
 		//TODO left
+		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 0, 5));
 		//TODO right
+		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 10, 5));
 	}
 	
 	@Test
