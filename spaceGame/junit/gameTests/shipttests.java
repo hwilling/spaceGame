@@ -97,14 +97,18 @@ public class shipttests {
 		assertEquals(1, testCC.getDist(testee.getXCoord(), testee.getYCoord(), testee2.getXCoord(), testee2.getYCoord()));
 		testee2.setYCoord(6);
 		assertEquals(1, testCC.getDist(testee.getXCoord(), testee.getYCoord(), testee2.getXCoord(), testee2.getYCoord()));
-		//TODO up
-		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 5, 10));
-		//TODO down
-		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 5, 10));
-		//TODO left
-		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 0, 5));
-		//TODO right
-		assertEquals(5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 10, 5));
+		for(int i = 5; i < 25; i++){
+			//up
+			assertEquals(i-5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 5, i));
+			//right
+			assertEquals(i-5, testCC.getDist(testee.getXCoord(), testee.getYCoord(), i, 5));
+		}
+		for(int i = 0; i < 5; i++){
+			//down
+			assertEquals(5-i, testCC.getDist(testee.getXCoord(), testee.getYCoord(), 5, i));
+			//left
+			assertEquals(5-i, testCC.getDist(testee.getXCoord(), testee.getYCoord(), i, 5));
+		}
 	}
 	
 	@Test
@@ -121,7 +125,12 @@ public class shipttests {
 	public void testShoot(){
 		testee.setXCoord(5);
 		testee.setYCoord(5);
-		testCC.shoot(testee, testee2);
+		ships1.add(testee);
+		ships2.add(testee2);
+		combatController testController = new combatController(numPlayers, ships1, ships2);
+		//System.out.println(testee2.getHP());
+		testController.shoot(0, 0);
+		//System.out.println(testee2.getHP());
 		assertEquals(setHPVal - setDMGVal, testee2.getHP());
 	}
 	
@@ -132,6 +141,10 @@ public class shipttests {
 		combatController testController = new combatController(numPlayers, ships1, ships2);
 		assertEquals(0, testController.whoWins());
 		assertEquals(false, testController.endGame());
+		testController.shoot(0, 0);
+		testController.shoot(0, 0);
+		assertEquals(1, testController.whoWins());
+		assertEquals(true, testController.endGame());
 	}
 
 }

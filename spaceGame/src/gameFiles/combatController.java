@@ -33,7 +33,12 @@ public class combatController {
 			//TODO add event listeners for the game
 		}
 	}
-	
+	ArrayList<ship> getPlayer1Ships(){
+		return player1Ships;
+	}
+	ArrayList<ship> getPlayer2Ships(){
+		return player2Ships;
+	}
 	//TODO functions for in game events
 	public void moveShip(ship shipToMove, int dx, int dy){
 		int shipx = shipToMove.getXCoord();
@@ -45,7 +50,17 @@ public class combatController {
 			shipToMove.modMovesRemaining(-1 * movesUsed);
 		}
 	}
-	public void shoot(ship attacker, ship target){
+	public void shoot(int attackerIndex, int targetIndex){
+		ship attacker;
+		ship target;
+		if(players[0]){
+			attacker = player1Ships.get(attackerIndex);
+			target = player2Ships.get(targetIndex);
+		}
+		else{
+			attacker = player2Ships.get(attackerIndex);
+			target = player1Ships.get(targetIndex);
+		}
 		int attackx = attacker.getXCoord();
 		int attacky = attacker.getYCoord();
 		int targetx = target.getXCoord();
@@ -54,6 +69,15 @@ public class combatController {
 		
 		if(distToTarget <= attacker.getRange()){
 			target.modHP(-1 * attacker.getDamageValue());
+			//TODO destroy ship
+			if(target.getHP() <= 0){
+				if(players[0]){
+					player2Ships.remove(targetIndex);
+				}
+				else{
+					player1Ships.remove(targetIndex);
+				}
+			}
 		}
 	}
 	//used to find distance between two points on the board
@@ -89,18 +113,17 @@ public class combatController {
 	}
 	
 	public int whoWins(){
+		//player 2 wins if all of player 1's ships are destroyed
 		if(player1Ships.isEmpty()){
-			return 1;
-		}
-		else if(player2Ships.isEmpty()){
 			return 2;
 		}
+		//player 1 wins if all of player 2's ships are destroyed
+		else if(player2Ships.isEmpty()){
+			return 1;
+		}
+		//game is still going on 
 		else{
 			return 0;
 		}
 	}
-	
-	
-		
-
 }
