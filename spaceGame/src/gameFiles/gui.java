@@ -34,6 +34,7 @@ public class gui extends JPanel{
 	private Timer timer;
 	
 	//test
+	boolean startGame = false;
 	int greenShipX = 300;
 	int greenShipY = 500;
 	int redShipX = 300;
@@ -204,6 +205,11 @@ public class gui extends JPanel{
 				speed = 200;
 			}
 		}
+		
+		if(key == KeyEvent.VK_ENTER) {
+			startGame = true;
+			repaint();
+		}
 	}
 	
 	protected void handleKeyReleased(KeyEvent e){
@@ -232,46 +238,57 @@ public class gui extends JPanel{
 		super.paintComponent(g); // paint background
 		int player = 0;
 		
-		// TODO: render the model
-		if(p1Destroyed == false) {
-			if(p1Targeted == false) {
-				g.setColor(Color.GREEN);
-				g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
-			}
-			else {
-				g.setColor(Color.YELLOW);
-				g.drawRect(greenShipX, greenShipY, 50, 50);
-				g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
-			}	
-		}
-		
-		if(p2Destroyed == false) {
-			if(p2Targeted == false) {
-				g.setColor(Color.RED);
-				g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
-			}
-			else {
-				g.setColor(Color.YELLOW);
-				g.drawRect(redShipX, redShipY, 50, 50);
-				g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
-			}
-		}
-		
-		if(p2Destroyed == true || p1Destroyed == true) {
-			if(p2Destroyed == true) {
-				player = 1;
-			}
-			else {
-				player = 2;
-			}
+		if(startGame == false) {
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, 600, 600);
 			g.setColor(Color.WHITE);
-			g.setFont(new Font(null, Font.BOLD, 50));
-			g.drawString("GAME OVER" , 150, 300);
-			g.setFont(new Font(null, Font.BOLD, 25));
-			g.drawString("Player " + player + " Won!", 225, 350);
+			g.setFont(new Font(null, Font.BOLD, 30));
+			g.drawString("Press Enter to Start" , 150, 300);
 		}
+		else {
+			// TODO: render the model
+			if(p1Destroyed == false) {
+				if(p1Targeted == false) {
+					g.setColor(Color.GREEN);
+					g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
+				}
+				else {
+					g.setColor(Color.YELLOW);
+					g.drawRect(greenShipX, greenShipY, 50, 50);
+					g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
+				}	
+			}
+			
+			if(p2Destroyed == false) {
+				if(p2Targeted == false) {
+					g.setColor(Color.RED);
+					g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
+				}
+				else {
+					g.setColor(Color.YELLOW);
+					g.drawRect(redShipX, redShipY, 50, 50);
+					g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
+				}
+			}
+			
+			if(p2Destroyed == true || p1Destroyed == true) {
+				if(p2Destroyed == true) {
+					player = 1;
+				}
+				else {
+					player = 2;
+				}
+				g.setColor(Color.BLACK);
+				g.fillRect(0, 0, 600, 600);
+				g.setColor(Color.WHITE);
+				g.setFont(new Font(null, Font.BOLD, 50));
+				g.drawString("GAME OVER" , 150, 300);
+				g.setFont(new Font(null, Font.BOLD, 25));
+				g.drawString("Player " + player + " Won!", 225, 350);
+			}
+		}
+		
+		
 	}
 	
 	public static void main(String[] args) {
