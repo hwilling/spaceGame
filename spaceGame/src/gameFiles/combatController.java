@@ -110,7 +110,7 @@ public class combatController {
 		return playerUp;
 		
 	}
-	
+	//ends game if only one player has ships in the array
 	public boolean endGame(){
 		int whoWinsVal = whoWins();
 		if(whoWinsVal != 0){
