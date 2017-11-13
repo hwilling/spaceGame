@@ -29,10 +29,10 @@ public class combatController {
 			//TODO add event listeners for the game
 		}
 	}
-	ArrayList<ship> getPlayer1Ships(){
+	public ArrayList<ship> getPlayer1Ships(){
 		return player1Ships;
 	}
-	ArrayList<ship> getPlayer2Ships(){
+	public ArrayList<ship> getPlayer2Ships(){
 		return player2Ships;
 	}
 	//TODO functions for in game events
