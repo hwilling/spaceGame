@@ -20,5 +20,10 @@
 			<type>1</type>
 			<locationURI>PARENT-8-PROJECT_LOC/Pictures/shipSprite.png</locationURI>
 		</link>
+		<link>
+			<name>src/gameFiles/shipSprite2Test.png</name>
+			<type>1</type>
+			<locationURI>PARENT-8-PROJECT_LOC/Pictures/shipSprite2Test.png</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

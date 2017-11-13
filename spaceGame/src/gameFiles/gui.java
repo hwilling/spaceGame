@@ -9,7 +9,6 @@ import java.awt.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 
 public class gui extends JPanel{
 
@@ -33,11 +32,13 @@ public class gui extends JPanel{
 	int redShipY = 50;
 	
 	private BufferedImage shipSprite;
+	private BufferedImage shipSprite2;
 
 	
 	public gui() {
 		setBackground(Color.BLACK);
 		shipSprite = loadImage("gameFiles/shipSprite.png");
+		shipSprite2 = loadImage("gameFiles/shipSprite2Test.png");
 		
 		setPreferredSize(new Dimension((int) Board.getXSize(), (int) Board.getYSize()));
 		
@@ -162,7 +163,8 @@ public class gui extends JPanel{
 		g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
 		
 		g.setColor(Color.RED);
-		g.fillOval(300, 50, 20, 20);
+		g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
+		//g.fillOval(300, 50, 20, 20);
 
 	}
 	
