@@ -39,8 +39,8 @@ public class gui extends JPanel{
 	
 	public gui() {
 		setBackground(Color.BLACK);
-		//shipSprite = loadImage("gameFiles/shipSprite.png");
-		//shipSprite2 = loadImage("gameFiles/shipSprite2Test.png");
+		shipSprite = loadImage("gameFiles/shipSprite.png");
+		shipSprite2 = loadImage("gameFiles/shipSprite2Test.png");
 		
 		setPreferredSize(new Dimension((int) Board.getXSize(), (int) Board.getYSize()));
 		
@@ -175,12 +175,12 @@ public class gui extends JPanel{
 		
 		// TODO: render the model
 		g.setColor(Color.GREEN);
-		g.fillRect(greenShipX, greenShipY, 20, 20);
-		//g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
+		//g.fillRect(greenShipX, greenShipY, 20, 20);
+		g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
 		
 		g.setColor(Color.RED);
-		//g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
-		g.fillOval(redShipX, redShipY, 20, 20);
+		g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
+		//g.fillOval(redShipX, redShipY, 20, 20);
 
 	}
 	
@@ -216,7 +216,7 @@ public class gui extends JPanel{
 	        });
 	    }
 	
-	/*// Load an image from an embedded resource.
+	// Load an image from an embedded resource.
 		private BufferedImage loadImage(String path) 
 		{
 			InputStream in = loadResource(path);
@@ -241,6 +241,6 @@ public class gui extends JPanel{
 			}
 			
 			return in;
-		}*/
+		}
 
 }
