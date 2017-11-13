@@ -119,6 +119,9 @@ public class shipttests {
 		assertEquals(6, testee.getYCoord());
 		assertEquals(startMovement -1, testee.getMovesRemaining());
 		//TODO more vigorous testing
+		testCC.moveShip(testee, 10, 12);
+		assertEquals(10, testee.getXCoord());
+		assertEquals(12, testee.getYCoord());
 	}
 	
 	@Test
@@ -145,6 +148,18 @@ public class shipttests {
 		testController.shoot(0, 0);
 		assertEquals(1, testController.whoWins());
 		assertEquals(true, testController.endGame());
+	}
+	
+	@Test
+	public void testTurnSwitch(){
+		ships1.add(testee);
+		ships2.add(testee2);
+		combatController testController = new combatController(numPlayers, ships1, ships2);
+		assertEquals(0, testController.whosTurn());
+		testController.switchPlayer();
+		assertEquals(1, testController.whosTurn());
+		testController.switchPlayer();
+		assertEquals(0, testController.whosTurn());
 	}
 
 }

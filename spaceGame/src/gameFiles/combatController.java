@@ -91,15 +91,28 @@ public class combatController {
 	//used to switch player turn
 	public void switchPlayer() {
 		for(int i = 0; i < players.length; i++) {
-			int next = i + 1;
+			//System.out.println(players[i]);
 			if(players[i] == true) {
+				int next = i + 1;
 				players[i] = false;
-				if(next > players.length) {
+				if(next >= players.length) {
 					next = 0;
 				}
 				players[next] = true;
+				break;
 			}
 		}
+	}
+	
+	public int whosTurn(){
+		int playerUp = 99;
+		for(int i = 0; i< players.length; i++){
+			if(players[i]){
+				return i;
+			}
+		}
+		return playerUp;
+		
 	}
 	
 	public boolean endGame(){
