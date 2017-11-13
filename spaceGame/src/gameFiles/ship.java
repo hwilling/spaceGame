@@ -1,8 +1,5 @@
 package gameFiles;
 
-
-import java.awt.event.KeyEvent;
-
 public class ship {
 	
 	private String name;
@@ -117,27 +114,4 @@ public class ship {
 	}
 	/*******************************************************************************************/
 	
-	//Moving the Ship with directional arrows
-	public void keyPressed(KeyEvent e) {
-			
-		int key = e.getKeyCode();
-			
-		if(key == KeyEvent.VK_LEFT) {
-			xCoord = -1;
-			movesRemaining = -1;
-		}
-		if(key == KeyEvent.VK_RIGHT) {
-			xCoord = 1;
-			movesRemaining = -1;
-		}
-		if(key == KeyEvent.VK_UP) {
-			yCoord = -1;
-			movesRemaining = -1;
-		}
-		if(key == KeyEvent.VK_DOWN) {
-			yCoord = 1;
-			movesRemaining = -1;
-		
-		}
-	}
 }
