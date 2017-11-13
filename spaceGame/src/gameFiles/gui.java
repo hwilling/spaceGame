@@ -244,6 +244,12 @@ public class gui extends JPanel{
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Press Enter to Start" , 150, 300);
+			
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(null, Font.PLAIN, 15));
+			g.drawString("Controls: Click to Move" , 225, 510);
+			g.drawString("Spacebar to Change Players" , 289, 530);
+			g.drawString("F to fire" , 290, 550);
 		}
 		else {
 			// TODO: render the model
