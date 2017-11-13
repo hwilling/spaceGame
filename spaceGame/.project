@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/gameFiles/shipSprite.png</name>
+			<type>1</type>
+			<locationURI>PARENT-8-PROJECT_LOC/Pictures/shipSprite.png</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

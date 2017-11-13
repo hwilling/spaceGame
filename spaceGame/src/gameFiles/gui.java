@@ -1,9 +1,15 @@
 package gameFiles;
 
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 
 public class gui extends JPanel{
 
@@ -25,10 +31,14 @@ public class gui extends JPanel{
 	int greenShipY = 500;
 	int redShipX = 300;
 	int redShipY = 50;
+	
+	private BufferedImage shipSprite;
 
 	
 	public gui() {
 		setBackground(Color.BLACK);
+		shipSprite = loadImage("gameFiles/shipSprite.png");
+		
 		setPreferredSize(new Dimension((int) Board.getXSize(), (int) Board.getYSize()));
 		
 		MouseAdapter listener = new MouseAdapter() {
@@ -148,11 +158,11 @@ public class gui extends JPanel{
 			
 		// TODO: render the model
 		g.setColor(Color.GREEN);
-		g.fillRect(greenShipX, greenShipY, 20, 20);
+		//g.fillRect(greenShipX, greenShipY, 20, 20);
+		g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
 		
 		g.setColor(Color.RED);
 		g.fillOval(300, 50, 20, 20);
-		
 
 	}
 	
@@ -187,5 +197,32 @@ public class gui extends JPanel{
 	            }
 	        });
 	    }
+	
+	// Load an image from an embedded resource.
+		private BufferedImage loadImage(String path) 
+		{
+			InputStream in = loadResource(path);
+			try 
+			{
+				return ImageIO.read(in);
+			} 
+			
+			catch (IOException e) 
+			{
+				throw new IllegalStateException("Couldn't load image " + path, e);
+			}
+		}
+		
+		// Load an embedded resource as an input stream.
+		public InputStream loadResource(String path) 
+		{
+			InputStream in = getClass().getClassLoader().getResourceAsStream(path);
+			if (in == null) 
+			{
+				throw new IllegalStateException("No such resource: " + path);
+			}
+			
+			return in;
+		}
 
 }
