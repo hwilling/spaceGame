@@ -15,9 +15,15 @@ public class gui extends JPanel{
 	// Number of milliseconds between animation timer events
 	private static final int TIMER_INTERVAL = 1000/30;
 
+	boolean p1Targeted = false;
+	boolean p2Targeted = false;
+	boolean p1Destroyed = false;
+	boolean p2Destroyed = false;
+	boolean player1 = true;
+	int speed = 200;
 	int x = 600;
 	int y = 600;
-	int numPlayers = 0;
+	int numPlayers = 2;
 	String name = null;
 	ArrayList<ship> player1Ships = new ArrayList<>();
 	ArrayList<ship> player2Ships = new ArrayList<>();
@@ -86,7 +92,6 @@ public class gui extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Enter pressed
-            	greenShipX = 100;
             	repaint();
             }
         });
@@ -107,10 +112,50 @@ public class gui extends JPanel{
 	// Event handler for mouse pressed events
 	protected void handleMousePressed(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
-		if(e.getX() == Ship.getXCoord()) {
-			redShipX = 100;
+		if(p1Destroyed == false && p2Destroyed == false) {
+			if(player1 == true) {
+				if(speed > 0) {
+					if((Math.abs(e.getX() - greenShipX) <= 200) && (Math.abs(e.getY() - greenShipY) <= 200)){
+						if(((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY))) <= 200) {
+							speed = speed-((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY)));
+							greenShipX = e.getX();
+							greenShipY = e.getY();
+							repaint();
+						}
+					}
+				}
+				if(Math.abs(redShipX - greenShipX) <= 100 && Math.abs(redShipY - greenShipY) <= 100) {
+					p2Targeted = true;
+					repaint();
+				}
+				else {
+					p1Targeted = false;
+					p2Targeted = false;
+					repaint();
+				}
+			}
+			else if(player1 == false) {
+				if(speed > 0) {
+					if((Math.abs(e.getX() - redShipX) <= 200) && (Math.abs(e.getY() - redShipY) <= 200)){
+						if(((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY))) <= 200) {
+							speed = speed-((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY)));
+							redShipX = e.getX();
+							redShipY = e.getY();
+							repaint();
+						}	
+					}
+				}
+				if(Math.abs(redShipX - greenShipX) <= 100 && Math.abs(redShipY - greenShipY) <= 100) {
+					p1Targeted = true;
+					repaint();
+				}
+				else {
+					p1Targeted = false;
+					p2Targeted = false;
+					repaint();
+				}
+			}
 		}
-		repaint();
 	}
 		
 	// Event handler for mouse dragged events
@@ -123,8 +168,6 @@ public class gui extends JPanel{
 	// Event handler for mouse released events
 	protected void handleMouseReleased(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
-		greenShipX = e.getX();
-		greenShipY = e.getY();
 		repaint();
 	}
 		
@@ -140,10 +183,26 @@ public class gui extends JPanel{
 			
 		int key = e.getKeyCode();
 				
+		if(key == KeyEvent.VK_F) {
+			if(p1Targeted == true && player1 == false) {
+				p1Destroyed = true;
+				repaint();
+			}
+			else if(p2Targeted == true && player1 == true) {
+				p2Destroyed = true;
+				repaint();
+			}
+		}
+		
 		if(key == KeyEvent.VK_SPACE) {
-			
-			greenShipX = 200;
-			repaint();
+			if(player1 == true) {
+				player1 = false;
+				speed = 200;
+			}
+			else {
+				player1 = true;
+				speed = 200;
+			}
 		}
 	}
 	
@@ -151,9 +210,8 @@ public class gui extends JPanel{
 		
 		int key = e.getKeyCode();
 				
-		if(key == KeyEvent.VK_SPACE) {
+		if(key == KeyEvent.VK_ENTER) {
 			
-			greenShipX = 200;
 			repaint();
 		}
 	}
@@ -172,16 +230,48 @@ public class gui extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g); // paint background
+		int player = 0;
 		
 		// TODO: render the model
-		g.setColor(Color.GREEN);
-		//g.fillRect(greenShipX, greenShipY, 20, 20);
-		g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
+		if(p1Destroyed == false) {
+			if(p1Targeted == false) {
+				g.setColor(Color.GREEN);
+				g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
+			}
+			else {
+				g.setColor(Color.YELLOW);
+				g.drawRect(greenShipX, greenShipY, 50, 50);
+				g.drawImage(shipSprite, greenShipX, greenShipY, 50, 50, this);
+			}	
+		}
 		
-		g.setColor(Color.RED);
-		g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
-		//g.fillOval(redShipX, redShipY, 20, 20);
-
+		if(p2Destroyed == false) {
+			if(p2Targeted == false) {
+				g.setColor(Color.RED);
+				g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
+			}
+			else {
+				g.setColor(Color.YELLOW);
+				g.drawRect(redShipX, redShipY, 50, 50);
+				g.drawImage(shipSprite2, redShipX, redShipY, 50, 50, this);
+			}
+		}
+		
+		if(p2Destroyed == true || p1Destroyed == true) {
+			if(p2Destroyed == true) {
+				player = 1;
+			}
+			else {
+				player = 2;
+			}
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, 600, 600);
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(null, Font.BOLD, 50));
+			g.drawString("GAME OVER" , 150, 300);
+			g.setFont(new Font(null, Font.BOLD, 25));
+			g.drawString("Player " + player + " Won!", 225, 350);
+		}
 	}
 	
 	public static void main(String[] args) {
