@@ -39,8 +39,8 @@ public class gui extends JPanel{
 	
 	public gui() {
 		setBackground(Color.BLACK);
-		shipSprite = loadImage("gameFiles/shipSprite.png");
-		shipSprite2 = loadImage("gameFiles/shipSprite2Test.png");
+		shipSprite = loadImage("gameFiles/Images/shipSprite.png");
+		shipSprite2 = loadImage("gameFiles/Images/shipSprite2Test.png");
 		
 		setPreferredSize(new Dimension((int) Board.getXSize(), (int) Board.getYSize()));
 		
