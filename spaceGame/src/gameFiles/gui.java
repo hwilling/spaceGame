@@ -42,12 +42,14 @@ public class gui extends JPanel{
 	
 	private BufferedImage shipSprite;
 	private BufferedImage shipSprite2;
+	private BufferedImage space;
 
 	
 	public gui() {
-		setBackground(Color.BLACK);
-		shipSprite = loadImage("gameFiles/Images/shipSprite.png");
-		shipSprite2 = loadImage("gameFiles/Images/shipSprite2Test.png");
+		//setBackground(Color.BLACK);
+		shipSprite = loadImage("gameFiles/Images/ship.png");
+		shipSprite2 = loadImage("gameFiles/Images/ship2.png");
+		space = loadImage("gameFiles/Images/spaceDrop.png");
 		
 		setPreferredSize(new Dimension((int) Board.getXSize(), (int) Board.getYSize()));
 		
@@ -239,8 +241,9 @@ public class gui extends JPanel{
 		int player = 0;
 		
 		if(startGame == false) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, 600, 600);
+			//g.setColor(Color.BLACK);
+			//g.fillRect(0, 0, 600, 600);
+			g.drawImage(space, 0, 0, 600, 600, this);
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Press Enter to Start" , 150, 300);
@@ -253,6 +256,9 @@ public class gui extends JPanel{
 		}
 		else {
 			// TODO: render the model
+			//background
+			g.drawImage(space, 0, 0, 600, 600, this);
+			
 			if(p1Destroyed == false) {
 				if(p1Targeted == false) {
 					g.setColor(Color.GREEN);
@@ -284,8 +290,9 @@ public class gui extends JPanel{
 				else {
 					player = 2;
 				}
-				g.setColor(Color.BLACK);
-				g.fillRect(0, 0, 600, 600);
+				//g.setColor(Color.BLACK);
+				//g.fillRect(0, 0, 600, 600);
+				g.drawImage(space, 0, 0, 600, 600, this);
 				g.setColor(Color.WHITE);
 				g.setFont(new Font(null, Font.BOLD, 50));
 				g.drawString("GAME OVER" , 150, 300);
