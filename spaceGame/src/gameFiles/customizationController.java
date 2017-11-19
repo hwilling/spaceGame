@@ -2,13 +2,14 @@ package gameFiles;
 
 public class customizationController 
 {
-	boolean player1;
-	boolean player2;
-	ship[] player1Ships;
-	ship[] player2Ships;
+	private boolean player1;
+	private boolean player2;
+	private ship[] player1Ships;
+	private ship[] player2Ships;
 	
 	//Possible upgrades: health, defense, attack, speed, range
-	int health, defense, attack, speed, range;		
+	//points is the total "currency" that can be spent upgrading the ships
+	private int health, defense, attack, speed, range, points;
 	
 	public customizationController(boolean player1, boolean player2, ship[] player1Ships, ship[] Player2Ships)
 	{
