@@ -35,10 +35,10 @@ public class gui extends JPanel{
 	
 	//test
 	boolean startGame = false;
-	int greenShipX = 300;
-	int greenShipY = 500;
-	int redShipX = 300;
-	int redShipY = 50;
+	int greenShipX = 325;
+	int greenShipY = 525;
+	int redShipX = 325;
+	int redShipY = 25;
 	
 	private BufferedImage shipSprite;
 	private BufferedImage shipSprite2;
@@ -120,14 +120,14 @@ public class gui extends JPanel{
 				if(speed > 0) {
 					if((Math.abs(e.getX() - greenShipX) <= 200) && (Math.abs(e.getY() - greenShipY) <= 200)){
 						if(((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY))) <= 200) {
-							speed = speed-((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY)));
-							greenShipX = e.getX();
-							greenShipY = e.getY();
+							//speed = speed-((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY)));
+							//greenShipX = e.getX();
+							//greenShipY = e.getY();
 							repaint();
 						}
 					}
 				}
-				if(Math.abs(redShipX - greenShipX) <= 100 && Math.abs(redShipY - greenShipY) <= 100) {
+				if(Math.abs(redShipX - greenShipX) == 100 && Math.abs(redShipY - greenShipY) == 100) {
 					p2Targeted = true;
 					repaint();
 				}
@@ -141,14 +141,14 @@ public class gui extends JPanel{
 				if(speed > 0) {
 					if((Math.abs(e.getX() - redShipX) <= 200) && (Math.abs(e.getY() - redShipY) <= 200)){
 						if(((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY))) <= 200) {
-							speed = speed-((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY)));
-							redShipX = e.getX();
-							redShipY = e.getY();
-							repaint();
+							//speed = speed-((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY)));
+							//redShipX = e.getX();
+							//redShipY = e.getY();
+							//repaint();
 						}	
 					}
 				}
-				if(Math.abs(redShipX - greenShipX) <= 100 && Math.abs(redShipY - greenShipY) <= 100) {
+				if(Math.abs(redShipX - greenShipX) == 100 && Math.abs(redShipY - greenShipY) == 100) {
 					p1Targeted = true;
 					repaint();
 				}
@@ -171,7 +171,411 @@ public class gui extends JPanel{
 	// Event handler for mouse released events
 	protected void handleMouseReleased(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
-		repaint();
+
+		//Move Red Ship
+		if(((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY))) <= 200 && speed > 0 && player1 == false) {
+			if(e.getX() < 100) {
+				redShipX = 25;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					redShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					redShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					redShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					redShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					redShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					redShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 100 && e.getX() < 200) {
+				redShipX = 125;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					redShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					redShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					redShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					redShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					redShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					redShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 200 && e.getX() < 300) {
+				redShipX = 225;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					redShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					redShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					redShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					redShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					redShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					redShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 300 && e.getX() < 400) {
+				redShipX = 325;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					redShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					redShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					redShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					redShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					redShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					redShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 400 && e.getX() < 500) {
+				redShipX = 425;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					redShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					redShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					redShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					redShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					redShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					redShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 500 && e.getX() < 600) {
+				redShipX = 525;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					redShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					redShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					redShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					redShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					redShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					redShipY = 525;
+					repaint();
+				}
+			}
+		}
+		
+		//Green Ship to move
+		if(((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY))) <= 200 && speed > 0 && player1 == true) {
+			if(e.getX() < 100) {
+				greenShipX = 25;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					greenShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					greenShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					greenShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					greenShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					greenShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					greenShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 100 && e.getX() < 200) {
+				greenShipX = 125;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					greenShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					greenShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					greenShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					greenShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					greenShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					greenShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 200 && e.getX() < 300) {
+				greenShipX = 225;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					greenShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					greenShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					greenShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					greenShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					greenShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					greenShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 300 && e.getX() < 400) {
+				greenShipX = 325;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					greenShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					greenShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					greenShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					greenShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					greenShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					greenShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 400 && e.getX() < 500) {
+				greenShipX = 425;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					greenShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					greenShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					greenShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					greenShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					greenShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					greenShipY = 525;
+					repaint();
+				}
+			}
+			if(e.getX() > 500 && e.getX() < 600) {
+				greenShipX = 525;
+				if(e.getY() < 100) {
+					speed = speed - 100;
+					greenShipY = 25;
+					repaint();
+				}
+				if(e.getY() > 100 && e.getY() < 200) {
+					speed = speed - 100;
+					greenShipY = 125;
+					repaint();
+				}
+				if(e.getY() > 200 && e.getY() < 300) {
+					speed = speed - 100;
+					greenShipY = 225;
+					repaint();
+				}
+				if(e.getY() > 300 && e.getY() < 400) {
+					speed = speed - 100;
+					greenShipY = 325;
+					repaint();
+				}
+				if(e.getY() > 400 && e.getY() < 500) {
+					speed = speed - 100;
+					greenShipY = 425;
+					repaint();
+				}
+				if(e.getY() > 500 && e.getY() < 600) {
+					speed = speed - 100;
+					greenShipY = 525;
+					repaint();
+				}
+			}
+		}
+		
 	}
 		
 	// Event handler for animation timer tick events
@@ -258,6 +662,24 @@ public class gui extends JPanel{
 			// TODO: render the model
 			//background
 			g.drawImage(space, 0, 0, 600, 600, this);
+			
+			if(p1Destroyed == false && p2Destroyed == false) {
+				g.setColor(Color.WHITE);
+				//Vertical Lines
+				g.drawLine(100, 0, 100, 600);
+				g.drawLine(200, 0, 200, 600);
+				g.drawLine(300, 0, 300, 600);
+				g.drawLine(400, 0, 400, 600);
+				g.drawLine(500, 0, 500, 600);
+				
+				//Horizontal Lines
+				g.drawLine(0, 100, 600, 100);
+				g.drawLine(0, 200, 600, 200);
+				g.drawLine(0, 300, 600, 300);
+				g.drawLine(0, 400, 600, 400);
+				g.drawLine(0, 500, 600, 500);
+
+			}
 			
 			if(p1Destroyed == false) {
 				if(p1Targeted == false) {
