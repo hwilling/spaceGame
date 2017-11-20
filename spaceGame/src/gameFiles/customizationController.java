@@ -19,9 +19,21 @@ public class customizationController
 	
 	public int P1boostHealth(ship player1Ship)
 	{
+		//check if player can afford upgrade
 		health = player1Ship.getMaxHP();
-		health++;
+		if(points >= calcBoostCost(health)){
+			points -= calcBoostCost(health);
+			health++;
+			player1Ship.setMaxHP(health);
+		}
+		return health;
+	}
 	
+	public int P1reduceHealth(ship player1Ship){
+		health = player1Ship.getMaxHP();
+		points += calcReduceRefund(health);
+		health--;
+		player1Ship.setMaxHP(health);
 		return health;
 	}
 	
@@ -79,5 +91,16 @@ public class customizationController
 		range++;
 
 		return range;
-	}	
+	}
+	//how many points it will cost to upgrade a stat
+	public int calcBoostCost(int boostVal){
+		int cost = boostVal * 10;
+		return cost;
+	}
+	//how many points a player will receive when downgrading a stat
+	public int calcReduceRefund(int reduceVal){
+		//minus one so the price of the refund is equal to the amount the player paid to get to this point
+		int refund = (reduceVal -1) * 10;
+		return refund;
+	}
 }
