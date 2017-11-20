@@ -9,7 +9,8 @@ public class customizationController
 	
 	//Possible upgrades: health, defense, attack, speed, range
 	//points is the total "currency" that can be spent upgrading the ships
-	private int health, defense, attack, speed, range, points;
+	private int health, defense, attack, speed, range = 0;
+	private int points = 500;
 	
 	public customizationController(boolean player1, boolean player2, ship[] player1Ships, ship[] Player2Ships)
 	{
@@ -39,58 +40,188 @@ public class customizationController
 	
 	public int P1boostAttack(ship player1Ship)
 	{
+		//check if player can afford upgrade
 		attack = player1Ship.getDamageValue();
-		attack++;
+		if(points >= calcBoostCost(attack)){
+			points -= calcBoostCost(attack);
+			attack++;
+			player1Ship.setDamageValue(attack);;
+		}
+		//attack = player1Ship.getDamageValue();
+		//attack++;
 	
+		return attack;
+	}
+	
+	public int P1reduceAttack(ship player1Ship){
+		attack = player1Ship.getDamageValue();
+		points += calcReduceRefund(attack);
+		attack--;
+		player1Ship.setDamageValue(attack);
 		return attack;
 	}
 	
 	public int P1boostSpeed(ship player1Ship)
 	{
 		speed = player1Ship.getSpeed();
-		speed++;
+		if(points >= calcBoostCost(speed)){
+			speed -= calcBoostCost(speed);
+			speed++;
+			player1Ship.setSpeed(speed);
+		}
+		//speed++;
 	
+		return speed;
+	}
+	
+	public int P1reduceSpeed(ship player1Ship){
+		speed = player1Ship.getSpeed();
+		points += calcReduceRefund(speed);
+		speed--;
+		player1Ship.setSpeed(speed);
 		return speed;
 	}
 	
 	public int P1boostRange(ship player1Ship)
 	{
 		range = player1Ship.getRange();
-		range++;
+		if(points >= calcBoostCost(range)){
+			range -= calcBoostCost(range);
+			range++;
+			player1Ship.setRange(range);
+		}
+		//range++;
 
 		return range;
-	}	
+	}
+	
+	public int P1reduceRange(ship player1Ship){
+		range = player1Ship.getRange();
+		points += calcReduceRefund(range);
+		range--;
+		player1Ship.setRange(range);
+		return range;
+	}
+	
+	public int P1boostArmor(ship player1Ship){
+		defense = player1Ship.getArmor();
+		if(points >= calcBoostCost(defense)){
+			range -= calcBoostCost(defense);
+			defense++;
+			player1Ship.setArmor(defense);
+		}
+		return defense;
+	}
+	
+	public int P1reduceArmor(ship player1Ship){
+		defense = player1Ship.getArmor();
+		points += calcReduceRefund(defense);
+		defense--;
+		player1Ship.setArmor(defense);
+		return defense;
+	}
 	
 	public int P2boostHealth(ship player2Ship)
 	{
+		//check if player can afford upgrade
 		health = player2Ship.getMaxHP();
-		health++;
-
+		if(points >= calcBoostCost(health)){
+			points -= calcBoostCost(health);
+			health++;
+			player2Ship.setMaxHP(health);
+		}
+		return health;
+	}
+	
+	public int P2reduceHealth(ship player2Ship){
+		health = player2Ship.getMaxHP();
+		points += calcReduceRefund(health);
+		health--;
+		player2Ship.setMaxHP(health);
 		return health;
 	}
 	
 	public int P2boostAttack(ship player2Ship)
 	{
+		//check if player can afford upgrade
 		attack = player2Ship.getDamageValue();
-		attack++;
-
+		if(points >= calcBoostCost(attack)){
+			points -= calcBoostCost(attack);
+			attack++;
+			player2Ship.setDamageValue(attack);;
+		}
+		//attack = player1Ship.getDamageValue();
+		//attack++;
+	
+		return attack;
+	}
+	
+	public int P2reduceAttack(ship player2Ship){
+		attack = player2Ship.getDamageValue();
+		points += calcReduceRefund(attack);
+		attack--;
+		player2Ship.setDamageValue(attack);
 		return attack;
 	}
 	
 	public int P2boostSpeed(ship player2Ship)
 	{
 		speed = player2Ship.getSpeed();
-		speed++;
-			
+		if(points >= calcBoostCost(speed)){
+			speed -= calcBoostCost(speed);
+			speed++;
+			player2Ship.setSpeed(speed);
+		}
+		//speed++;
+	
+		return speed;
+	}
+	
+	public int P2reduceSpeed(ship player2Ship){
+		speed = player2Ship.getSpeed();
+		points += calcReduceRefund(speed);
+		speed--;
+		player2Ship.setSpeed(speed);
 		return speed;
 	}
 	
 	public int P2boostRange(ship player2Ship)
 	{
 		range = player2Ship.getRange();
-		range++;
+		if(points >= calcBoostCost(range)){
+			range -= calcBoostCost(range);
+			range++;
+			player2Ship.setRange(range);
+		}
+		//range++;
 
 		return range;
+	}
+	
+	public int P2reduceRange(ship player2Ship){
+		range = player2Ship.getRange();
+		points += calcReduceRefund(range);
+		range--;
+		player2Ship.setRange(range);
+		return range;
+	}
+	
+	public int P2boostArmor(ship player2Ship){
+		defense = player2Ship.getArmor();
+		if(points >= calcBoostCost(defense)){
+			range -= calcBoostCost(defense);
+			defense++;
+			player2Ship.setArmor(defense);
+		}
+		return defense;
+	}
+	
+	public int P2reduceArmor(ship player2Ship){
+		defense = player2Ship.getArmor();
+		points += calcReduceRefund(defense);
+		defense--;
+		player2Ship.setArmor(defense);
+		return defense;
 	}
 	//how many points it will cost to upgrade a stat
 	public int calcBoostCost(int boostVal){

@@ -2,9 +2,9 @@ package gameFiles;
 
 public class ship {
 	
-	private String name;
-	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg, range;
-	private int xCoord, yCoord;
+	private String name = "";
+	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg, range, armor = 0;
+	private int xCoord, yCoord = 0;
 	
 	public ship(String name){
 		this.name = name;
@@ -35,6 +35,16 @@ public class ship {
 	}
 	public void modMaxHP(int modVal){
 		hpMax += modVal;
+	}
+	//armor
+	public int getArmor(){
+		return armor;
+	}
+	public void setArmor(int newArmor){
+		armor = newArmor;
+	}
+	public void modArmor(int modVal){
+		armor += modVal;
 	}
 	//movement
 	public int getMovesRemaining(){
