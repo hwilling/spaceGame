@@ -41,10 +41,13 @@ public class gui extends JPanel{
 	int greenShipY = 525;
 	int redShipX = 325;
 	int redShipY = 25;
+	int points = 500;
 	
 	private BufferedImage shipSprite;
 	private BufferedImage shipSprite2;
 	private BufferedImage space;
+	
+	private customizationController custom;
 
 	
 	public gui() {
@@ -664,6 +667,9 @@ public class gui extends JPanel{
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Player 1: Customize Your Ships" , 75, 50);
+			
+			g.setFont(new Font(null, Font.PLAIN, 20));
+			g.drawString("Points: " + points, 25, 580);
 
 			g.drawImage(shipSprite, 265, 200, 100, 100, this);
 			g.drawImage(shipSprite, 165, 350, 100, 100, this);
@@ -676,6 +682,9 @@ public class gui extends JPanel{
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Player 2: Customize Your Ships" , 75, 50);
+			
+			g.setFont(new Font(null, Font.PLAIN, 20));
+			g.drawString("Points: " + points, 25, 580);
 
 			g.drawImage(shipSprite2, 265, 200, 100, 100, this);
 			g.drawImage(shipSprite2, 165, 350, 100, 100, this);
