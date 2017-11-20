@@ -66,11 +66,27 @@ public class customizeTests {
 	}
 	
 	@Test
+	public void testP1HealthReduce()
+	{
+		selectH = true;
+			
+		assertEquals(19, testCustom.P1reduceHealth(testee));
+	}
+	
+	@Test
 	public void testP1AttackBoost()
 	{
 		selectA = true;
 
 		assertEquals(9, testCustom.P1boostAttack(testee));
+	}
+	
+	@Test
+	public void testP1AttackReduce()
+	{
+		selectA = true;
+
+		assertEquals(7, testCustom.P1reduceAttack(testee));
 	}
 	
 	@Test
@@ -82,11 +98,27 @@ public class customizeTests {
 	}
 	
 	@Test
+	public void testP1SpeedReduce()
+	{
+		selectS = true;
+
+		assertEquals(10, testCustom.P1reduceSpeed(testee));
+	}
+	
+	@Test
 	public void testP1RangeBoost()
 	{
 		selectR = true;
 
 		assertEquals(10, testCustom.P1boostRange(testee));
+	}
+	
+	@Test
+	public void testP1RangeReduce()
+	{
+		selectS = true;
+
+		assertEquals(8, testCustom.P1reduceRange(testee));
 	}
 	
 	@Test
@@ -98,11 +130,27 @@ public class customizeTests {
 	}
 	
 	@Test
+	public void testP2HealthReduce()
+	{
+		selectH = true;
+			
+		assertEquals(19, testCustom.P2reduceHealth(testee2));
+	}
+	
+	@Test
 	public void testP2AttackBoost()
 	{
 		selectA = true;
 
 		assertEquals(9, testCustom.P2boostAttack(testee2));
+	}
+	
+	@Test
+	public void testP2AttackReduce()
+	{
+		selectA = true;
+
+		assertEquals(7, testCustom.P2reduceAttack(testee2));
 	}
 	
 	@Test
@@ -114,10 +162,26 @@ public class customizeTests {
 	}
 	
 	@Test
+	public void testP2SpeedReduce()
+	{
+		selectS = true;
+
+		assertEquals(10, testCustom.P2reduceSpeed(testee2));
+	}
+	
+	@Test
 	public void testP2RangeBoost()
 	{
 		selectR = true;
 
 		assertEquals(10, testCustom.P2boostRange(testee2));
+	}
+	
+	@Test
+	public void testP2RangeReduce()
+	{
+		selectR = true;
+
+		assertEquals(8, testCustom.P2reduceRange(testee2));
 	}
 }

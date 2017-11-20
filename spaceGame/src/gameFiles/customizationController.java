@@ -65,7 +65,7 @@ public class customizationController
 	{
 		speed = player1Ship.getSpeed();
 		if(points >= calcBoostCost(speed)){
-			speed -= calcBoostCost(speed);
+			points -= calcBoostCost(speed);
 			speed++;
 			player1Ship.setSpeed(speed);
 		}
@@ -86,7 +86,7 @@ public class customizationController
 	{
 		range = player1Ship.getRange();
 		if(points >= calcBoostCost(range)){
-			range -= calcBoostCost(range);
+			points -= calcBoostCost(range);
 			range++;
 			player1Ship.setRange(range);
 		}
@@ -168,7 +168,7 @@ public class customizationController
 	{
 		speed = player2Ship.getSpeed();
 		if(points >= calcBoostCost(speed)){
-			speed -= calcBoostCost(speed);
+			points -= calcBoostCost(speed);
 			speed++;
 			player2Ship.setSpeed(speed);
 		}
@@ -189,7 +189,7 @@ public class customizationController
 	{
 		range = player2Ship.getRange();
 		if(points >= calcBoostCost(range)){
-			range -= calcBoostCost(range);
+			points -= calcBoostCost(range);
 			range++;
 			player2Ship.setRange(range);
 		}

@@ -696,6 +696,7 @@ public class gui extends JPanel{
 			g.drawString("Spacebar to Change Players" , 289, 530);
 			g.drawString("F to fire" , 290, 550);
 		}
+		
 		else {
 			// TODO: render the model
 			//background
