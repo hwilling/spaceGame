@@ -35,6 +35,8 @@ public class gui extends JPanel{
 	
 	//test
 	boolean startGame = false;
+	boolean customizeScreenP1 = false;
+	boolean customizeScreenP2 = false;
 	int greenShipX = 325;
 	int greenShipY = 525;
 	int redShipX = 325;
@@ -612,7 +614,19 @@ public class gui extends JPanel{
 			}
 		}
 		
-		if(key == KeyEvent.VK_ENTER) {
+		if(key == KeyEvent.VK_ENTER && customizeScreenP1 == false && customizeScreenP2 == false && startGame == false) {
+			customizeScreenP1 = true;
+			repaint();
+		}
+		
+		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == true && customizeScreenP2 == false && startGame == false) {
+			customizeScreenP1 = false;
+			customizeScreenP2 = true;
+			repaint();
+		}
+		
+		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == false && customizeScreenP2 == true && startGame == false) {
+			customizeScreenP2 = false;
 			startGame = true;
 			repaint();
 		}
@@ -644,7 +658,31 @@ public class gui extends JPanel{
 		super.paintComponent(g); // paint background
 		int player = 0;
 		
-		if(startGame == false) {
+		if(customizeScreenP1 == true && startGame == false) {
+			//background image
+			g.drawImage(space, 0, 0, 600, 600, this);
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(null, Font.BOLD, 30));
+			g.drawString("Player 1: Customize Your Ships" , 75, 50);
+
+			g.drawImage(shipSprite, 265, 200, 100, 100, this);
+			g.drawImage(shipSprite, 165, 350, 100, 100, this);
+			g.drawImage(shipSprite, 365, 350, 100, 100, this);
+		}
+		
+		else if(customizeScreenP2 == true && startGame == false) {
+			//background image
+			g.drawImage(space, 0, 0, 600, 600, this);
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(null, Font.BOLD, 30));
+			g.drawString("Player 2: Customize Your Ships" , 75, 50);
+
+			g.drawImage(shipSprite2, 265, 200, 100, 100, this);
+			g.drawImage(shipSprite2, 165, 350, 100, 100, this);
+			g.drawImage(shipSprite2, 365, 350, 100, 100, this);
+		}
+		
+		else if (customizeScreenP2 == false && startGame == false) {
 			//g.setColor(Color.BLACK);
 			//g.fillRect(0, 0, 600, 600);
 			g.drawImage(space, 0, 0, 600, 600, this);
