@@ -1,6 +1,7 @@
 package gameFiles;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class combatController {
 	private boolean players[];
@@ -134,5 +135,17 @@ public class combatController {
 		else{
 			return 0;
 		}
+	}
+	
+	public int hitChance(ship attacker, ship target){
+		int attackx = attacker.getXCoord();
+		int attacky = attacker.getYCoord();
+		int targetx = target.getXCoord();
+		int targety = target.getYCoord();
+		int distToTarget = getDist(attackx, attacky, targetx, targety);
+		Random generator = new Random();
+		int chance = generator.nextInt(100) + 1;
+		chance -= distToTarget;
+		return chance;
 	}
 }
