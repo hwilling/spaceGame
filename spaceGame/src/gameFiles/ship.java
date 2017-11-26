@@ -5,9 +5,16 @@ public class ship {
 	private String name = "";
 	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg, range, armor = 0;
 	private int xCoord, yCoord = 0;
+	private Engine engine;
+	private ShieldGenerator shieldGen;
+	private WeaponSystems weapons;
+	private Reactor reactor;
+	private Hull hull;
 	
+	//maintain old input to not mess up rest of program
 	public ship(String name){
 		this.name = name;
+		//TODO set ships systems to the systems being passed in on creation
 	}
 	public String getName(){
 		return name;
