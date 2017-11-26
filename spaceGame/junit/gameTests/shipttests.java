@@ -7,11 +7,17 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import gameFiles.Engine;
+import gameFiles.Hull;
+import gameFiles.Reactor;
+import gameFiles.ShieldGenerator;
+import gameFiles.WeaponSystems;
 import gameFiles.combatController;
 import gameFiles.ship;
 
 public class shipttests {
 
+	
 	private ship testee = new ship("testShip");
 	private ship testee2 = new ship("other testShip");
 	private ArrayList<ship> ships1 = new ArrayList<ship>();
@@ -26,6 +32,13 @@ public class shipttests {
 	private int setMaxActionVal = 3;
 	private int setHPVal = 12;
 	private int setMaxHPVal = 20;
+	/*private Engine engine = new Engine(setSpeedVal);
+	private ShieldGenerator shieldGen = new ShieldGenerator(5, 5);
+	private Hull hull = new Hull(5, 5);
+	private Reactor reactor = new Reactor(12);
+	private WeaponSystems weapons = new WeaponSystems(20, 21);*/
+	//private ship testee = new ship("testShip", engine, shieldGen, weapons, reactor, hull);
+	//private ship testee2 = new ship("other testShip", engine, shieldGen, weapons, reactor, hull);
 	
 	@Before
 	public void setUp(){
@@ -52,6 +65,13 @@ public class shipttests {
 	}
 	
 	private combatController testCC = new combatController(numPlayers, ships1, ships2);
+	
+	/*@Test
+	public void testSubSystems(){
+		assertEquals(setSpeedVal, testee.getEngine().getMoves());
+		engine.setMoves(300);
+		assertEquals(setSpeedVal, testee.getEngine().getMoves());
+	}*/
 	
 	@Test
 	public void testSettingShip(){

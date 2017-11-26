@@ -5,17 +5,41 @@ public class ship {
 	private String name = "";
 	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg, range, armor = 0;
 	private int xCoord, yCoord = 0;
-	private Engine engine;
+	private Engine engine = new Engine(0);
 	private ShieldGenerator shieldGen;
 	private WeaponSystems weapons;
 	private Reactor reactor;
 	private Hull hull;
 	
 	//maintain old input to not mess up rest of program
-	public ship(String name){
+	public ship(String name/*, Engine engine, ShieldGenerator shieldGen, WeaponSystems weapons, Reactor reactor, Hull hull*/){
 		this.name = name;
+		
 		//TODO set ships systems to the systems being passed in on creation
+		/*this.engine.setMoves(engine.getMoves());
+		this.shieldGen = shieldGen;
+		this.weapons = weapons;
+		this.reactor = reactor;
+		this.hull = hull;*/
 	}
+	//subsystems
+	public Engine getEngine(){
+		return engine;
+	}
+	public ShieldGenerator getShieldGen(){
+		return shieldGen;
+	}
+	public WeaponSystems getWeapons(){
+		return weapons;
+	}
+	public Reactor getReactor(){
+		return reactor;
+	}
+	public Hull getHull(){
+		return hull;
+	}
+	
+	//name
 	public String getName(){
 		return name;
 	}
