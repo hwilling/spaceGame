@@ -138,14 +138,17 @@ public class combatController {
 	}
 	
 	public boolean hit(ship attacker, ship target){
+		//get distance between each ship
 		int distToTarget = getDist(attacker.getXCoord(), attacker.getYCoord(), target.getXCoord(), target.getYCoord());
+		int rangeDif = attacker.getRange() - distToTarget;
 		int targetSpeed = target.getSpeed();
 		Random generator = new Random();
 		int rand = generator.nextInt(99) + 1;
 		//chances based on situation of distance and target speed
 		int missChance = targetSpeed * 5;
-		int hitChance = 100 - (distToTarget * 10);
+		int hitChance = 50 + (rangeDif * 10);
 		hitChance -= missChance;
+		//results
 		if(hitChance >= rand){
 			return true;
 		}
