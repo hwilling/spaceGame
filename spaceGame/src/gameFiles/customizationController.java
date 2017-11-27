@@ -9,7 +9,7 @@ public class customizationController
 	
 	//Possible upgrades: health, defense, attack, speed, range
 	//points is the total "currency" that can be spent upgrading the ships
-	private int health, defense, attack, speed, range = 0;
+	private int health, shield, recharge, actions, defense, attack, speed, range = 0;
 	private int points = 500;
 	
 	public customizationController(boolean player1, boolean player2, ship[] player1Ships, ship[] Player2Ships)
@@ -36,6 +36,66 @@ public class customizationController
 		health--;
 		player1Ship.setMaxHP(health);
 		return health;
+	}
+	
+	public int P1boostShield(ship player1Ship)
+	{
+		//check if player can afford upgrade
+		shield = player1Ship.getShieldGen().getShieldCharge();
+		if(points >= calcBoostCost(shield)){
+			points -= calcBoostCost(shield);
+			shield++;
+			player1Ship.getShieldGen().setShieldCharge(shield);
+		}
+		return shield;
+	}
+	
+	public int P1reduceShield(ship player1Ship){
+		shield = player1Ship.getShieldGen().getShieldCharge();
+		points += calcReduceRefund(shield);
+		shield--;
+		player1Ship.getShieldGen().setShieldCharge(shield);;
+		return health;
+	}
+	
+	public int P1boostShieldRecharge(ship player1Ship)
+	{
+		//check if player can afford upgrade
+		recharge = player1Ship.getShieldGen().getRechargeRate();
+		if(points >= calcBoostCost(recharge)){
+			points -= calcBoostCost(recharge);
+			recharge++;
+			player1Ship.getShieldGen().setRechargeRate(recharge);
+		}
+		return recharge;
+	}
+	
+	public int P1reduceShieldRecharge(ship player1Ship){
+		recharge = player1Ship.getShieldGen().getRechargeRate();
+		points += calcReduceRefund(recharge);
+		recharge--;
+		player1Ship.getShieldGen().setRechargeRate(recharge);
+		return recharge;
+	}
+	
+	public int P1boostAction(ship player1Ship)
+	{
+		//check if player can afford upgrade
+		actions = player1Ship.getReactor().getActions();
+		if(points >= calcBoostCost(actions)){
+			points -= calcBoostCost(actions);
+			actions++;
+			player1Ship.getReactor().setActions(actions);;
+		}
+		return actions;
+	}
+	
+	public int P1reduceAction(ship player1Ship){
+		actions = player1Ship.getReactor().getActions();
+		points += calcReduceRefund(actions);
+		actions--;
+		player1Ship.getReactor().setActions(actions);;
+		return actions;
 	}
 	
 	public int P1boostAttack(ship player1Ship)
@@ -139,6 +199,66 @@ public class customizationController
 		health--;
 		player2Ship.setMaxHP(health);
 		return health;
+	}
+	
+	public int P2boostShield(ship player1Ship)
+	{
+		//check if player can afford upgrade
+		shield = player1Ship.getShieldGen().getShieldCharge();
+		if(points >= calcBoostCost(shield)){
+			points -= calcBoostCost(shield);
+			shield++;
+			player1Ship.getShieldGen().setShieldCharge(shield);
+		}
+		return shield;
+	}
+	
+	public int P2reduceShield(ship player1Ship){
+		shield = player1Ship.getShieldGen().getShieldCharge();
+		points += calcReduceRefund(shield);
+		shield--;
+		player1Ship.getShieldGen().setShieldCharge(shield);;
+		return health;
+	}
+	
+	public int P2boostShieldRecharge(ship player1Ship)
+	{
+		//check if player can afford upgrade
+		recharge = player1Ship.getShieldGen().getRechargeRate();
+		if(points >= calcBoostCost(recharge)){
+			points -= calcBoostCost(recharge);
+			recharge++;
+			player1Ship.getShieldGen().setRechargeRate(recharge);
+		}
+		return recharge;
+	}
+	
+	public int P2reduceShieldRecharge(ship player1Ship){
+		recharge = player1Ship.getShieldGen().getRechargeRate();
+		points += calcReduceRefund(recharge);
+		recharge--;
+		player1Ship.getShieldGen().setRechargeRate(recharge);
+		return recharge;
+	}
+	
+	public int P2boostAction(ship player1Ship)
+	{
+		//check if player can afford upgrade
+		actions = player1Ship.getReactor().getActions();
+		if(points >= calcBoostCost(actions)){
+			points -= calcBoostCost(actions);
+			actions++;
+			player1Ship.getReactor().setActions(actions);;
+		}
+		return actions;
+	}
+	
+	public int P2reduceAction(ship player1Ship){
+		actions = player1Ship.getReactor().getActions();
+		points += calcReduceRefund(actions);
+		actions--;
+		player1Ship.getReactor().setActions(actions);;
+		return actions;
 	}
 	
 	public int P2boostAttack(ship player2Ship)
