@@ -136,17 +136,17 @@ public class gui extends JPanel{
 		// TODO: use controller to handle event and (if necessary) update model
 		if (customizeScreenP1 == true)
 		{
-			if (e.getX() > 265 && e.getX() < 365 && e.getY() > 200 && e.getY() < 300)
+			if (p1Num > 1 && e.getX() > 265 && e.getX() < 365 && e.getY() > 200 && e.getY() < 300)
 			{
 				p1_s1 = true;
 			}
 			
-			else if (e.getX() > 165 && e.getX() < 265 && e.getY() > 350 && e.getY() < 450)
+			else if (p1Num > 2 && e.getX() > 165 && e.getX() < 265 && e.getY() > 350 && e.getY() < 450)
 			{
 				p1_s2 = true;
 			}
 			
-			else if (e.getX() > 365 && e.getX() < 465 && e.getY() > 350 && e.getY() < 450)
+			else if (p1Num > 3 && e.getX() > 365 && e.getX() < 465 && e.getY() > 350 && e.getY() < 450)
 			{
 				p1_s3 = true;
 			}
@@ -154,17 +154,17 @@ public class gui extends JPanel{
 		
 		else if (customizeScreenP2 == true)
 		{
-			if (e.getX() > 265 && e.getX() < 365 && e.getY() > 200 && e.getY() < 300)
+			if (p2Num > 1 && e.getX() > 265 && e.getX() < 365 && e.getY() > 200 && e.getY() < 300)
 			{
 				p2_s1 = true;
 			}
 			
-			else if (e.getX() > 165 && e.getX() < 265 && e.getY() > 350 && e.getY() < 450)
+			else if (p2Num > 1 && e.getX() > 165 && e.getX() < 265 && e.getY() > 350 && e.getY() < 450)
 			{
 				p2_s2 = true;
 			}
 			
-			else if (e.getX() > 365 && e.getX() < 465 && e.getY() > 350 && e.getY() < 450)
+			else if (p2Num > 1 && e.getX() > 365 && e.getX() < 465 && e.getY() > 350 && e.getY() < 450)
 			{
 				p2_s3 = true;
 			}
@@ -793,11 +793,25 @@ public class gui extends JPanel{
 			g.drawString("Points: " + points, 25, 580);
 			g.drawString("Number of Ships: " + p1Num, 325, 580);
 
-			g.drawImage(shipSprite, 265, 200, 100, 100, this);
-			g.drawImage(shipSprite, 165, 350, 100, 100, this);
-			g.drawImage(shipSprite, 365, 350, 100, 100, this);
+			if (p1Num == 1)
+			{
+				g.drawImage(shipSprite, 265, 200, 100, 100, this);
+			}
 			
-			if (p1_s1 == true)
+			else if (p1Num == 2)
+			{
+				g.drawImage(shipSprite, 265, 200, 100, 100, this);
+				g.drawImage(shipSprite, 165, 350, 100, 100, this);
+			}
+			
+			else if (p1Num == 3)
+			{
+				g.drawImage(shipSprite, 265, 200, 100, 100, this);
+				g.drawImage(shipSprite, 165, 350, 100, 100, this);
+				g.drawImage(shipSprite, 365, 350, 100, 100, this);
+			}
+			
+			if (p1_s1 == true && p1Num > 1)
 			{
 				g.drawOval(260, 200, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
@@ -809,7 +823,7 @@ public class gui extends JPanel{
 				g.drawString("R to boost range", 115, 275);
 			}
 			
-			else if (p1_s2 == true)
+			else if (p1_s2 == true && p1Num > 2)
 			{
 				g.drawOval(160, 350, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
@@ -821,7 +835,7 @@ public class gui extends JPanel{
 				g.drawString("R to boost range", 25, 475);
 			}
 			
-			else if (p1_s3 == true)
+			else if (p1_s3 == true && p1Num > 3)
 			{
 				g.drawOval(360, 350, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
@@ -845,11 +859,25 @@ public class gui extends JPanel{
 			g.drawString("Points: " + points, 25, 580);
 			g.drawString("Number of Ships: " + p2Num, 325, 580);
 
-			g.drawImage(shipSprite2, 265, 200, 100, 100, this);
-			g.drawImage(shipSprite2, 165, 350, 100, 100, this);
-			g.drawImage(shipSprite2, 365, 350, 100, 100, this);
+			if (p2Num == 1)
+			{
+				g.drawImage(shipSprite2, 265, 200, 100, 100, this);
+			}
 			
-			if (p2_s1 == true)
+			else if (p2Num == 2)
+			{
+				g.drawImage(shipSprite2, 265, 200, 100, 100, this);
+				g.drawImage(shipSprite2, 165, 350, 100, 100, this);
+			}
+			
+			else if (p2Num == 3)
+			{
+				g.drawImage(shipSprite2, 265, 200, 100, 100, this);
+				g.drawImage(shipSprite2, 165, 350, 100, 100, this);
+				g.drawImage(shipSprite2, 365, 350, 100, 100, this);
+			}
+			
+			if (p2_s1 == true && p2Num > 1)
 			{
 				g.drawOval(260, 200, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
@@ -861,7 +889,7 @@ public class gui extends JPanel{
 				g.drawString("R to boost range", 115, 275);
 			}
 			
-			else if (p2_s2 == true)
+			else if (p2_s2 == true && p2Num > 2)
 			{
 				g.drawOval(160, 350, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
@@ -873,7 +901,7 @@ public class gui extends JPanel{
 				g.drawString("R to boost range", 25, 475);
 			}
 			
-			else if (p2_s3 == true)
+			else if (p2_s3 == true && p2Num > 3)
 			{
 				g.drawOval(360, 350, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
