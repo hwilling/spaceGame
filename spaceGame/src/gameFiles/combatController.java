@@ -64,7 +64,7 @@ public class combatController {
 		int targety = target.getYCoord();
 		int distToTarget = getDist(attackx, attacky, targetx, targety);
 		
-		if(distToTarget <= attacker.getRange()){
+		if(distToTarget <= attacker.getRange() && hit(attacker, target)){
 			target.modHP(-1 * attacker.getDamageValue());
 			//TODO destroy ship
 			if(target.getHP() <= 0){
@@ -137,15 +137,18 @@ public class combatController {
 		}
 	}
 	
-	public int hitChance(ship attacker, ship target){
-		int attackx = attacker.getXCoord();
-		int attacky = attacker.getYCoord();
-		int targetx = target.getXCoord();
-		int targety = target.getYCoord();
-		int distToTarget = getDist(attackx, attacky, targetx, targety);
+	public boolean hit(ship attacker, ship target){
+		int distToTarget = getDist(attacker.getXCoord(), attacker.getYCoord(), target.getXCoord(), target.getYCoord());
+		int targetSpeed = target.getSpeed();
 		Random generator = new Random();
-		int chance = generator.nextInt(100) + 1;
-		chance -= distToTarget;
-		return chance;
+		int rand = generator.nextInt(99) + 1;
+		//chances based on situation of distance and target speed
+		int missChance = targetSpeed * 5;
+		int hitChance = 100 - (distToTarget * 10);
+		hitChance -= missChance;
+		if(hitChance >= rand){
+			return true;
+		}
+		return false;
 	}
 }
