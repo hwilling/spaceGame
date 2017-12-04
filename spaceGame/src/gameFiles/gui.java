@@ -58,6 +58,8 @@ public class gui extends JPanel{
 	boolean p2_s3 = false;
 	boolean p2_s4 = false;
 	
+	//select ships or customization
+	boolean selection = false;
 	
 	private BufferedImage shipSprite;
 	private BufferedImage shipSprite2;
@@ -657,22 +659,272 @@ public class gui extends JPanel{
 		int key = e.getKeyCode();
 		int x = 100;
 		
-		
-		if(customizeScreenP1 == true && startGame == false) {
-			if(key == KeyEvent.VK_1) {
+		if(customizeScreenP1 == true && startGame == false) 
+		{
+			if(key == KeyEvent.VK_1) 
+			{
 				p1Num = 1;
 			}
 			
-			else if(key == KeyEvent.VK_2) {
+			else if(key == KeyEvent.VK_2) 
+			{
 				p1Num = 2;
 			}
-			else if(key == KeyEvent.VK_3) {
+			else if(key == KeyEvent.VK_3) 
+			{
 				p1Num = 3;
 			}
-			else if(key == KeyEvent.VK_4) {
+			else if(key == KeyEvent.VK_4) 
+			{
 				p1Num = 4;
 			}
 			repaint();
+			
+			//Customization Events
+			//Player 1 health
+			if (p1_s1 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostHealth(player1Ships.get(0));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceHealth(player1Ships.get(0));
+				}
+			}
+			
+			else if (p1_s2 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostHealth(player1Ships.get(1));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceHealth(player1Ships.get(1));
+				}
+			}
+			
+			else if (p1_s3 == true && key == KeyEvent.VK_H)
+			{
+				selection = true; 
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostHealth(player1Ships.get(2));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceHealth(player1Ships.get(2));
+				}
+			}
+			
+			else if (p1_s4 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostHealth(player1Ships.get(3));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceHealth(player1Ships.get(3));
+				}
+			}
+			
+			//Player 2 Health
+			if (p2_s1 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostHealth(player2Ships.get(0));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceHealth(player2Ships.get(0));
+				}
+			}
+			
+			else if (p2_s2 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostHealth(player2Ships.get(1));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceHealth(player2Ships.get(1));
+				}
+			}
+			
+			else if (p2_s3 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostHealth(player2Ships.get(2));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceHealth(player2Ships.get(2));
+				}
+			}
+			
+			else if (p2_s4 == true && key == KeyEvent.VK_H)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostHealth(player2Ships.get(3));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceHealth(player2Ships.get(3));
+				}
+			}
+			
+			//Player 1 Attack
+			if (p1_s1 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostAttack(player1Ships.get(0));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceAttack(player1Ships.get(0));
+				}
+			}
+			
+			else if (p1_s2 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostAttack(player1Ships.get(1));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceAttack(player1Ships.get(1));
+				}
+			}
+			
+			else if (p1_s3 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostAttack(player1Ships.get(2));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceAttack(player1Ships.get(2));
+				}
+			}
+			
+			else if (p1_s4 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P1boostAttack(player1Ships.get(3));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P1reduceAttack(player1Ships.get(3));
+				}
+			}
+			
+			//Player 2 Attack
+			
+			if (p2_s1 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostAttack(player2Ships.get(0));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceAttack(player2Ships.get(0));
+				}
+			}
+			
+			else if (p2_s2 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostAttack(player2Ships.get(1));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceAttack(player2Ships.get(1));
+				}
+			}
+			
+			else if (p2_s3 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostAttack(player2Ships.get(2));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceAttack(player2Ships.get(2));
+				}
+			}
+			
+			else if (p2_s4 == true && key == KeyEvent.VK_A)
+			{
+				selection = true;
+				
+				if (key == KeyEvent.VK_UP)
+				{
+					custom.P2boostAttack(player2Ships.get(3));
+				}
+				
+				else if (key == KeyEvent.VK_DOWN)
+				{
+					custom.P2reduceAttack(player2Ships.get(3));
+				}
+			}
 		}
 		
 		if(customizeScreenP2 == true && startGame == false) {
@@ -840,6 +1092,13 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 115, 145);
 				g.drawString("D to boost defense", 115, 160);
 				g.drawString("R to boost range", 115, 175);
+				
+				if (selection == true)
+				{
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Up arrow to Upgrade", 400, 100);
+					g.drawString("Down arrow to Downgrade", 400, 115);
+				}
 			}
 			
 			else if (p1_s2 == true && p1Num > 1)
@@ -852,6 +1111,13 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 25, 345);
 				g.drawString("D to boost defense", 25, 360);
 				g.drawString("R to boost range", 25, 375);
+				
+				if (selection == true)
+				{
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Up arrow to Upgrade", 25, 425);
+					g.drawString("Down arrow to Downgrade", 25, 440);
+				}
 			}
 			
 			else if (p1_s3 == true && p1Num > 2)
@@ -864,6 +1130,13 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 425, 195);
 				g.drawString("D to boost defense", 425, 210);
 				g.drawString("R to boost range", 425, 225);
+				
+				if (selection == true)
+				{
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Up arrow to Upgrade", 400, 400);
+					g.drawString("Down arrow to Downgrade", 400, 415);
+				}
 			}
 			
 			else if (p1_s4 == true && p1Num > 3)
@@ -926,6 +1199,13 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 115, 145);
 				g.drawString("D to boost defense", 115, 160);
 				g.drawString("R to boost range", 115, 175);
+				
+				if (selection == true)
+				{
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Up arrow to Upgrade", 400, 100);
+					g.drawString("Down arrow to Downgrade", 400, 115);
+				}
 			}
 			
 			else if (p2_s2 == true && p2Num > 1)
@@ -938,6 +1218,13 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 25, 345);
 				g.drawString("D to boost defense", 25, 360);
 				g.drawString("R to boost range", 25, 375);
+				
+				if (selection == true)
+				{
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Up arrow to Upgrade", 25, 425);
+					g.drawString("Down arrow to Downgrade", 25, 440);
+				}
 			}
 			
 			else if (p2_s3 == true && p2Num > 2)
@@ -950,6 +1237,13 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 425, 195);
 				g.drawString("D to boost defense", 425, 210);
 				g.drawString("R to boost range", 425, 225);
+				
+				if (selection == true)
+				{
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Up arrow to Upgrade", 400, 400);
+					g.drawString("Down arrow to Downgrade", 400, 415);
+				}
 			}
 			
 			else if (p2_s4 == true && p2Num > 3)
@@ -1136,10 +1430,11 @@ public class gui extends JPanel{
 	        });
 	    }
 	
-	// Load an image from an embedded resource.
+	// Loads image from resource
 		private BufferedImage loadImage(String path) 
 		{
 			InputStream in = loadResource(path);
+			
 			try 
 			{
 				return ImageIO.read(in);
@@ -1147,14 +1442,15 @@ public class gui extends JPanel{
 			
 			catch (IOException e) 
 			{
-				throw new IllegalStateException("Couldn't load image " + path, e);
+				throw new IllegalStateException("Image does not exist. " + path, e);
 			}
 		}
 		
-		// Load an embedded resource as an input stream.
+		// Loads resource as an input
 		public InputStream loadResource(String path) 
 		{
 			InputStream in = getClass().getClassLoader().getResourceAsStream(path);
+			
 			if (in == null) 
 			{
 				throw new IllegalStateException("No such resource: " + path);
