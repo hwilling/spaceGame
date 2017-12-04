@@ -52,9 +52,11 @@ public class gui extends JPanel{
 	boolean p1_s1 = false;
 	boolean p1_s2 = false;
 	boolean p1_s3 = false;
+	boolean p1_s4 = false;
 	boolean p2_s1 = false;
 	boolean p2_s2 = false;
 	boolean p2_s3 = false;
+	boolean p2_s4 = false;
 	
 	
 	private BufferedImage shipSprite;
@@ -136,37 +138,46 @@ public class gui extends JPanel{
 		// TODO: use controller to handle event and (if necessary) update model
 		if (customizeScreenP1 == true)
 		{
-			if (p1Num > 1 && e.getX() > 265 && e.getX() < 365 && e.getY() > 200 && e.getY() < 300)
+			if (p1Num > 0 && e.getX() > 265 && e.getX() < 365 && e.getY() > 100 && e.getY() < 200)
 			{
 				p1_s1 = true;
 			}
 			
-			else if (p1Num > 2 && e.getX() > 165 && e.getX() < 265 && e.getY() > 350 && e.getY() < 450)
+			else if (p1Num > 1 && e.getX() > 165 && e.getX() < 265 && e.getY() > 250 && e.getY() < 350)
 			{
 				p1_s2 = true;
 			}
 			
-			else if (p1Num > 3 && e.getX() > 365 && e.getX() < 465 && e.getY() > 350 && e.getY() < 450)
+			else if (p1Num > 2 && e.getX() > 365 && e.getX() < 465 && e.getY() > 250 && e.getY() < 350)
 			{
 				p1_s3 = true;
+			}
+			else if (p1Num > 3 && e.getX() > 365 && e.getX() < 465 && e.getY() > 400 && e.getY() < 500)
+			{
+				p1_s4 = true;
 			}
 		}
 		
 		else if (customizeScreenP2 == true)
 		{
-			if (p2Num > 1 && e.getX() > 265 && e.getX() < 365 && e.getY() > 200 && e.getY() < 300)
+			if (p2Num > 0 && e.getX() > 265 && e.getX() < 365 && e.getY() > 100 && e.getY() < 200)
 			{
 				p2_s1 = true;
 			}
 			
-			else if (p2Num > 1 && e.getX() > 165 && e.getX() < 265 && e.getY() > 350 && e.getY() < 450)
+			else if (p2Num > 1 && e.getX() > 165 && e.getX() < 265 && e.getY() > 250 && e.getY() < 350)
 			{
 				p2_s2 = true;
 			}
 			
-			else if (p2Num > 1 && e.getX() > 365 && e.getX() < 465 && e.getY() > 350 && e.getY() < 450)
+			else if (p2Num > 2 && e.getX() > 365 && e.getX() < 465 && e.getY() > 250 && e.getY() < 350)
 			{
 				p2_s3 = true;
+			}
+			
+			else if (p2Num > 3 && e.getX() > 365 && e.getX() < 465 && e.getY() > 400 && e.getY() < 500)
+			{
+				p2_s4 = true;
 			}
 		}
 		
@@ -795,56 +806,76 @@ public class gui extends JPanel{
 
 			if (p1Num == 1)
 			{
-				g.drawImage(shipSprite, 265, 200, 100, 100, this);
+				g.drawImage(shipSprite, 265, 100, 100, 100, this);
 			}
 			
 			else if (p1Num == 2)
 			{
-				g.drawImage(shipSprite, 265, 200, 100, 100, this);
-				g.drawImage(shipSprite, 165, 350, 100, 100, this);
+				g.drawImage(shipSprite, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite, 165, 250, 100, 100, this);
 			}
 			
 			else if (p1Num == 3)
 			{
-				g.drawImage(shipSprite, 265, 200, 100, 100, this);
-				g.drawImage(shipSprite, 165, 350, 100, 100, this);
-				g.drawImage(shipSprite, 365, 350, 100, 100, this);
+				g.drawImage(shipSprite, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite, 165, 250, 100, 100, this);
+				g.drawImage(shipSprite, 365, 250, 100, 100, this);
 			}
 			
-			if (p1_s1 == true && p1Num > 1)
+			else if (p1Num == 4)
 			{
-				g.drawOval(260, 200, 110, 110);
+				g.drawImage(shipSprite, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite, 165, 250, 100, 100, this);
+				g.drawImage(shipSprite, 365, 250, 100, 100, this);
+				g.drawImage(shipSprite, 265, 400, 100, 100, this);
+			}
+			
+			if (p1_s1 == true && p1Num > 0)
+			{
+				g.drawOval(260, 100, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 100, 200);
-				g.drawString("H to boost health", 115, 215);
-				g.drawString("A to boost attack", 115, 230);
-				g.drawString("S to boost speed", 115, 245);
-				g.drawString("D to boost defense", 115, 260);
-				g.drawString("R to boost range", 115, 275);
+				g.drawString("Upgrades:", 100, 100);
+				g.drawString("H to boost health", 115, 115);
+				g.drawString("A to boost attack", 115, 130);
+				g.drawString("S to boost speed", 115, 145);
+				g.drawString("D to boost defense", 115, 160);
+				g.drawString("R to boost range", 115, 175);
 			}
 			
-			else if (p1_s2 == true && p1Num > 2)
+			else if (p1_s2 == true && p1Num > 1)
 			{
-				g.drawOval(160, 350, 110, 110);
+				g.drawOval(160, 250, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 10, 400);
-				g.drawString("H to boost health", 25, 415);
-				g.drawString("A to boost attack", 25, 430);
-				g.drawString("S to boost speed", 25, 445);
-				g.drawString("D to boost defense", 25, 460);
-				g.drawString("R to boost range", 25, 475);
+				g.drawString("Upgrades:", 10, 300);
+				g.drawString("H to boost health", 25, 315);
+				g.drawString("A to boost attack", 25, 330);
+				g.drawString("S to boost speed", 25, 345);
+				g.drawString("D to boost defense", 25, 360);
+				g.drawString("R to boost range", 25, 375);
 			}
 			
-			else if (p1_s3 == true && p1Num > 3)
+			else if (p1_s3 == true && p1Num > 2)
 			{
-				g.drawOval(360, 350, 110, 110);
+				g.drawOval(360, 250, 110, 110);
+				g.setFont(new Font(null, Font.PLAIN, 15));
+				g.drawString("Upgrades:", 410, 150);
+				g.drawString("H to boost health", 425, 165);
+				g.drawString("A to boost attack", 425, 180);
+				g.drawString("S to boost speed", 425, 195);
+				g.drawString("D to boost defense", 425, 210);
+				g.drawString("R to boost range", 425, 225);
+			}
+			
+			else if (p1_s4 == true && p1Num > 3)
+			{
+				g.drawOval(360, 400, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
 				g.drawString("Upgrades:", 410, 250);
-				g.drawString("H to boost health", 425, 265);
-				g.drawString("A to boost attack", 425, 280);
-				g.drawString("S to boost speed", 425, 295);
-				g.drawString("D to boost defense", 425, 310);
-				g.drawString("R to boost range", 425, 325);
+				g.drawString("H to boost health", 425, 165);
+				g.drawString("A to boost attack", 425, 180);
+				g.drawString("S to boost speed", 425, 195);
+				g.drawString("D to boost defense", 425, 210);
+				g.drawString("R to boost range", 425, 225);
 			}
 		}
 		
@@ -861,56 +892,76 @@ public class gui extends JPanel{
 
 			if (p2Num == 1)
 			{
-				g.drawImage(shipSprite2, 265, 200, 100, 100, this);
+				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
 			}
 			
 			else if (p2Num == 2)
 			{
-				g.drawImage(shipSprite2, 265, 200, 100, 100, this);
-				g.drawImage(shipSprite2, 165, 350, 100, 100, this);
+				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite2, 165, 250, 100, 100, this);
 			}
 			
 			else if (p2Num == 3)
 			{
-				g.drawImage(shipSprite2, 265, 200, 100, 100, this);
-				g.drawImage(shipSprite2, 165, 350, 100, 100, this);
-				g.drawImage(shipSprite2, 365, 350, 100, 100, this);
+				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite2, 165, 250, 100, 100, this);
+				g.drawImage(shipSprite2, 365, 250, 100, 100, this);
 			}
 			
-			if (p2_s1 == true && p2Num > 1)
+			else if (p2Num == 4)
 			{
-				g.drawOval(260, 200, 110, 110);
+				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite2, 165, 250, 100, 100, this);
+				g.drawImage(shipSprite2, 365, 250, 100, 100, this);
+				g.drawImage(shipSprite2, 265, 400, 100, 100, this);
+			}
+			
+			if (p2_s1 == true && p2Num > 0)
+			{
+				g.drawOval(260, 100, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 100, 200);
-				g.drawString("H to boost health", 115, 215);
-				g.drawString("A to boost attack", 115, 230);
-				g.drawString("S to boost speed", 115, 245);
-				g.drawString("D to boost defense", 115, 260);
-				g.drawString("R to boost range", 115, 275);
+				g.drawString("Upgrades:", 100, 100);
+				g.drawString("H to boost health", 115, 115);
+				g.drawString("A to boost attack", 115, 130);
+				g.drawString("S to boost speed", 115, 145);
+				g.drawString("D to boost defense", 115, 160);
+				g.drawString("R to boost range", 115, 175);
 			}
 			
-			else if (p2_s2 == true && p2Num > 2)
+			else if (p2_s2 == true && p2Num > 1)
 			{
-				g.drawOval(160, 350, 110, 110);
+				g.drawOval(160, 250, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 10, 400);
-				g.drawString("H to boost health", 25, 415);
-				g.drawString("A to boost attack", 25, 430);
-				g.drawString("S to boost speed", 25, 445);
-				g.drawString("D to boost defense", 25, 460);
-				g.drawString("R to boost range", 25, 475);
+				g.drawString("Upgrades:", 10, 300);
+				g.drawString("H to boost health", 25, 315);
+				g.drawString("A to boost attack", 25, 330);
+				g.drawString("S to boost speed", 25, 345);
+				g.drawString("D to boost defense", 25, 360);
+				g.drawString("R to boost range", 25, 375);
 			}
 			
-			else if (p2_s3 == true && p2Num > 3)
+			else if (p2_s3 == true && p2Num > 2)
 			{
-				g.drawOval(360, 350, 110, 110);
+				g.drawOval(360, 250, 110, 110);
+				g.setFont(new Font(null, Font.PLAIN, 15));
+				g.drawString("Upgrades:", 410, 150);
+				g.drawString("H to boost health", 425, 165);
+				g.drawString("A to boost attack", 425, 180);
+				g.drawString("S to boost speed", 425, 195);
+				g.drawString("D to boost defense", 425, 210);
+				g.drawString("R to boost range", 425, 225);
+			}
+			
+			else if (p2_s4 == true && p2Num > 3)
+			{
+				g.drawOval(260, 400, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
 				g.drawString("Upgrades:", 410, 250);
-				g.drawString("H to boost health", 425, 265);
-				g.drawString("A to boost attack", 425, 280);
-				g.drawString("S to boost speed", 425, 295);
-				g.drawString("D to boost defense", 425, 310);
-				g.drawString("R to boost range", 425, 325);
+				g.drawString("H to boost health", 425, 165);
+				g.drawString("A to boost attack", 425, 180);
+				g.drawString("S to boost speed", 425, 195);
+				g.drawString("D to boost defense", 425, 210);
+				g.drawString("R to boost range", 425, 225);
 			}
 		}
 		
