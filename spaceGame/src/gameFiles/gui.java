@@ -1041,8 +1041,6 @@ public class gui extends JPanel{
 				else {
 					player = 2;
 				}
-				//g.setColor(Color.BLACK);
-				//g.fillRect(0, 0, 600, 600);
 				g.drawImage(space, 0, 0, 600, 600, this);
 				g.setColor(Color.WHITE);
 				g.setFont(new Font(null, Font.BOLD, 50));
