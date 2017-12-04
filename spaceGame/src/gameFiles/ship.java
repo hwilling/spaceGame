@@ -39,6 +39,29 @@ public class ship {
 		return hull;
 	}
 	
+	public void setEngine(Engine engine){
+		this.engine.setMoves(engine.getMoves());
+	}
+	
+	public void setShieldGen(ShieldGenerator shieldGen){
+		this.shieldGen.setRechargeRate(shieldGen.getRechargeRate());
+		this.shieldGen.setShieldCharge(this.shieldGen.getShieldCharge());
+	}
+	
+	public void setWeapons(WeaponSystems weapon){
+		weapons.setDmg(weapon.getDmg());
+		weapons.setRange(weapon.getRange());
+	}
+	
+	public void setReactor(Reactor reactor){
+		this.reactor.setActions(reactor.getActions());
+	}
+	
+	public void setHull(Hull hull){
+		this.hull.setArmor(hull.getArmor());
+		this.hull.setHP(hull.getHP());
+	}
+	
 	//name
 	public String getName(){
 		return name;
