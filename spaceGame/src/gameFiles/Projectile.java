@@ -1,10 +1,10 @@
 package gameFiles;
 
 public class Projectile {
-	String dmgType;
+	ProjectileType dmgType;
 	int dmg;
 	
-	public Projectile(String type, int dmg){
+	public Projectile(ProjectileType type, int dmg){
 		dmgType = type;
 		this.dmg = dmg;
 	}
@@ -12,7 +12,7 @@ public class Projectile {
 	int getDmg(){
 		return dmg;
 	}
-	String getdmgType(){
+	ProjectileType getdmgType(){
 		return dmgType;
 	}
 }

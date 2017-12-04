@@ -2,6 +2,7 @@ package gameFiles;
 
 public class WeaponSystems {
 	private int dmg, range;
+	private Projectile projectile;
 	
 	public WeaponSystems(int damage, int fireRange){
 		dmg = damage;
@@ -22,5 +23,13 @@ public class WeaponSystems {
 	
 	public void setRange(int range){
 		this.range = range;
+	}
+	
+	public Projectile getProjectile(){
+		return projectile;
+	}
+	
+	public void setProjectile(Projectile project){
+		projectile = project;
 	}
 }

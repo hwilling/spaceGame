@@ -65,6 +65,7 @@ public class combatController {
 		int distToTarget = getDist(attackx, attacky, targetx, targety);
 		
 		if(distToTarget <= attacker.getRange() && hit(attacker, target)){
+			
 			target.modHP(-1 * attacker.getDamageValue());
 			//TODO destroy ship
 			if(target.getHP() <= 0){

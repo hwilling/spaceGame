@@ -51,6 +51,7 @@ public class ship {
 	public void setWeapons(WeaponSystems weapon){
 		weapons.setDmg(weapon.getDmg());
 		weapons.setRange(weapon.getRange());
+		weapons.setProjectile(weapon.getProjectile());
 	}
 	
 	public void setReactor(Reactor reactor){
@@ -60,6 +61,10 @@ public class ship {
 	public void setHull(Hull hull){
 		this.hull.setArmor(hull.getArmor());
 		this.hull.setHP(hull.getHP());
+	}
+	
+	public ProjectileType getShipAttackType(){
+		return weapons.getProjectile().getdmgType();
 	}
 	
 	//name
