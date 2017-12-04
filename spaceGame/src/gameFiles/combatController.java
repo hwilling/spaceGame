@@ -155,4 +155,18 @@ public class combatController {
 		}
 		return false;
 	}
+	
+	public void damageCalc(ship attacker, ship target){
+		ProjectileType attackProjType = attacker.getShipAttackType();
+		switch(attackProjType){
+			case LASER:
+				target.modHP(attacker.getDamageValue());
+			case KINETIC:
+				target.modHP(attacker.getDamageValue());
+			case MISSLE:
+				target.modHP((int) (attacker.getDamageValue() * 1.5));
+			case ION:
+				target.modHP((int) (attacker.getDamageValue()*0.25));
+		}
+	}
 }
