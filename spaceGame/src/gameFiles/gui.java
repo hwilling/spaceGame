@@ -58,10 +58,33 @@ public class gui extends JPanel{
 	boolean p2_s3 = false;
 	boolean p2_s4 = false;
 	
-	//select ships or customization
+	int shieldVal = 0;
+	int attackVal = 0;
+	int rangeVal = 0;
+	int speedVal = 0;
+	int healthVal = 0;
+	
+	//for extra menu (up or down grade)
 	boolean selection = false;
 	
+	//P1 Ship sprites
 	private BufferedImage shipSprite;
+	//P1 Shield sprites
+	private BufferedImage shipSpriteS1;
+	private BufferedImage shipSpriteS2;
+	private BufferedImage shipSpriteS3;
+	private BufferedImage shipSpriteS4;
+	//P1 Speed sprites
+	private BufferedImage shipSpriteSp1;
+	private BufferedImage shipSpriteSp2;
+	private BufferedImage shipSpriteSp3;
+	private BufferedImage shipSpriteSp4;
+	//P1 Attack sprites
+	private BufferedImage shipSpriteA1;
+	private BufferedImage shipSpriteA2;
+	private BufferedImage shipSpriteA3;
+	private BufferedImage shipSpriteA4;
+	
 	private BufferedImage shipSprite2;
 	private BufferedImage space;
 	
@@ -70,7 +93,26 @@ public class gui extends JPanel{
 	
 	public gui() {
 		//setBackground(Color.BLACK);
+		//PLAYER 1
 		shipSprite = loadImage("gameFiles/Images/ship.png");
+		//shield sprites
+		shipSpriteS1 = loadImage("gameFiles/Images/shipShield1.png");
+		shipSpriteS2 = loadImage("gameFiles/Images/shipShield2.png");
+		shipSpriteS3 = loadImage("gameFiles/Images/shipShield3.png");
+		shipSpriteS4 = loadImage("gameFiles/Images/shipShield4.png");
+		
+		//speed sprites
+		shipSpriteSp1 = loadImage("gameFiles/Images/shipSpeed1.png");
+		shipSpriteSp2 = loadImage("gameFiles/Images/shipSpeed2.png");
+		shipSpriteSp3 = loadImage("gameFiles/Images/shipSpeed3.png");
+		shipSpriteSp4 = loadImage("gameFiles/Images/shipSpeed4.png");
+		
+		//attack sprites
+		shipSpriteA1 = loadImage("gameFiles/Images/shipAttack1.png");
+		shipSpriteA2 = loadImage("gameFiles/Images/shipAttack2.png");
+		shipSpriteA3 = loadImage("gameFiles/Images/shipAttack3.png");
+		shipSpriteA4 = loadImage("gameFiles/Images/shipAttack4.png");
+		
 		shipSprite2 = loadImage("gameFiles/Images/ship2.png");
 		space = loadImage("gameFiles/Images/spaceDrop.png");
 		
@@ -689,6 +731,9 @@ public class gui extends JPanel{
 				if (key == KeyEvent.VK_UP)
 				{
 					custom.P1boostHealth(player1Ships.get(0));
+					shieldVal++;
+					
+					repaint();
 				}
 				
 				else if (key == KeyEvent.VK_DOWN)
@@ -1084,6 +1129,11 @@ public class gui extends JPanel{
 			
 			if (p1_s1 == true && p1Num > 0)
 			{
+				if (shieldVal == 1)
+				{
+					g.drawImage(shipSpriteS1, 265, 100, 100, 100, this);
+				}
+				
 				g.drawOval(260, 100, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
 				g.drawString("Upgrades:", 100, 100);
