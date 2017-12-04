@@ -158,15 +158,48 @@ public class combatController {
 	
 	public void damageCalc(ship attacker, ship target){
 		ProjectileType attackProjType = attacker.getShipAttackType();
+		int damageOverflow = 0;
 		switch(attackProjType){
 			case LASER:
-				target.modHP(attacker.getDamageValue());
+				target.modShield(-1 * attacker.getDamageValue());
+				if(target.getShield() < 0){
+					damageOverflow = target.getShield();
+					target.setShield(0);
+				}
+				damageOverflow += target.getArmor();
+				if(damageOverflow < 0){
+					target.modHP(damageOverflow);
+				}
 			case KINETIC:
-				target.modHP(attacker.getDamageValue());
+				target.modShield(-1 * attacker.getDamageValue());
+				if(target.getShield() < 0){
+					damageOverflow = target.getShield();
+					target.setShield(0);
+				}
+				damageOverflow += target.getArmor();
+				if(damageOverflow < 0){
+					target.modHP(damageOverflow);
+				}
 			case MISSLE:
-				target.modHP((int) (attacker.getDamageValue() * 1.5));
+				target.modShield(-1 * attacker.getDamageValue());
+				if(target.getShield() < 0){
+					damageOverflow = target.getShield();
+					target.setShield(0);
+				}
+				damageOverflow += target.getArmor();
+				if(damageOverflow < 0){
+					target.modHP(damageOverflow);
+				}
 			case ION:
-				target.modHP((int) (attacker.getDamageValue()*0.25));
+				target.modShield(-1 * attacker.getDamageValue());
+				if(target.getShield() < 0){
+					damageOverflow = target.getShield();
+					target.setShield(0);
+				}
+				damageOverflow += target.getArmor();
+				if(damageOverflow < 0){
+					target.modHP(damageOverflow);
+				}
 		}
 	}
 }

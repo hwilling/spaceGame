@@ -3,7 +3,7 @@ package gameFiles;
 public class ship {
 	
 	private String name = "";
-	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg, range, armor = 0;
+	private int hpMax, hpCurrent, speed, movesRemaining, currentActions, maxActions, dmg, range, armor, shield = 0;
 	private int xCoord, yCoord = 0;
 	private Engine engine = new Engine(0);
 	private ShieldGenerator shieldGen;
@@ -104,6 +104,16 @@ public class ship {
 	}
 	public void modArmor(int modVal){
 		armor += modVal;
+	}
+	
+	public int getShield(){
+		return shield;
+	}
+	public void setShield(int newShield){
+		shield = newShield;
+	}
+	public void modShield(int modVal){
+		shield += modVal;
 	}
 	//movement
 	public int getMovesRemaining(){
