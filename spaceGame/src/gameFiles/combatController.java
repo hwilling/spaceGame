@@ -161,41 +161,25 @@ public class combatController {
 		int damageOverflow = 0;
 		switch(attackProjType){
 			case LASER:
-				target.modShield(-1 * attacker.getDamageValue());
-				if(target.getShield() < 0){
-					damageOverflow = target.getShield();
-					target.setShield(0);
-				}
+				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
 				damageOverflow += target.getArmor();
 				if(damageOverflow < 0){
 					target.modHP(damageOverflow);
 				}
 			case KINETIC:
-				target.modShield(-1 * attacker.getDamageValue());
-				if(target.getShield() < 0){
-					damageOverflow = target.getShield();
-					target.setShield(0);
-				}
+				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
 				damageOverflow += target.getArmor();
 				if(damageOverflow < 0){
 					target.modHP(damageOverflow);
 				}
 			case MISSLE:
-				target.modShield(-1 * attacker.getDamageValue());
-				if(target.getShield() < 0){
-					damageOverflow = target.getShield();
-					target.setShield(0);
-				}
+				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
 				damageOverflow += target.getArmor();
 				if(damageOverflow < 0){
 					target.modHP(damageOverflow);
 				}
 			case ION:
-				target.modShield(-1 * attacker.getDamageValue());
-				if(target.getShield() < 0){
-					damageOverflow = target.getShield();
-					target.setShield(0);
-				}
+				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
 				damageOverflow += target.getArmor();
 				if(damageOverflow < 0){
 					target.modHP(damageOverflow);

@@ -112,8 +112,16 @@ public class ship {
 	public void setShield(int newShield){
 		shield = newShield;
 	}
-	public void modShield(int modVal){
+	public int modShield(int modVal){
 		shield += modVal;
+		if(shield <= 0){
+			int overDmg = shield;
+			shield = 0;
+			return overDmg;
+		}
+		else{ 
+			return 0;
+		}
 	}
 	//movement
 	public int getMovesRemaining(){
