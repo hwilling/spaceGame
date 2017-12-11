@@ -41,6 +41,7 @@ public class gui extends JPanel{
 	boolean startGame = false;
 	boolean customizeScreenP1 = false;
 	boolean customizeScreenP2 = false;
+	boolean startCustomize = false;
 	
 	int p1Ship1X = 125;
 	int p1Ship2X = 225;
@@ -74,15 +75,22 @@ public class gui extends JPanel{
 	
 	int points = 500;
 	
-	//select ships or customization
-	boolean p1_s1 = false;
-	boolean p1_s2 = false;
-	boolean p1_s3 = false;
-	boolean p1_s4 = false;
-	boolean p2_s1 = false;
-	boolean p2_s2 = false;
-	boolean p2_s3 = false;
-	boolean p2_s4 = false;
+	//select ships for customization
+		boolean checkP1Ship[] = new boolean[4];
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				checkP1Ship[i] = false;
+			}
+		}
+		
+		boolean checkP2Ship[] = new boolean[4];
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				checkP2Ship[i] = false;
+			}
+		}
 	
 	int shieldVal = 0;
 	int attackVal = 0;
@@ -91,7 +99,7 @@ public class gui extends JPanel{
 	int healthVal = 0;
 	
 	//for extra menu (up or down grade)
-	boolean selection = false;
+	int selection = 0;
 	
 	//P1 Ship sprites
 	private BufferedImage shipSprite;
@@ -206,50 +214,6 @@ public class gui extends JPanel{
 	// Event handler for mouse pressed events
 	protected void handleMousePressed(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
-		if (customizeScreenP1 == true)
-		{
-			if (p1Num > 0 && e.getX() > 265 && e.getX() < 365 && e.getY() > 100 && e.getY() < 200)
-			{
-				p1_s1 = true;
-			}
-			
-			else if (p1Num > 1 && e.getX() > 165 && e.getX() < 265 && e.getY() > 250 && e.getY() < 350)
-			{
-				p1_s2 = true;
-			}
-			
-			else if (p1Num > 2 && e.getX() > 365 && e.getX() < 465 && e.getY() > 250 && e.getY() < 350)
-			{
-				p1_s3 = true;
-			}
-			else if (p1Num > 3 && e.getX() > 365 && e.getX() < 465 && e.getY() > 400 && e.getY() < 500)
-			{
-				p1_s4 = true;
-			}
-		}
-		
-		else if (customizeScreenP2 == true)
-		{
-			if (p2Num > 0 && e.getX() > 265 && e.getX() < 365 && e.getY() > 100 && e.getY() < 200)
-			{
-				p2_s1 = true;
-			}
-			
-			else if (p2Num > 1 && e.getX() > 165 && e.getX() < 265 && e.getY() > 250 && e.getY() < 350)
-			{
-				p2_s2 = true;
-			}
-			
-			else if (p2Num > 2 && e.getX() > 365 && e.getX() < 465 && e.getY() > 250 && e.getY() < 350)
-			{
-				p2_s3 = true;
-			}
-			
-			else if (p2Num > 3 && e.getX() > 365 && e.getX() < 465 && e.getY() > 400 && e.getY() < 500)
-			{
-				p2_s4 = true;
-			}
-		}
 		
 		/*if(p1Destroyed == false && p2Destroyed == false) {
 			if(player1 == true) {
@@ -1717,289 +1681,367 @@ public class gui extends JPanel{
 		
 		if(customizeScreenP1 == true && startGame == false) 
 		{
-			if(key == KeyEvent.VK_1) 
+			if (startCustomize == false)
 			{
-				p1Num = 1;
+				if(key == KeyEvent.VK_1) 
+				{
+					p1Num = 1;
+				}
+				
+				else if(key == KeyEvent.VK_2) 
+				{
+					p1Num = 2;
+				}
+				else if(key == KeyEvent.VK_3) 
+				{
+					p1Num = 3;
+				}
+				else if(key == KeyEvent.VK_4) 
+				{
+					p1Num = 4;
+				}
+				
+				for (int i = 0; i < p1Num; i++)
+				{
+					player1Ships.add(i, Ship);
+				}
+				
+				repaint();
 			}
-			
-			else if(key == KeyEvent.VK_2) 
-			{
-				p1Num = 2;
-			}
-			else if(key == KeyEvent.VK_3) 
-			{
-				p1Num = 3;
-			}
-			else if(key == KeyEvent.VK_4) 
-			{
-				p1Num = 4;
-			}
-			repaint();
 			
 			//Customization Events
 			//Player 1 health
-			if (p1_s1 == true && key == KeyEvent.VK_H)
+			else if (startCustomize == true)
 			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
+				//select ship
+				if(key == KeyEvent.VK_1) 
 				{
-					custom.P1boostHealth(player1Ships.get(0));
-					shieldVal++;
+					checkP1Ship[0] = true;
+					selection = 1;
+				}
+				
+				else if(key == KeyEvent.VK_2) 
+				{
+					checkP1Ship[1] = true;
+					selection = 2;
+				}
+				
+				else if(key == KeyEvent.VK_3) 
+				{
+					checkP1Ship[2] = true;
+					selection = 3;
+				}
+				
+				else if(key == KeyEvent.VK_4) 
+				{
+					checkP1Ship[3] = true;
+					selection = 4;
+				}
+				
+				repaint();
+				
+				if (checkP1Ship[0] == true && key == KeyEvent.VK_H)
+				{
+					selection = 1;
 					
-					repaint();
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostHealth(player1Ships.get(0));
+						shieldVal++;
+						
+						repaint();
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceHealth(player1Ships.get(0));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				else if (checkP1Ship[1] == true && key == KeyEvent.VK_H)
 				{
-					custom.P1reduceHealth(player1Ships.get(0));
-				}
-			}
-			
-			else if (p1_s2 == true && key == KeyEvent.VK_H)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostHealth(player1Ships.get(1));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P1reduceHealth(player1Ships.get(1));
-				}
-			}
-			
-			else if (p1_s3 == true && key == KeyEvent.VK_H)
-			{
-				selection = true; 
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostHealth(player1Ships.get(2));
+					selection = 2;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostHealth(player1Ships.get(1));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceHealth(player1Ships.get(1));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				else if (checkP1Ship[2] == true && key == KeyEvent.VK_H)
 				{
-					custom.P1reduceHealth(player1Ships.get(2));
-				}
-			}
-			
-			else if (p1_s4 == true && key == KeyEvent.VK_H)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostHealth(player1Ships.get(3));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P1reduceHealth(player1Ships.get(3));
-				}
-			}
-			
-			//Player 2 Health
-			if (p2_s1 == true && key == KeyEvent.VK_H)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostHealth(player2Ships.get(0));
+					selection = 3; 
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostHealth(player1Ships.get(2));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceHealth(player1Ships.get(2));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				else if (checkP1Ship[3] == true && key == KeyEvent.VK_H)
 				{
-					custom.P2reduceHealth(player2Ships.get(0));
-				}
-			}
-			
-			else if (p2_s2 == true && key == KeyEvent.VK_H)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostHealth(player2Ships.get(1));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P2reduceHealth(player2Ships.get(1));
-				}
-			}
-			
-			else if (p2_s3 == true && key == KeyEvent.VK_H)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostHealth(player2Ships.get(2));
+					selection = 4;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostHealth(player1Ships.get(3));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceHealth(player1Ships.get(3));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P2reduceHealth(player2Ships.get(2));
-				}
-			}
-			
-			else if (p2_s4 == true && key == KeyEvent.VK_H)
-			{
-				selection = true;
 				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostHealth(player2Ships.get(3));
-				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				//Player 1 Attack
+				if (checkP1Ship[0] == true && key == KeyEvent.VK_A)
 				{
-					custom.P2reduceHealth(player2Ships.get(3));
-				}
-			}
-			
-			//Player 1 Attack
-			if (p1_s1 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostAttack(player1Ships.get(0));
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostAttack(player1Ships.get(0));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceAttack(player1Ships.get(0));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				else if (checkP1Ship[1] == true && key == KeyEvent.VK_A)
 				{
-					custom.P1reduceAttack(player1Ships.get(0));
-				}
-			}
-			
-			else if (p1_s2 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostAttack(player1Ships.get(1));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P1reduceAttack(player1Ships.get(1));
-				}
-			}
-			
-			else if (p1_s3 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostAttack(player1Ships.get(2));
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostAttack(player1Ships.get(1));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceAttack(player1Ships.get(1));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				else if (checkP1Ship[2] == true && key == KeyEvent.VK_A)
 				{
-					custom.P1reduceAttack(player1Ships.get(2));
-				}
-			}
-			
-			else if (p1_s4 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P1boostAttack(player1Ships.get(3));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P1reduceAttack(player1Ships.get(3));
-				}
-			}
-			
-			//Player 2 Attack
-			
-			if (p2_s1 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostAttack(player2Ships.get(0));
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostAttack(player1Ships.get(2));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceAttack(player1Ships.get(2));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
+				else if (checkP1Ship[3] == true && key == KeyEvent.VK_A)
 				{
-					custom.P2reduceAttack(player2Ships.get(0));
-				}
-			}
-			
-			else if (p2_s2 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostAttack(player2Ships.get(1));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P2reduceAttack(player2Ships.get(1));
-				}
-			}
-			
-			else if (p2_s3 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
-				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostAttack(player2Ships.get(2));
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P1boostAttack(player1Ships.get(3));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P1reduceAttack(player1Ships.get(3));
+					}
 				}
 				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P2reduceAttack(player2Ships.get(2));
-				}
-			}
-			
-			else if (p2_s4 == true && key == KeyEvent.VK_A)
-			{
-				selection = true;
 				
-				if (key == KeyEvent.VK_UP)
-				{
-					custom.P2boostAttack(player2Ships.get(3));
-				}
-				
-				else if (key == KeyEvent.VK_DOWN)
-				{
-					custom.P2reduceAttack(player2Ships.get(3));
-				}
 			}
 		}
 		
 		if(customizeScreenP2 == true && startGame == false) {
-			if(key == KeyEvent.VK_1) {
-				p2Num = 1;
+			if (startCustomize == false) 
+			{
+				if(key == KeyEvent.VK_1) {
+					p2Num = 1;
+				}
+				else if(key == KeyEvent.VK_2) {
+					p2Num = 2;
+				}
+				else if(key == KeyEvent.VK_3) {
+					p2Num = 3;
+				}
+				else if(key == KeyEvent.VK_4) {
+					p2Num = 4;
+				}
+				repaint();
 			}
-			else if(key == KeyEvent.VK_2) {
-				p2Num = 2;
+			
+			else if (startCustomize == true)
+			{
+				//select ship
+				if(key == KeyEvent.VK_1) 
+				{
+					checkP2Ship[0] = true;
+					selection = 1;
+				}
+				
+				else if(key == KeyEvent.VK_2) 
+				{
+					checkP2Ship[1] = true;
+					selection = 2;
+				}
+				else if(key == KeyEvent.VK_3) 
+				{
+					checkP2Ship[2] = true;
+					selection = 3;
+				}
+				else if(key == KeyEvent.VK_4) 
+				{
+					checkP2Ship[3] = true;
+					selection = 4;
+				}
+				
+				for (int i = 0; i < p2Num; i++)
+				{
+					player2Ships.add(i, Ship);
+				}
+				repaint();
+				
+				
+				//Player 2 Health
+				if (checkP2Ship[0] == true && key == KeyEvent.VK_H)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostHealth(player2Ships.get(0));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceHealth(player2Ships.get(0));
+					}
+				}
+				
+				else if (checkP2Ship[1] == true && key == KeyEvent.VK_H)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostHealth(player2Ships.get(1));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceHealth(player2Ships.get(1));
+					}
+				}
+				
+				else if (checkP2Ship[2] == true && key == KeyEvent.VK_H)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostHealth(player2Ships.get(2));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceHealth(player2Ships.get(2));
+					}
+				}
+				
+				else if (checkP2Ship[3] == true && key == KeyEvent.VK_H)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostHealth(player2Ships.get(3));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceHealth(player2Ships.get(3));
+					}
+				}
+				
+				//Player 2 Attack				
+				if (checkP2Ship[0] == true && key == KeyEvent.VK_A)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostAttack(player2Ships.get(0));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceAttack(player2Ships.get(0));
+					}
+				}
+				
+				else if (checkP2Ship[1] == true && key == KeyEvent.VK_A)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostAttack(player2Ships.get(1));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceAttack(player2Ships.get(1));
+					}
+				}
+				
+				else if (checkP2Ship[2] == true && key == KeyEvent.VK_A)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostAttack(player2Ships.get(2));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceAttack(player2Ships.get(2));
+					}
+				}
+				
+				else if (checkP2Ship[3] == true && key == KeyEvent.VK_A)
+				{
+					//selection = true;
+					
+					if (key == KeyEvent.VK_UP)
+					{
+						custom.P2boostAttack(player2Ships.get(3));
+					}
+					
+					else if (key == KeyEvent.VK_DOWN)
+					{
+						custom.P2reduceAttack(player2Ships.get(3));
+					}
+				}
 			}
-			else if(key == KeyEvent.VK_3) {
-				p2Num = 3;
-			}
-			else if(key == KeyEvent.VK_4) {
-				p2Num = 4;
-			}
-			repaint();
 		}
 				
 		//Player 1
@@ -2074,16 +2116,29 @@ public class gui extends JPanel{
 			repaint();
 		}
 		
-		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == true && customizeScreenP2 == false && startGame == false) {
+		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == true && customizeScreenP2 == false && startGame == false && startCustomize == true) {
 			customizeScreenP1 = false;
+			startCustomize = false;
 			customizeScreenP2 = true;
 			repaint();
 		}
-		
-		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == false && customizeScreenP2 == true && startGame == false) {
+				
+		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == false && customizeScreenP2 == true && startGame == false && startCustomize == true) {
 			customizeScreenP2 = false;
+			startCustomize = false;
 			startGame = true;
+			repaint();
 			
+		}
+		
+		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == true && customizeScreenP2 == false && startGame == false && startCustomize == false) {
+			startCustomize = true;
+			repaint();
+		}
+		
+		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == false && customizeScreenP2 == true && startGame == false && startCustomize == false) {
+			startCustomize = true;
+			repaint();
 		}
 	}
 	
@@ -2118,7 +2173,7 @@ public class gui extends JPanel{
 			g.setFont(new Font(null, Font.PLAIN, 20));
 			g.drawString("Points: " + points, 25, 580);
 			g.drawString("Number of Ships: " + p1Num, 325, 580);
-
+			
 			if (p1Num == 1)
 			{
 				g.drawImage(shipSprite, 265, 100, 100, 100, this);
@@ -2145,79 +2200,67 @@ public class gui extends JPanel{
 				g.drawImage(shipSprite, 265, 400, 100, 100, this);
 			}
 			
-			if (p1_s1 == true && p1Num > 0)
+			if (startCustomize == true)
 			{
-				if (shieldVal == 1)
+				g.setFont(new Font(null, Font.PLAIN, 15));
+				g.drawString("Upgrades:", 10, 100);
+				g.drawString("H to boost health", 15, 115);
+				g.drawString("A to boost attack", 15, 130);
+				g.drawString("S to boost speed", 15, 145);
+				g.drawString("D to boost defense", 15, 160);
+				g.drawString("R to boost range", 15, 175);
+				g.drawString("Up arrow to Upgrade", 15, 190);
+				g.drawString("Down arrow to Downgrade", 15, 205);
+				
+				if (checkP1Ship[0] == true && selection == 1 && p1Num > 0)
 				{
-					g.drawImage(shipSpriteS1, 265, 100, 100, 100, this);
+					g.drawOval(260, 100, 110, 110);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Stats:", 400, 100);
+					g.drawString("Health: "+player1Ships.get(0).getMaxHP(), 415, 115);
+					g.drawString("Attack: "+player1Ships.get(0).getDamageValue(), 415, 130);
+					g.drawString("Speed: "+player1Ships.get(0).getSpeed(), 415, 145);
+					g.drawString("Defense: "+player1Ships.get(0).getShield(), 415, 160);
+					g.drawString("Range: "+player1Ships.get(0).getRange(), 415, 175);
 				}
 				
-				g.drawOval(260, 100, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 100, 100);
-				g.drawString("H to boost health", 115, 115);
-				g.drawString("A to boost attack", 115, 130);
-				g.drawString("S to boost speed", 115, 145);
-				g.drawString("D to boost defense", 115, 160);
-				g.drawString("R to boost range", 115, 175);
-				
-				if (selection == true)
+				else if (checkP1Ship[1] == true && selection == 2 && p1Num > 1)
 				{
+					g.drawOval(160, 250, 110, 110);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Up arrow to Upgrade", 400, 100);
-					g.drawString("Down arrow to Downgrade", 400, 115);
+					g.drawString("Stats:", 60, 300);
+					g.drawString("Health: "+player1Ships.get(1).getHP(), 75, 315);
+					g.drawString("Attack: "+player1Ships.get(1).getDamageValue(), 75, 330);
+					g.drawString("Speed: "+player1Ships.get(1).getSpeed(), 75, 345);
+					g.drawString("Defense: "+player1Ships.get(1).getShield(), 75, 360);
+					g.drawString("Range: "+player1Ships.get(1).getRange(), 75, 375);
+				}
+				
+				if (checkP1Ship[2] == true && selection == 3 && p1Num > 2)
+				{
+					g.drawOval(360, 250, 110, 110);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Stats:", 490, 300);
+					g.drawString("Health: "+player1Ships.get(2).getHP(), 505, 315);
+					g.drawString("Attack: "+player1Ships.get(2).getDamageValue(), 505, 330);
+					g.drawString("Speed: "+player1Ships.get(2).getSpeed(), 505, 345);
+					g.drawString("Defense: "+player1Ships.get(2).getShield(), 505, 360);
+					g.drawString("Range: "+player1Ships.get(2).getRange(), 505, 375);
+				}
+				
+				if (checkP1Ship[3] == true && selection == 4 && p1Num > 3)
+				{
+					g.drawOval(260, 400, 110, 110);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Stats:", 385, 440);
+					g.drawString("Health: "+player1Ships.get(3).getHP(), 400, 455);
+					g.drawString("Attack: "+player1Ships.get(3).getDamageValue(), 400, 470);
+					g.drawString("Speed: "+player1Ships.get(3).getSpeed(), 400, 485);
+					g.drawString("Defense: "+player1Ships.get(3).getShield(), 400, 500);
+					g.drawString("Range: "+player1Ships.get(3).getRange(), 400, 515);
 				}
 			}
 			
-			else if (p1_s2 == true && p1Num > 1)
-			{
-				g.drawOval(160, 250, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 10, 300);
-				g.drawString("H to boost health", 25, 315);
-				g.drawString("A to boost attack", 25, 330);
-				g.drawString("S to boost speed", 25, 345);
-				g.drawString("D to boost defense", 25, 360);
-				g.drawString("R to boost range", 25, 375);
-				
-				if (selection == true)
-				{
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Up arrow to Upgrade", 25, 425);
-					g.drawString("Down arrow to Downgrade", 25, 440);
-				}
-			}
-			
-			else if (p1_s3 == true && p1Num > 2)
-			{
-				g.drawOval(360, 250, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 410, 150);
-				g.drawString("H to boost health", 425, 165);
-				g.drawString("A to boost attack", 425, 180);
-				g.drawString("S to boost speed", 425, 195);
-				g.drawString("D to boost defense", 425, 210);
-				g.drawString("R to boost range", 425, 225);
-				
-				if (selection == true)
-				{
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Up arrow to Upgrade", 400, 400);
-					g.drawString("Down arrow to Downgrade", 400, 415);
-				}
-			}
-			
-			else if (p1_s4 == true && p1Num > 3)
-			{
-				g.drawOval(360, 400, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 410, 250);
-				g.drawString("H to boost health", 425, 165);
-				g.drawString("A to boost attack", 425, 180);
-				g.drawString("S to boost speed", 425, 195);
-				g.drawString("D to boost defense", 425, 210);
-				g.drawString("R to boost range", 425, 225);
-			}
 		}
 		
 		else if(customizeScreenP2 == true && startGame == false) {
@@ -2257,73 +2300,65 @@ public class gui extends JPanel{
 				g.drawImage(shipSprite2, 265, 400, 100, 100, this);
 			}
 			
-			if (p2_s1 == true && p2Num > 0)
+			if (startCustomize == true)
 			{
-				g.drawOval(260, 100, 110, 110);
 				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 100, 100);
-				g.drawString("H to boost health", 115, 115);
-				g.drawString("A to boost attack", 115, 130);
-				g.drawString("S to boost speed", 115, 145);
-				g.drawString("D to boost defense", 115, 160);
-				g.drawString("R to boost range", 115, 175);
+				g.drawString("Upgrades:", 10, 100);
+				g.drawString("H to boost health", 15, 115);
+				g.drawString("A to boost attack", 15, 130);
+				g.drawString("S to boost speed", 15, 145);
+				g.drawString("D to boost defense", 15, 160);
+				g.drawString("R to boost range", 15, 175);
+				g.drawString("Up arrow to Upgrade", 15, 190);
+				g.drawString("Down arrow to Downgrade", 15, 205);
 				
-				if (selection == true)
+				if (checkP2Ship[0] == true && selection == 1 && p2Num > 0)
 				{
+					g.drawOval(260, 100, 110, 110);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Up arrow to Upgrade", 400, 100);
-					g.drawString("Down arrow to Downgrade", 400, 115);
+					g.drawString("Stats:", 400, 100);
+					g.drawString("Health: "+player2Ships.get(0).getMaxHP(), 415, 115);
+					g.drawString("Attack: "+player2Ships.get(0).getDamageValue(), 415, 130);
+					g.drawString("Speed: "+player2Ships.get(0).getSpeed(), 415, 145);
+					g.drawString("Defense: "+player2Ships.get(0).getShield(), 415, 160);
+					g.drawString("Range: "+player2Ships.get(0).getRange(), 415, 175);
 				}
-			}
-			
-			else if (p2_s2 == true && p2Num > 1)
-			{
-				g.drawOval(160, 250, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 10, 300);
-				g.drawString("H to boost health", 25, 315);
-				g.drawString("A to boost attack", 25, 330);
-				g.drawString("S to boost speed", 25, 345);
-				g.drawString("D to boost defense", 25, 360);
-				g.drawString("R to boost range", 25, 375);
 				
-				if (selection == true)
+				else if (checkP2Ship[1] == true && selection == 2 && p2Num > 1)
 				{
+					g.drawOval(160, 250, 110, 110);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Up arrow to Upgrade", 25, 425);
-					g.drawString("Down arrow to Downgrade", 25, 440);
+					g.drawString("Stats:", 60, 300);
+					g.drawString("Health: "+player2Ships.get(1).getHP(), 75, 315);
+					g.drawString("Attack: "+player2Ships.get(1).getDamageValue(), 75, 330);
+					g.drawString("Speed: "+player2Ships.get(1).getSpeed(), 75, 345);
+					g.drawString("Defense: "+player2Ships.get(1).getShield(), 75, 360);
+					g.drawString("Range: "+player2Ships.get(1).getRange(), 75, 375);
 				}
-			}
-			
-			else if (p2_s3 == true && p2Num > 2)
-			{
-				g.drawOval(360, 250, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 410, 150);
-				g.drawString("H to boost health", 425, 165);
-				g.drawString("A to boost attack", 425, 180);
-				g.drawString("S to boost speed", 425, 195);
-				g.drawString("D to boost defense", 425, 210);
-				g.drawString("R to boost range", 425, 225);
 				
-				if (selection == true)
+				if (checkP2Ship[2] == true && selection == 3 && p2Num > 2)
 				{
+					g.drawOval(360, 250, 110, 110);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Up arrow to Upgrade", 400, 400);
-					g.drawString("Down arrow to Downgrade", 400, 415);
+					g.drawString("Stats:", 490, 300);
+					g.drawString("Health: "+player2Ships.get(2).getHP(), 505, 315);
+					g.drawString("Attack: "+player2Ships.get(2).getDamageValue(), 505, 330);
+					g.drawString("Speed: "+player2Ships.get(2).getSpeed(), 505, 345);
+					g.drawString("Defense: "+player2Ships.get(2).getShield(), 505, 360);
+					g.drawString("Range: "+player2Ships.get(2).getRange(), 505, 375);
 				}
-			}
-			
-			else if (p2_s4 == true && p2Num > 3)
-			{
-				g.drawOval(260, 400, 110, 110);
-				g.setFont(new Font(null, Font.PLAIN, 15));
-				g.drawString("Upgrades:", 410, 250);
-				g.drawString("H to boost health", 425, 165);
-				g.drawString("A to boost attack", 425, 180);
-				g.drawString("S to boost speed", 425, 195);
-				g.drawString("D to boost defense", 425, 210);
-				g.drawString("R to boost range", 425, 225);
+				
+				if (checkP2Ship[3] == true && selection == 4 && p2Num > 3)
+				{
+					g.drawOval(260, 400, 110, 110);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Stats:", 385, 440);
+					g.drawString("Health: "+player2Ships.get(3).getHP(), 400, 455);
+					g.drawString("Attack: "+player2Ships.get(3).getDamageValue(), 400, 470);
+					g.drawString("Speed: "+player2Ships.get(3).getSpeed(), 400, 485);
+					g.drawString("Defense: "+player2Ships.get(3).getShield(), 400, 500);
+					g.drawString("Range: "+player2Ships.get(3).getRange(), 400, 515);
+				}
 			}
 		}
 		
