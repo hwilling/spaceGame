@@ -18,6 +18,29 @@ public class customizationController
 		this.player2 = player2;
 	}
 	
+	public void changeProjType(ship selected){
+		ProjectileType proj = selected.getWeapons().getProjectile().getdmgType();
+		switch(proj){
+			case LASER:
+				proj = ProjectileType.KINETIC;
+			case KINETIC:
+				proj = ProjectileType.MISSLE;
+			case MISSLE:
+				proj = ProjectileType.ION;
+			case ION:
+				proj = ProjectileType.LASER;
+		}
+		selected.getWeapons().getProjectile().setProjType(proj);
+	}
+	
+	/*public int boostHealth(ship modShip){
+		int hp = modShip.getMaxHP();
+		int cost = calcBoostCost(hp);
+		if(points >= cost){
+			points -= cost;
+			
+		}
+	}*/
 	public int P1boostHealth(ship player1Ship)
 	{
 		//check if player can afford upgrade

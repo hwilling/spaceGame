@@ -159,6 +159,7 @@ public class combatController {
 	public void damageCalc(ship attacker, ship target){
 		ProjectileType attackProjType = attacker.getShipAttackType();
 		int damageOverflow = 0;
+		//determine what to do with damage based on projectile type
 		switch(attackProjType){
 			case LASER:
 				damageOverflow = target.modShield(-1 * attacker.getDamageValue());

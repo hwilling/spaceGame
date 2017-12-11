@@ -9,10 +9,14 @@ public class Projectile {
 		this.dmg = dmg;
 	}
 	
-	int getDmg(){
+	public int getDmg(){
 		return dmg;
 	}
-	ProjectileType getdmgType(){
+	public ProjectileType getdmgType(){
 		return dmgType;
+	}
+	
+	public void setProjType(ProjectileType type){
+		dmgType = type;
 	}
 }
