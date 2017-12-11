@@ -657,7 +657,7 @@ public class gui extends JPanel{
 	}
 	
 	//Player 2 moves ship 3
-	if(p1ActShip == 3) {
+	if(p2ActShip == 3) {
 	if(((Math.abs(e.getX() - p2Ship3X)) + (Math.abs(e.getY() - p2Ship3Y))) <= 200 && p2Ship3Speed > 0 && player1 == false) {
 		p2Ship3Speed = p2Ship3Speed - 100;
 		if(e.getX() < 100) {
@@ -831,7 +831,7 @@ public class gui extends JPanel{
 	}
 
 	//Player 2 moves ship 4
-	if(p1ActShip == 4) {
+	if(p2ActShip == 4) {
 	if(((Math.abs(e.getX() - p2Ship4X)) + (Math.abs(e.getY() - p2Ship4Y))) <= 200 && p2Ship4Speed > 0 && player1 == false) {
 		p2Ship4Speed = p2Ship4Speed - 100;
 		if(e.getX() < 100) {
@@ -2110,7 +2110,7 @@ public class gui extends JPanel{
 		
 		if(customizeScreenP1 == true && startGame == false) {
 			//background image
-			g.drawImage(space, 0, 0, 600, 600, this);
+			g.drawImage(space, 0, 0, 800, 800, this);
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Player 1: Customize Your Ships" , 75, 50);
@@ -2222,7 +2222,7 @@ public class gui extends JPanel{
 		
 		else if(customizeScreenP2 == true && startGame == false) {
 			//background image
-			g.drawImage(space, 0, 0, 600, 600, this);
+			g.drawImage(space, 0, 0, 800, 800, this);
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Player 2: Customize Your Ships" , 75, 50);
@@ -2330,7 +2330,7 @@ public class gui extends JPanel{
 		else if (customizeScreenP2 == false && startGame == false) {
 			//g.setColor(Color.BLACK);
 			//g.fillRect(0, 0, 600, 600);
-			g.drawImage(space, 0, 0, 600, 600, this);
+			g.drawImage(space, 0, 0, 800, 800, this);
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.BOLD, 30));
 			g.drawString("Press Enter to Start" , 150, 300);
@@ -2345,7 +2345,7 @@ public class gui extends JPanel{
 		else {
 			// TODO: render the model
 			//background
-			g.drawImage(space, 0, 0, 600, 600, this);
+			g.drawImage(space, 0, 0, 800, 800, this);
 			
 			if(p1Destroyed == false && p2Destroyed == false) {
 				g.setColor(Color.WHITE);
@@ -2355,6 +2355,7 @@ public class gui extends JPanel{
 				g.drawLine(300, 0, 300, 600);
 				g.drawLine(400, 0, 400, 600);
 				g.drawLine(500, 0, 500, 600);
+				g.drawLine(600, 0, 600, 600);
 				
 				//Horizontal Lines
 				g.drawLine(0, 100, 600, 100);
@@ -2362,9 +2363,12 @@ public class gui extends JPanel{
 				g.drawLine(0, 300, 600, 300);
 				g.drawLine(0, 400, 600, 400);
 				g.drawLine(0, 500, 600, 500);
+				g.drawLine(0, 600, 600, 600);
 
 			}
-			
+			g.setFont(new Font(null, Font.BOLD, 15));
+			g.setColor(Color.BLACK);
+			g.fillRect(601, 0, 800, 800);
 					if(p1Destroyed == false) {
 						if(p1Targeted == false) {
 							
@@ -2376,6 +2380,16 @@ public class gui extends JPanel{
 								g.setColor(Color.WHITE);
 								g.drawString("1", (p1Ship1X), (p1Ship1Y));
 								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
+								
+								if(player1 == true) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 1 SHIPS", 650, 75);
+									g.drawString("1", 675, 300);
+									g.drawImage(shipSprite, 675, 300, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 350, 50, 5);
+								}
+								
 							}
 							
 							if(p1Num == 2) {
@@ -2392,6 +2406,18 @@ public class gui extends JPanel{
 								g.drawString("2", (p1Ship2X), (p1Ship2Y));
 								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
 								g.drawImage(shipSprite, p1Ship2X, p1Ship2Y, 50, 50, this);
+								
+								if(player1 == true) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 1 SHIPS", 650, 75);
+									g.drawString("1", 675, 250);
+									g.drawString("2", 675, 350);
+									g.drawImage(shipSprite, 675, 250, 50, 50, this);
+									g.drawImage(shipSprite, 675, 350, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 300, 50, 5);
+									g.fillRect(675, 400, 50, 5);
+								}
 							}
 							
 							if(p1Num == 3) {
@@ -2414,6 +2440,21 @@ public class gui extends JPanel{
 								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
 								g.drawImage(shipSprite, p1Ship2X, p1Ship2Y, 50, 50, this);
 								g.drawImage(shipSprite, p1Ship3X, p1Ship3Y, 50, 50, this);
+								
+								if(player1 == true) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 1 SHIPS", 650, 75);
+									g.drawString("1", 675, 200);
+									g.drawString("2", 675, 300);
+									g.drawString("3", 675, 400);
+									g.drawImage(shipSprite, 675, 200, 50, 50, this);
+									g.drawImage(shipSprite, 675, 300, 50, 50, this);
+									g.drawImage(shipSprite, 675, 400, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 250, 50, 5);
+									g.fillRect(675, 350, 50, 5);
+									g.fillRect(675, 450, 50, 5);
+								}
 							}
 							
 							if(p1Num == 4) {
@@ -2442,7 +2483,26 @@ public class gui extends JPanel{
 								g.drawImage(shipSprite, p1Ship2X, p1Ship2Y, 50, 50, this);
 								g.drawImage(shipSprite, p1Ship3X, p1Ship3Y, 50, 50, this);
 								g.drawImage(shipSprite, p1Ship4X, p1Ship4Y, 50, 50, this);
-							}	
+								
+								if(player1 == true) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 1 SHIPS", 650, 75);
+									g.drawString("1", 675, 150);
+									g.drawString("2", 675, 250);
+									g.drawString("3", 675, 350);
+									g.drawString("4", 675, 450);
+									g.drawImage(shipSprite, 675, 150, 50, 50, this);
+									g.drawImage(shipSprite, 675, 250, 50, 50, this);
+									g.drawImage(shipSprite, 675, 350, 50, 50, this);
+									g.drawImage(shipSprite, 675, 450, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 200, 50, 5);
+									g.fillRect(675, 300, 50, 5);
+									g.fillRect(675, 400, 50, 5);
+									g.fillRect(675, 500, 50, 5);
+								}
+							}
+							
 						}
 					}
 			
@@ -2457,6 +2517,15 @@ public class gui extends JPanel{
 								g.setColor(Color.WHITE);
 								g.drawString("1", (p2Ship1X), (p2Ship1Y));
 								g.drawImage(shipSprite2, p2Ship1X, p2Ship1Y, 50, 50, this);
+								
+								if(player1 == false) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 2 SHIPS", 650, 75);
+									g.drawString("1", 675, 300);
+									g.drawImage(shipSprite2, 675, 300, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 350, 50, 5);
+								}
 							}
 							
 							if(p2Num == 2) {
@@ -2473,6 +2542,18 @@ public class gui extends JPanel{
 								g.drawString("2", (p2Ship2X), (p2Ship2Y));
 								g.drawImage(shipSprite2, p2Ship1X, p2Ship1Y, 50, 50, this);
 								g.drawImage(shipSprite2, p2Ship2X, p2Ship2Y, 50, 50, this);
+								
+								if(player1 == false) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 2 SHIPS", 650, 75);
+									g.drawString("1", 675, 250);
+									g.drawString("2", 675, 350);
+									g.drawImage(shipSprite2, 675, 250, 50, 50, this);
+									g.drawImage(shipSprite2, 675, 350, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 300, 50, 5);
+									g.fillRect(675, 400, 50, 5);
+								}
 							}
 							
 							if(p2Num == 3) {
@@ -2495,6 +2576,21 @@ public class gui extends JPanel{
 								g.drawImage(shipSprite2, p2Ship1X, p2Ship1Y, 50, 50, this);
 								g.drawImage(shipSprite2, p2Ship2X, p2Ship2Y, 50, 50, this);
 								g.drawImage(shipSprite2, p2Ship3X, p2Ship3Y, 50, 50, this);
+								
+								if(player1 == false) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 2 SHIPS", 650, 75);
+									g.drawString("1", 675, 200);
+									g.drawString("2", 675, 300);
+									g.drawString("3", 675, 400);
+									g.drawImage(shipSprite2, 675, 200, 50, 50, this);
+									g.drawImage(shipSprite2, 675, 300, 50, 50, this);
+									g.drawImage(shipSprite2, 675, 400, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 250, 50, 5);
+									g.fillRect(675, 350, 50, 5);
+									g.fillRect(675, 450, 50, 5);
+								}
 							}
 							
 							if(p2Num == 4) {
@@ -2523,6 +2619,24 @@ public class gui extends JPanel{
 								g.drawImage(shipSprite2, p2Ship2X, p2Ship2Y, 50, 50, this);
 								g.drawImage(shipSprite2, p2Ship3X, p2Ship3Y, 50, 50, this);
 								g.drawImage(shipSprite2, p2Ship4X, p2Ship4Y, 50, 50, this);
+								
+								if(player1 == false) {
+									g.setFont(new Font(null, Font.BOLD, 15));
+									g.drawString("PLAYER 2 SHIPS", 650, 75);
+									g.drawString("1", 675, 150);
+									g.drawString("2", 675, 250);
+									g.drawString("3", 675, 350);
+									g.drawString("4", 675, 450);
+									g.drawImage(shipSprite2, 675, 150, 50, 50, this);
+									g.drawImage(shipSprite2, 675, 250, 50, 50, this);
+									g.drawImage(shipSprite2, 675, 350, 50, 50, this);
+									g.drawImage(shipSprite2, 675, 450, 50, 50, this);
+									g.setColor(Color.GREEN);
+									g.fillRect(675, 200, 50, 5);
+									g.fillRect(675, 300, 50, 5);
+									g.fillRect(675, 400, 50, 5);
+									g.fillRect(675, 500, 50, 5);
+								}
 							}	
 						}
 					}
