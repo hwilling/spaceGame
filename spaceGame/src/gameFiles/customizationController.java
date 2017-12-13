@@ -352,7 +352,7 @@ public class customizationController
 	public int P2boostArmor(ship player2Ship){
 		defense = player2Ship.getArmor();
 		if(points >= calcBoostCost(defense)){
-			range -= calcBoostCost(defense);
+			points -= calcBoostCost(defense);
 			defense++;
 			player2Ship.setArmor(defense);
 		}
