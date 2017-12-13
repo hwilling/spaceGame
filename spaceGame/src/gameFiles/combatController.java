@@ -160,31 +160,22 @@ public class combatController {
 		ProjectileType attackProjType = attacker.getShipAttackType();
 		int damageOverflow = 0;
 		//determine what to do with damage based on projectile type
-		switch(attackProjType){
-			case LASER:
-				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
-				damageOverflow += target.getArmor();
-				if(damageOverflow < 0){
-					target.modHP(damageOverflow);
-				}
-			case KINETIC:
-				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
-				damageOverflow += target.getArmor();
-				if(damageOverflow < 0){
-					target.modHP(damageOverflow);
-				}
-			case MISSLE:
-				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
-				damageOverflow += target.getArmor();
-				if(damageOverflow < 0){
-					target.modHP(damageOverflow);
-				}
-			case ION:
-				damageOverflow = target.modShield(-1 * attacker.getDamageValue());
-				damageOverflow += target.getArmor();
-				if(damageOverflow < 0){
-					target.modHP(damageOverflow);
-				}
+		damageOverflow = target.modShield(calcShieldDMG(attackProjType.getShieldDMG(), attacker.getDamageValue()));
+		damageOverflow = calcHpDMG(attackProjType.getHpDMG(), damageOverflow);
+		damageOverflow += target.getArmor();
+		if(damageOverflow < 0){
+			target.modHP(damageOverflow);
 		}
+	}
+	//create our damage to target shields
+	public int calcShieldDMG(double shieldMod, int dmgVal){
+		int dmgTotal = (int)shieldMod * dmgVal;
+		dmgTotal *= -1;
+		return dmgTotal;
+	}
+	//create our damage to hitpoints
+	public int calcHpDMG(double hpMod, int dmgVal){
+		int dmgTotal = (int)hpMod * dmgVal;
+		return dmgTotal;
 	}
 }
