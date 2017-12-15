@@ -53,8 +53,6 @@ public class gui extends JPanel{
 	boolean p2Destroy3 = false;
 	boolean p2Destroy4 = false;
 	
-	boolean p1Targeted = false;
-	boolean p2Targeted = false;
 	boolean p1Destroyed = false;
 	boolean p2Destroyed = false;
 	boolean player1 = true;
@@ -1418,13 +1416,17 @@ if(startGame == true) {
 			g.setFont(new Font(null, Font.PLAIN, 20));
 			g.drawString("Controls: Arrows to Move Ship" , 270, 460);
 			g.drawString("Spacebar to Change Players" , 355, 485);
-			g.drawString("F to fire" , 355, 510);
+			g.drawString("T to target enemy ship" , 355, 510);
+			g.drawString("F to fire" , 355, 535);
 		}
 		
 		else {
 			// TODO: render the model
 			//background
 			g.drawImage(space, 0, 0, 800, 800, this);
+			g.setColor(Color.BLACK);
+			g.fillRect(601, 0, 800, 800);
+			g.fillRect(0, 601, 800, 800);
 			
 			if(startTurn == false) {
 				g.setColor(Color.WHITE);
