@@ -28,8 +28,8 @@ public class gui extends JPanel{
 	boolean p1Destroyed = false;
 	boolean p2Destroyed = false;
 	boolean player1 = true;
-	int x = 600;
-	int y = 600;
+	int x = 800;
+	int y = 800;
 	int numPlayers = 2;
 	String name = null;
 	ArrayList<ship> player1Ships = new ArrayList<>();
@@ -81,7 +81,11 @@ public class gui extends JPanel{
 	int redShipX = 125;
 	int redShipY = 25;
 	
-	int points = 500;
+	int pointsP1 = 2500;
+	int pointsP2 = 2500;
+	int HP;
+	int attack;
+	int shield;
 	
 	//select ships for customization
 	boolean checkP1Ship[] = new boolean[4];
@@ -105,7 +109,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			healthValP1[i] = 12;
+			healthValP1[i] = 15;
 		}
 	}
 	
@@ -113,7 +117,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			healthValP2[i] = 12;
+			healthValP2[i] = 15;
 		}
 	}
 	
@@ -122,7 +126,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			shieldValP1[i] = 5;
+			shieldValP1[i] = 2;
 		}
 	}
 	
@@ -130,7 +134,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			shieldValP2[i] = 5;
+			shieldValP2[i] = 2;
 		}
 	}
 	
@@ -139,7 +143,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			attackValP1[i] = 8;
+			attackValP1[i] = 3;
 		}
 	}
 	
@@ -147,7 +151,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			attackValP2[i] = 8;
+			attackValP2[i] = 3;
 		}
 	}
 	
@@ -156,7 +160,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			rangeValP1[i] = 9;
+			rangeValP1[i] = 1;
 		}
 	}
 	
@@ -164,7 +168,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			rangeValP2[i] = 9;
+			rangeValP2[i] = 1;
 		}
 	}
 	
@@ -173,7 +177,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			speedValP1[i] = 11;
+			speedValP1[i] = 2;
 		}
 	}
 	
@@ -181,7 +185,7 @@ public class gui extends JPanel{
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			speedValP2[i] = 11;
+			speedValP2[i] = 2;
 		}
 	}
 	
@@ -856,7 +860,6 @@ public class gui extends JPanel{
 	protected void handleKeyPressed(KeyEvent e){
 			
 		int key = e.getKeyCode();
-		//int x = 100;
 		
 		if(customizeScreenP1 == true && startGame == false) 
 		{
@@ -865,26 +868,40 @@ public class gui extends JPanel{
 				if(key == KeyEvent.VK_1) 
 				{
 					p1Num = 1;
+					HP = 50;
+					attack = 13;
+					shield = 13;
 				}
 				
 				else if(key == KeyEvent.VK_2) 
 				{
 					p1Num = 2;
+					HP = 40;
+					attack = 11;
+					shield = 11;
 				}
 				else if(key == KeyEvent.VK_3) 
 				{
 					p1Num = 3;
+					HP = 30;
+					attack = 9;
+					shield = 9;
 				}
 				else if(key == KeyEvent.VK_4) 
 				{
 					p1Num = 4;
+					HP = 20;
+					attack = 7;
+					shield = 7;
 				}
 				
-				for(int i = 0; i < p1Num; i++) {
+				for(int i = 0; i < p1Num; i++) 
+				{
 					ship Ship = new ship(null);
 					//Ship.setMovesRemaining(200); //CHANGE TO VARIABLE
 					player1Ships.add(Ship);
 				}
+				
 				repaint();
 			}
 			
@@ -918,67 +935,39 @@ public class gui extends JPanel{
 				
 				repaint();
 				
-				//Player 1 Health
+				//Player 1 Customize
 				for (int i = 0; i < p1Num; i++)
 				{
-					if (checkP1Ship[i] == true && key == KeyEvent.VK_H)
-					{
-						if (points > 0)
+					if (pointsP1 > 0)
+					{			
+						if (checkP1Ship[i] == true && key == KeyEvent.VK_H && healthValP1[i] < HP)
 						{
 							healthValP1[i]++;
-							points = points - 50;
+							pointsP1 = pointsP1 - 50;
 						}
-					}
-				}
-				
-				//Player 1 Attack
-				for (int i = 0; i < p1Num; i++)
-				{
-					if (checkP1Ship[i] == true && key == KeyEvent.VK_A)
-					{
-						if (points > 0)
+						
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_A && attackValP1[i] < attack)
 						{
 							attackValP1[i]++;
-							points = points - 50;
+							pointsP1 = pointsP1 - 50;
 						}
-					}
-				}
-				
-				//Player 1 Speed
-				for (int i = 0; i < p1Num; i++)
-				{
-					if (checkP1Ship[i] == true && key == KeyEvent.VK_S)
-					{
-						if (points > 0)
+						
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_S && speedValP1[i] < 4)
 						{
 							speedValP1[i]++;
-							points = points - 50;
+							pointsP1 = pointsP1 - 50;
 						}
-					}
-				}
-				
-				//Player 1 Range
-				for (int i = 0; i < p1Num; i++)
-				{
-					if (checkP1Ship[i] == true && key == KeyEvent.VK_R)
-					{
-						if (points > 0)
+						
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_R && rangeValP1[i] < 3)
 						{
 							rangeValP1[i]++;
-							points = points - 50;
+							pointsP1 = pointsP1 - 50;
 						}
-					}
-				}
-				
-				//Player 1 Defense
-				for (int i = 0; i < p1Num; i++)
-				{
-					if (checkP1Ship[i] == true && key == KeyEvent.VK_D)
-					{
-						if (points > 0)
+						
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_D && shieldValP1[i] < shield)
 						{
 							shieldValP1[i]++;
-							points = points - 50;
+							pointsP1 = pointsP1 - 50;
 						}
 					}
 				}
@@ -997,20 +986,40 @@ public class gui extends JPanel{
 		if(customizeScreenP2 == true && startGame == false) {
 			if (startCustomize == false) 
 			{
-				if(key == KeyEvent.VK_1) {
+				if(key == KeyEvent.VK_1) 
+				{
 					p2Num = 1;
-				}
-				else if(key == KeyEvent.VK_2) {
-					p2Num = 2;
-				}
-				else if(key == KeyEvent.VK_3) {
-					p2Num = 3;
-				}
-				else if(key == KeyEvent.VK_4) {
-					p2Num = 4;
+					HP = 50;
+					attack = 13;
+					shield = 13;
 				}
 				
-				for(int i = 0; i < p2Num; i++) {
+				else if(key == KeyEvent.VK_2) 
+				{
+					p2Num = 2;
+					HP = 40;
+					attack = 11;
+					shield = 11;
+				}
+				
+				else if(key == KeyEvent.VK_3) 
+				{
+					p2Num = 3;
+					HP = 30;
+					attack = 9;
+					shield = 9;
+				}
+				
+				else if(key == KeyEvent.VK_4) 
+				{
+					p2Num = 4;
+					HP = 20;
+					attack = 7;
+					shield = 7;
+				}
+				
+				for(int i = 0; i < p2Num; i++) 
+				{
 					ship Ship = new ship(null);
 					//Ship.setMovesRemaining(200); //CHANGE TO VARIABLE
 					player2Ships.add(Ship);
@@ -1042,70 +1051,42 @@ public class gui extends JPanel{
 					checkP2Ship[3] = true;
 					selection = 4;
 				}
+				
 				repaint();
 				
-				
-				//Player 2 Health
+				//Player 2 Customize
 				for (int i = 0; i < p2Num; i++)
 				{
-					if (checkP2Ship[i] == true && key == KeyEvent.VK_H)
+					if (pointsP2 > 0)
 					{
-						if (points > 0)
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_H && healthValP2[i] < HP)
 						{
 							healthValP2[i]++;
-							points = points - 50;
+							pointsP2 = pointsP2 - 50;
 						}
-					}
-				}
-				
-				//Player 2 Attack
-				for (int i = 0; i < p2Num; i++)
-				{
-					if (checkP2Ship[i] == true && key == KeyEvent.VK_A)
-					{
-						if (points > 0)
+						
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_A && attackValP2[i] < attack)
 						{
 							attackValP2[i]++;
-							points = points - 50;
+							pointsP2 = pointsP2 - 50;
 						}
-					}
-				}
-				
-				//Player 2 Speed
-				for (int i = 0; i < p2Num; i++)
-				{
-					if (checkP2Ship[i] == true && key == KeyEvent.VK_S)
-					{
-						if (points > 0)
+						
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_S && speedValP2[i] < 4)
 						{
 							speedValP2[i]++;
-							points = points - 50;
+							pointsP2 = pointsP2 - 50;
 						}
-					}
-				}
-				
-				//Player 2 Range
-				for (int i = 0; i < p2Num; i++)
-				{
-					if (checkP2Ship[i] == true && key == KeyEvent.VK_R)
-					{
-						if (points > 0)
+						
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_R && rangeValP2[i] < 3)
 						{
 							rangeValP2[i]++;
-							points = points - 50;
+							pointsP2 = pointsP2 - 50;
 						}
-					}
-				}
-				
-				//Player 2 Defense
-				for (int i = 0; i < p2Num; i++)
-				{
-					if (checkP2Ship[i] == true && key == KeyEvent.VK_D)
-					{
-						if (points > 0)
+						
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_D && shieldValP2[i] < shield)
 						{
 							shieldValP2[i]++;
-							points = points - 50;
+							pointsP2 = pointsP2 - 50;
 						}
 					}
 				}
@@ -1259,197 +1240,196 @@ public class gui extends JPanel{
 			//background image
 			g.drawImage(space, 0, 0, 800, 800, this);
 			g.setColor(Color.WHITE);
-			g.setFont(new Font(null, Font.BOLD, 30));
-			g.drawString("Player 1: Customize Your Ships" , 75, 50);
+			g.setFont(new Font(null, Font.BOLD, 40));
+			g.drawString("Player 1: Customize Your Ships" , 100, 55);
 			
-			g.setFont(new Font(null, Font.PLAIN, 20));
-			g.drawString("Points: " + points, 25, 580);
-			g.drawString("Number of Ships: " + p1Num, 325, 580);
+			g.setFont(new Font(null, Font.PLAIN, 25));
+			g.drawString("Points: " + pointsP1, 25, 780);
+			g.drawString("Number of Ships: " + p1Num, 550, 780);
 			
 			if (p1Num == 1)
 			{
-				g.drawImage(shipSprite, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite, 350, 150, 150, 150, this);
 			}
 			
 			else if (p1Num == 2)
 			{
-				g.drawImage(shipSprite, 265, 100, 100, 100, this);
-				g.drawImage(shipSprite, 165, 250, 100, 100, this);
+				g.drawImage(shipSprite, 350, 150, 150, 150, this);
+				g.drawImage(shipSprite, 150, 325, 150, 150, this);
 			}
 			
 			else if (p1Num == 3)
 			{
-				g.drawImage(shipSprite, 265, 100, 100, 100, this);
-				g.drawImage(shipSprite, 165, 250, 100, 100, this);
-				g.drawImage(shipSprite, 365, 250, 100, 100, this);
+				g.drawImage(shipSprite, 350, 150, 150, 150, this);
+				g.drawImage(shipSprite, 150, 325, 150, 150, this);
+				g.drawImage(shipSprite, 550, 325, 150, 150, this);
 			}
 			
 			else if (p1Num == 4)
 			{
-				g.drawImage(shipSprite, 265, 100, 100, 100, this);
-				g.drawImage(shipSprite, 165, 250, 100, 100, this);
-				g.drawImage(shipSprite, 365, 250, 100, 100, this);
-				g.drawImage(shipSprite, 265, 400, 100, 100, this);
+				g.drawImage(shipSprite, 350, 150, 150, 150, this);
+				g.drawImage(shipSprite, 150, 325, 150, 150, this);
+				g.drawImage(shipSprite, 550, 325, 150, 150, this);
+				g.drawImage(shipSprite, 350, 500, 150, 150, this);
 			}
 			
 			if (startCustomize == true)
 			{
-				g.setFont(new Font(null, Font.PLAIN, 15));
+				g.setFont(new Font(null, Font.PLAIN, 17));
 				g.drawString("Upgrades:", 10, 100);
-				g.drawString("H to boost health", 15, 115);
-				g.drawString("A to boost attack", 15, 130);
-				g.drawString("S to boost speed", 15, 145);
-				g.drawString("D to boost defense", 15, 160);
-				g.drawString("R to boost range", 15, 175);
+				g.drawString("H to boost health", 15, 120);
+				g.drawString("A to boost attack", 15, 140);
+				g.drawString("S to boost speed", 15, 160);
+				g.drawString("D to boost defense", 15, 180);
+				g.drawString("R to boost range", 15, 200);
 				//g.drawString("Up arrow to Upgrade", 15, 190);
 				//g.drawString("Down arrow to Downgrade", 15, 205);
 				
 				if (checkP1Ship[0] == true && selection == 1 && p1Num > 0)
 				{
-					g.drawOval(260, 100, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 400, 100);
-					g.drawString("Health: "+healthValP1[0], 415, 115);
-					g.drawString("Attack: "+attackValP1[0], 415, 130);
-					g.drawString("Speed: "+speedValP1[0], 415, 145);
-					g.drawString("Defense: "+shieldValP1[0], 415, 160);
-					g.drawString("Range: "+rangeValP1[0], 415, 175);
+					g.drawOval(340, 145, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 500, 110);
+					g.drawString("Health: "+healthValP1[0], 515, 125);
+					g.drawString("Attack: "+attackValP1[0], 515, 140);
+					g.drawString("Speed: "+speedValP1[0], 515, 155);
+					g.drawString("Defense: "+shieldValP1[0], 515, 170);
+					g.drawString("Range: "+rangeValP1[0], 515, 185);
 				}
 			
 				else if (checkP1Ship[1] == true && selection == 2 && p1Num > 1)
 				{
-					g.drawOval(160, 250, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 60, 300);
-					g.drawString("Health: "+healthValP1[1], 75, 315);
-					g.drawString("Attack: "+attackValP1[1], 75, 330);
-					g.drawString("Speed: "+speedValP1[1], 75, 345);
-					g.drawString("Defense: "+shieldValP1[1], 75, 360);
-					g.drawString("Range: "+rangeValP1[1], 75, 375);
+					g.drawOval(140, 320, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 40, 320);
+					g.drawString("Health: "+healthValP1[1], 55, 335);
+					g.drawString("Attack: "+attackValP1[1], 55, 350);
+					g.drawString("Speed: "+speedValP1[1], 55, 365);
+					g.drawString("Defense: "+shieldValP1[1], 55, 380);
+					g.drawString("Range: "+rangeValP1[1], 55, 395);
 				}
 				
 				if (checkP1Ship[2] == true && selection == 3 && p1Num > 2)
 				{
-					g.drawOval(360, 250, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 490, 300);
-					g.drawString("Health: "+healthValP1[2], 505, 315);
-					g.drawString("Attack: "+attackValP1[2], 505, 330);
-					g.drawString("Speed: "+speedValP1[2], 505, 345);
-					g.drawString("Defense: "+shieldValP1[2], 505, 360);
-					g.drawString("Range: "+rangeValP1[2], 505, 375);
+					g.drawOval(540, 320, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 670, 500);
+					g.drawString("Health: "+healthValP1[2], 685, 515);
+					g.drawString("Attack: "+attackValP1[2], 685, 530);
+					g.drawString("Speed: "+speedValP1[2], 685, 545);
+					g.drawString("Defense: "+shieldValP1[2], 685, 560);
+					g.drawString("Range: "+rangeValP1[2], 685, 575);
 				}
 				
 				if (checkP1Ship[3] == true && selection == 4 && p1Num > 3)
 				{
-					g.drawOval(260, 400, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 385, 440);
-					g.drawString("Health: "+healthValP1[3], 400, 455);
-					g.drawString("Attack: "+attackValP1[3], 400, 470);
-					g.drawString("Speed: "+speedValP1[3], 400, 485);
-					g.drawString("Defense: "+shieldValP1[3], 400, 500);
-					g.drawString("Range: "+rangeValP1[3], 400, 515);
+					g.drawOval(340, 495, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 265, 640);
+					g.drawString("Health: "+healthValP1[3], 280, 655);
+					g.drawString("Attack: "+attackValP1[3], 280, 670);
+					g.drawString("Speed: "+speedValP1[3], 280, 685);
+					g.drawString("Defense: "+shieldValP1[3], 280, 700);
+					g.drawString("Range: "+rangeValP1[3], 280, 715);
 				}
 			}
-			
 		}
 		
 		else if(customizeScreenP2 == true && startGame == false) {
 			//background image
 			g.drawImage(space, 0, 0, 800, 800, this);
 			g.setColor(Color.WHITE);
-			g.setFont(new Font(null, Font.BOLD, 30));
-			g.drawString("Player 2: Customize Your Ships" , 75, 50);
+			g.setFont(new Font(null, Font.BOLD, 40));
+			g.drawString("Player 2: Customize Your Ships" , 100, 55);
 			
-			g.setFont(new Font(null, Font.PLAIN, 20));
-			g.drawString("Points: " + points, 25, 580);
-			g.drawString("Number of Ships: " + p2Num, 325, 580);
+			g.setFont(new Font(null, Font.PLAIN, 25));
+			g.drawString("Points: " + pointsP2, 25, 780);
+			g.drawString("Number of Ships: " + p2Num, 550, 780);
 
 			if (p2Num == 1)
 			{
-				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
+				g.drawImage(shipSprite2, 350, 150, 150, 150, this);
 			}
 			
 			else if (p2Num == 2)
 			{
-				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
-				g.drawImage(shipSprite2, 165, 250, 100, 100, this);
+				g.drawImage(shipSprite2, 350, 150, 150, 150, this);
+				g.drawImage(shipSprite2, 150, 325, 150, 150, this);
 			}
 			
 			else if (p2Num == 3)
 			{
-				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
-				g.drawImage(shipSprite2, 165, 250, 100, 100, this);
-				g.drawImage(shipSprite2, 365, 250, 100, 100, this);
+				g.drawImage(shipSprite2, 350, 150, 150, 150, this);
+				g.drawImage(shipSprite2, 150, 325, 150, 150, this);
+				g.drawImage(shipSprite2, 550, 325, 150, 150, this);
 			}
 			
 			else if (p2Num == 4)
 			{
-				g.drawImage(shipSprite2, 265, 100, 100, 100, this);
-				g.drawImage(shipSprite2, 165, 250, 100, 100, this);
-				g.drawImage(shipSprite2, 365, 250, 100, 100, this);
-				g.drawImage(shipSprite2, 265, 400, 100, 100, this);
+				g.drawImage(shipSprite2, 350, 150, 150, 150, this);
+				g.drawImage(shipSprite2, 150, 325, 150, 150, this);
+				g.drawImage(shipSprite2, 550, 325, 150, 150, this);
+				g.drawImage(shipSprite2, 350, 500, 150, 150, this);
 			}
 			
 			if (startCustomize == true)
 			{
-				g.setFont(new Font(null, Font.PLAIN, 15));
+				g.setFont(new Font(null, Font.PLAIN, 17));
 				g.drawString("Upgrades:", 10, 100);
-				g.drawString("H to boost health", 15, 115);
-				g.drawString("A to boost attack", 15, 130);
-				g.drawString("S to boost speed", 15, 145);
-				g.drawString("D to boost defense", 15, 160);
-				g.drawString("R to boost range", 15, 175);
+				g.drawString("H to boost health", 15, 120);
+				g.drawString("A to boost attack", 15, 140);
+				g.drawString("S to boost speed", 15, 160);
+				g.drawString("D to boost defense", 15, 180);
+				g.drawString("R to boost range", 15, 200);
 				//g.drawString("Up arrow to Upgrade", 15, 190);
 				//g.drawString("Down arrow to Downgrade", 15, 205);
 				
 				if (checkP2Ship[0] == true && selection == 1 && p2Num > 0)
 				{
-					g.drawOval(260, 100, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 400, 100);
-					g.drawString("Health: "+healthValP2[0], 415, 115);
-					g.drawString("Attack: "+attackValP2[0], 415, 130);
-					g.drawString("Speed: "+speedValP2[0], 415, 145);
-					g.drawString("Defense: "+shieldValP2[0], 415, 160);
-					g.drawString("Range: "+rangeValP2[0], 415, 175);
+					g.drawOval(340, 135, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 500, 110);
+					g.drawString("Health: "+healthValP2[0], 515, 125);
+					g.drawString("Attack: "+attackValP2[0], 515, 140);
+					g.drawString("Speed: "+speedValP2[0], 515, 155);
+					g.drawString("Defense: "+shieldValP2[0], 515, 170);
+					g.drawString("Range: "+rangeValP2[0], 515, 185);
 				}
 				
-				else if (checkP2Ship[1] == true && selection == 2 && p2Num > 1)
+				if (checkP2Ship[1] == true && selection == 2 && p2Num > 1)
 				{
-					g.drawOval(160, 250, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 60, 300);
-					g.drawString("Health: "+healthValP2[1], 75, 315);
-					g.drawString("Attack: "+attackValP2[1], 75, 330);
-					g.drawString("Speed: "+speedValP2[1], 75, 345);
-					g.drawString("Defense: "+shieldValP2[1], 75, 360);
-					g.drawString("Range: "+rangeValP2[1], 75, 375);
+					g.drawOval(140, 310, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 40, 320);
+					g.drawString("Health: "+healthValP2[1], 55, 335);
+					g.drawString("Attack: "+attackValP2[1], 55, 350);
+					g.drawString("Speed: "+speedValP2[1], 55, 365);
+					g.drawString("Defense: "+shieldValP2[1], 55, 380);
+					g.drawString("Range: "+rangeValP2[1], 55, 395);
 				}
 				
 				if (checkP2Ship[2] == true && selection == 3 && p2Num > 2)
 				{
-					g.drawOval(360, 250, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 490, 300);
-					g.drawString("Health: "+healthValP2[2], 505, 315);
-					g.drawString("Attack: "+attackValP2[2], 505, 330);
-					g.drawString("Speed: "+speedValP2[2], 505, 345);
-					g.drawString("Defense: "+shieldValP2[2], 505, 360);
-					g.drawString("Range: "+rangeValP2[2], 505, 375);
+					g.drawOval(540, 310, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 670, 500);
+					g.drawString("Health: "+healthValP2[2], 685, 515);
+					g.drawString("Attack: "+attackValP2[2], 685, 530);
+					g.drawString("Speed: "+speedValP2[2], 685, 545);
+					g.drawString("Defense: "+shieldValP2[2], 685, 560);
+					g.drawString("Range: "+rangeValP2[2], 685, 575);
 				}
 				
 				if (checkP2Ship[3] == true && selection == 4 && p2Num > 3)
 				{
-					g.drawOval(260, 400, 110, 110);
-					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Stats:", 385, 440);
-					g.drawString("Health: "+healthValP2[3], 400, 455);
-					g.drawString("Attack: "+attackValP2[3], 400, 470);
-					g.drawString("Speed: "+speedValP2[3], 400, 485);
-					g.drawString("Defense: "+shieldValP2[3], 400, 500);
-					g.drawString("Range: "+rangeValP2[3], 400, 515);
+					g.drawOval(340, 485, 170, 170);
+					g.setFont(new Font(null, Font.PLAIN, 17));
+					g.drawString("Stats:", 265, 640);
+					g.drawString("Health: "+healthValP2[3], 280, 655);
+					g.drawString("Attack: "+attackValP2[3], 280, 670);
+					g.drawString("Speed: "+speedValP2[3], 280, 685);
+					g.drawString("Defense: "+shieldValP2[3], 280, 700);
+					g.drawString("Range: "+rangeValP2[3], 280, 715);
 				}
 			}
 		}
@@ -1459,14 +1439,14 @@ public class gui extends JPanel{
 			//g.fillRect(0, 0, 600, 600);
 			g.drawImage(space, 0, 0, 800, 800, this);
 			g.setColor(Color.WHITE);
-			g.setFont(new Font(null, Font.BOLD, 30));
-			g.drawString("Press Enter to Start" , 150, 300);
+			g.setFont(new Font(null, Font.BOLD, 60));
+			g.drawString("Press Enter to Start" , 125, 400);
 			
 			g.setColor(Color.WHITE);
-			g.setFont(new Font(null, Font.PLAIN, 15));
-			g.drawString("Controls: Click to Move" , 225, 510);
-			g.drawString("Spacebar to Change Players" , 289, 530);
-			g.drawString("F to fire" , 290, 550);
+			g.setFont(new Font(null, Font.PLAIN, 20));
+			g.drawString("Controls: Click to Move Ship" , 270, 460);
+			g.drawString("Spacebar to Change Players" , 355, 485);
+			g.drawString("F to fire" , 355, 510);
 		}
 		
 		else {
@@ -1474,9 +1454,56 @@ public class gui extends JPanel{
 			//background
 			g.drawImage(space, 0, 0, 800, 800, this);
 			
-			g.setColor(Color.WHITE);
-			g.setFont(new Font(null, Font.PLAIN, 15));
-			g.drawString("Player 2 Health: " + player2Ships.get(0).getMaxHP(), 610, 400);
+			if (player1 == true)
+			{
+				if (p2Num > 0)
+				{
+					g.setColor(Color.WHITE);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Player 2 Ship 1 Stats", 625, 30+20);
+					g.drawString("Player 2 Health: " + player2Ships.get(0).getMaxHP(), 650, 45+20);
+					g.drawString("Player 2 Attack: " + player2Ships.get(0).getDamageValue(), 650, 60+20);
+					g.drawString("Player 2 Defense: " + player2Ships.get(0).getShield(), 650, 75+20);
+					g.drawString("Player 2 Speed: " + player2Ships.get(0).getSpeed(), 650, 90+20);
+					g.drawString("Player 2 Range: " + player2Ships.get(0).getRange(), 650, 105+20);
+				}
+				
+				if (p2Num > 1)
+				{
+					g.setColor(Color.WHITE);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Player 2 Ship 2 Stats", 625, 150+20);
+					g.drawString("Player 2 Health: " + player2Ships.get(1).getMaxHP(), 650, 165+20);
+					g.drawString("Player 2 Attack: " + player2Ships.get(1).getDamageValue(), 650, 180+20);
+					g.drawString("Player 2 Defense: " + player2Ships.get(1).getShield(), 650, 195+20);
+					g.drawString("Player 2 Speed: " + player2Ships.get(1).getSpeed(), 650, 210+20);
+					g.drawString("Player 2 Range: " + player2Ships.get(1).getRange(), 650, 225+20);
+				}
+				
+				if (p2Num > 2)
+				{
+					g.setColor(Color.WHITE);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Player 2 Ship 2 Stats", 625, 270+20);
+					g.drawString("Player 2 Health: " + player2Ships.get(2).getMaxHP(), 650, 285+20);
+					g.drawString("Player 2 Attack: " + player2Ships.get(2).getDamageValue(), 650, 300+20);
+					g.drawString("Player 2 Defense: " + player2Ships.get(2).getShield(), 650, 315+20);
+					g.drawString("Player 2 Speed: " + player2Ships.get(2).getSpeed(), 650, 330+20);
+					g.drawString("Player 2 Range: " + player2Ships.get(2).getRange(), 650, 345+20);
+				}
+				
+				if (p2Num > 3)
+				{
+					g.setColor(Color.WHITE);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Player 2 Ship 2 Stats", 625, 385);
+					g.drawString("Player 2 Health: " + player2Ships.get(3).getMaxHP(), 650, 400+20);
+					g.drawString("Player 2 Attack: " + player2Ships.get(3).getDamageValue(), 650, 415+20);
+					g.drawString("Player 2 Defense: " + player2Ships.get(3).getShield(), 650, 430+20);
+					g.drawString("Player 2 Speed: " + player2Ships.get(3).getSpeed(), 650, 445+20);
+					g.drawString("Player 2 Range: " + player2Ships.get(3).getRange(), 650, 460+20);
+				}
+			}
 			
 			if(p1Destroyed == false && p2Destroyed == false) {
 				g.setColor(Color.WHITE);
@@ -1486,7 +1513,7 @@ public class gui extends JPanel{
 				g.drawLine(300, 0, 300, 600);
 				g.drawLine(400, 0, 400, 600);
 				g.drawLine(500, 0, 500, 600);
-				g.drawLine(600, 0, 600, 600);
+				g.drawLine(600, 0, 600, 800);
 				
 				//Horizontal Lines
 				g.drawLine(0, 100, 600, 100);
@@ -1494,7 +1521,7 @@ public class gui extends JPanel{
 				g.drawLine(0, 300, 600, 300);
 				g.drawLine(0, 400, 600, 400);
 				g.drawLine(0, 500, 600, 500);
-				g.drawLine(0, 600, 600, 600);
+				g.drawLine(0, 600, 800, 600);
 
 			}
 			/*g.setFont(new Font(null, Font.BOLD, 15));
