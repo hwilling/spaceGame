@@ -983,6 +983,15 @@ public class gui extends JPanel{
 					}
 				}
 			}
+			
+			for (int i = 0; i < p1Num; i++)
+			{
+				player1Ships.get(i).setMaxHP(healthValP1[i]);
+				player1Ships.get(i).setDamageValue(attackValP1[i]);
+				player1Ships.get(i).setSpeed(speedValP1[i]);
+				player1Ships.get(i).setRange(rangeValP1[i]);
+				player1Ships.get(i).setShield(shieldValP1[i]);
+			}
 		}
 		
 		if(customizeScreenP2 == true && startGame == false) {
@@ -1100,6 +1109,15 @@ public class gui extends JPanel{
 						}
 					}
 				}
+			}
+			
+			for (int i = 0; i < p2Num; i++)
+			{
+				player2Ships.get(i).setMaxHP(healthValP2[i]);
+				player2Ships.get(i).setDamageValue(attackValP2[i]);
+				player2Ships.get(i).setSpeed(speedValP2[i]);
+				player2Ships.get(i).setRange(rangeValP2[i]);
+				player2Ships.get(i).setShield(shieldValP2[i]);
 			}
 		}
 				
@@ -1455,6 +1473,10 @@ public class gui extends JPanel{
 			// TODO: render the model
 			//background
 			g.drawImage(space, 0, 0, 800, 800, this);
+			
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(null, Font.PLAIN, 15));
+			g.drawString("Player 2 Health: " + player2Ships.get(0).getMaxHP(), 610, 400);
 			
 			if(p1Destroyed == false && p2Destroyed == false) {
 				g.setColor(Color.WHITE);
