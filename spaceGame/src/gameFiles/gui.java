@@ -32,6 +32,26 @@ public class gui extends JPanel{
 	
 	boolean startTurn = false;
 	
+	boolean p1Target1 = false;
+	boolean p1Target2 = false;
+	boolean p1Target3 = false;
+	boolean p1Target4 = false;
+	
+	boolean p2Target1 = false;
+	boolean p2Target2 = false;
+	boolean p2Target3 = false;
+	boolean p2Target4 = false;
+	
+	boolean p1Destroy1 = false;
+	boolean p1Destroy2 = false;
+	boolean p1Destroy3 = false;
+	boolean p1Destroy4 = false;
+	
+	boolean p2Destroy1 = false;
+	boolean p2Destroy2 = false;
+	boolean p2Destroy3 = false;
+	boolean p2Destroy4 = false;
+	
 	boolean p1Targeted = false;
 	boolean p2Targeted = false;
 	boolean p1Destroyed = false;
@@ -311,61 +331,13 @@ public class gui extends JPanel{
 	// Event handler for mouse pressed events
 	protected void handleMousePressed(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
-		//startTurn = true;
-	//	repaint();
 		
-		
-		/*if(p1Destroyed == false && p2Destroyed == false) {
-			if(player1 == true) {
-				if(speed > 0) {
-					if((Math.abs(e.getX() - greenShipX) <= 200) && (Math.abs(e.getY() - greenShipY) <= 200)){
-						if(((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY))) <= 200) {
-							//speed = speed-((Math.abs(e.getX() - greenShipX)) + (Math.abs(e.getY() - greenShipY)));
-							//greenShipX = e.getX();
-							//greenShipY = e.getY();
-							repaint();
-						}
-					}
-				}
-				if(Math.abs(redShipX - greenShipX) == 100 && Math.abs(redShipY - greenShipY) == 100) {
-					p2Targeted = true;
-					repaint();
-				}
-				else {
-					p1Targeted = false;
-					p2Targeted = false;
-					repaint();
-				}
-			}
-			else if(player1 == false) {
-				if(speed > 0) {
-					if((Math.abs(e.getX() - redShipX) <= 200) && (Math.abs(e.getY() - redShipY) <= 200)){
-						if(((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY))) <= 200) {
-							//speed = speed-((Math.abs(e.getX() - redShipX)) + (Math.abs(e.getY() - redShipY)));
-							//redShipX = e.getX();
-							//redShipY = e.getY();
-							//repaint();
-						}	
-					}
-				}
-				if(Math.abs(redShipX - greenShipX) == 100 && Math.abs(redShipY - greenShipY) == 100) {
-					p1Targeted = true;
-					repaint();
-				}
-				else {
-					p1Targeted = false;
-					p2Targeted = false;
-					repaint();
-				}
-			}
-		}*/
 	}
 		
 	// Event handler for mouse dragged events
 	protected void handleMouseDragged(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
-		
-		repaint();
+
 	}
 
 	// Event handler for mouse released events
@@ -377,8 +349,7 @@ public class gui extends JPanel{
 	// Event handler for animation timer tick events
 	protected void handleTimerTick() {
 		// TODO: use controller to handle event and (if necessary) update model
-			
-		
+
 	}
 	
 	//Testing keyboard input
@@ -908,13 +879,137 @@ public class gui extends JPanel{
 			repaint();
 		}
 		
-		
-		if(key == KeyEvent.VK_F) {
-			if(p1Targeted == true && player1 == false) {
+	//	f
+		if(key == KeyEvent.VK_T && startGame == true) {
+			
+			//Targeting a ship
+			if(p1Destroyed == false && p2Destroyed == false) {
+				if(player1 == true) {
+					for(int i = 0; i < p2Num; i++) {
+						if(Math.abs((player1Ships.get(p1ActShip-1).getXCoord()) - player2Ships.get(i).getXCoord()) <= 100 && 
+								Math.abs((player1Ships.get(p1ActShip-1).getYCoord()) - player2Ships.get(i).getYCoord()) <= 100){
+					
+							if(i == 0) {
+								p2Target1 = true;
+							}
+							if(i == 1) {
+								p2Target2 = true;
+							}
+							if(i == 2) {
+								p2Target3 = true;
+							}
+							if(i == 3) {
+								p2Target4 = true;
+							}
+							repaint();
+						}
+					}
+				}
+			
+				if(player1 == false) {
+					for(int i = 0; i < p1Num; i++) {
+						if(Math.abs((player2Ships.get(p2ActShip-1).getXCoord()) - player1Ships.get(i).getXCoord()) <= 100 && 
+								Math.abs((player2Ships.get(p2ActShip-1).getYCoord()) - player1Ships.get(i).getYCoord()) <= 100){
+					
+							if(i == 0) {
+								p1Target1 = true;
+							}
+							if(i == 1) {
+								p1Target2 = true;
+							}
+							if(i == 2) {
+								p1Target3 = true;
+							}
+							if(i == 3) {
+								p1Target4 = true;
+							}
+							repaint();
+						}
+					}
+				}
+			}
+		}
+			
+		if(key == KeyEvent.VK_F && startGame == true) {
+			
+			if(player1 == true) {
+				if(p2Target1 == true) {
+					player2Ships.get(0).setHP(
+							player2Ships.get(0).getHP() - (player1Ships.get(p1ActShip-1).getDamageValue() % player2Ships.get(0).getShield() + 4));
+					repaint();
+					if(player2Ships.get(0).getHP() <= 0) {
+						p2Destroy1 = true;
+						player2Ships.remove(0);
+						p2Num = p2Num - 1;
+					}
+					p2Target1 = false;
+				}
+				if(p2Target2 == true) {
+					player2Ships.get(1).setHP(
+							player2Ships.get(1).getHP() - (player1Ships.get(p1ActShip-1).getDamageValue() % player2Ships.get(1).getShield() + 4));
+					repaint();
+					if(player2Ships.get(1).getHP() <= 0) {
+						p2Destroy2 = true;
+						player2Ships.remove(1);
+						p2Num = p2Num - 1;
+					}
+					p2Target2 = false;
+				}
+				if(p2Target3 == true) {
+					player2Ships.get(2).setHP(
+							player2Ships.get(2).getHP() - (player1Ships.get(p1ActShip-1).getDamageValue() % player2Ships.get(2).getShield() + 4));
+					repaint();
+					if(player2Ships.get(2).getHP() <= 0) {
+						p2Destroy3 = true;
+						player2Ships.remove(2);
+						p2Num = p2Num - 1;
+					}
+					p2Target3 = false;
+				}
+				if(p2Target4 == true) {
+					player2Ships.get(3).setHP(
+							player2Ships.get(3).getHP() - (player1Ships.get(p1ActShip-1).getDamageValue() % player2Ships.get(3).getShield() + 4));
+					repaint();
+					if(player2Ships.get(3).getHP() <= 0) {
+						p2Destroy4 = true;
+						player2Ships.remove(3);
+						p2Num = p2Num - 1;
+					}
+					p2Target4 = false;
+				}
+			}
+			if(player1 == false) {
+				if(p1Target1 == true) {
+					p1Destroy1 = true;
+					player1Ships.remove(0);
+					p1Num = p1Num - 1;
+					p1Target1 = false;
+				}
+				if(p1Target2 == true) {
+					p1Destroy2 = true;
+					player1Ships.remove(1);
+					p1Num = p1Num - 1;
+					p1Target2 = false;
+				}
+				if(p1Target3 == true) {
+					p1Destroy3 = true;
+					player1Ships.remove(2);
+					p1Num = p1Num - 1;
+					p1Target3 = false;
+				}
+				if(p1Target4 == true) {
+					p1Destroy4 = true;
+					player1Ships.remove(3);
+					p1Num = p1Num - 1;
+					p1Target4 = false;
+				}
+				repaint();
+			}
+			if(player1Ships.isEmpty() || p1Num == 0) {
 				p1Destroyed = true;
 				repaint();
 			}
-			else if(p2Targeted == true && player1 == true) {
+			if(player2Ships.isEmpty() || p2Num == 0) {
 				p2Destroyed = true;
 				repaint();
 			}
@@ -1572,6 +1667,11 @@ if(startGame == true) {
 							}
 							
 							if(startTurn == true){
+								if(p1Num == 0) {
+									p1Destroyed = true;
+									repaint();
+								}
+								
 								if(p1ActShip > 0) {
 									g.setColor(Color.GREEN);
 							 		g.drawRect(player1Ships.get(p1ActShip - 1).getXCoord(), player1Ships.get(p1ActShip - 1).getYCoord(), 50, 50);
@@ -1603,8 +1703,31 @@ if(startGame == true) {
 								}
 								g.drawImage(shipSprite2, player2Ships.get(i).getXCoord(), player2Ships.get(i).getYCoord(), 50, 50, this);
 							}
-							
+
 							if(startTurn == true){
+								
+								if(p2Num == 0) {
+									p2Destroyed = true;
+									repaint();
+								}
+								
+								if(p2Target1 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player2Ships.get(0).getXCoord(), player2Ships.get(0).getYCoord(), 50, 50);
+								}
+								if(p2Target2 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player2Ships.get(1).getXCoord(), player2Ships.get(1).getYCoord(), 50, 50);
+								}
+								if(p2Target3 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player2Ships.get(2).getXCoord(), player2Ships.get(2).getYCoord(), 50, 50);
+								}
+								if(p2Target4 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player2Ships.get(3).getXCoord(), player2Ships.get(3).getYCoord(), 50, 50);
+								}
+								
 								if(p2ActShip > 0) {
 									g.setColor(Color.GREEN);
 							 		g.drawRect(player2Ships.get(p2ActShip - 1).getXCoord(), player2Ships.get(p2ActShip - 1).getYCoord(), 50, 50);
@@ -1624,12 +1747,12 @@ if(startGame == true) {
 				else {
 					player = 2;
 				}
-				g.drawImage(space, 0, 0, 600, 600, this);
+				g.drawImage(space, 0, 0, 800, 800, this);
 				g.setColor(Color.WHITE);
 				g.setFont(new Font(null, Font.BOLD, 50));
-				g.drawString("GAME OVER" , 150, 300);
+				g.drawString("GAME OVER" , 250, 400);
 				g.setFont(new Font(null, Font.BOLD, 25));
-				g.drawString("Player " + player + " Won!", 225, 350);
+				g.drawString("Player " + player + " Won!", 325, 450);
 			}
 		}
 	}
