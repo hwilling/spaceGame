@@ -889,7 +889,6 @@ public class gui extends JPanel{
 			}
 			
 			//Customization Events
-			//Player 1 health
 			else if (startCustomize == true)
 			{
 				//select ship
@@ -919,133 +918,70 @@ public class gui extends JPanel{
 				
 				repaint();
 				
-				if (checkP1Ship[0] == true && key == KeyEvent.VK_H)
+				//Player 1 Health
+				for (int i = 0; i < p1Num; i++)
 				{
-					selection = 1;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP1Ship[i] == true && key == KeyEvent.VK_H)
 					{
-						custom.P1boostHealth(player1Ships.get(0));
-						healthValP1[0]++;
-						
-						repaint();
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceHealth(player1Ships.get(0));
+						if (points > 0)
+						{
+							healthValP1[i]++;
+							points = points - 50;
+						}
 					}
 				}
-				
-				else if (checkP1Ship[1] == true && key == KeyEvent.VK_H)
-				{
-					selection = 2;
-					
-					if (key == KeyEvent.VK_UP)
-					{
-						custom.P1boostHealth(player1Ships.get(1));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceHealth(player1Ships.get(1));
-					}
-				}
-				
-				else if (checkP1Ship[2] == true && key == KeyEvent.VK_H)
-				{
-					selection = 3; 
-					
-					if (key == KeyEvent.VK_UP)
-					{
-						custom.P1boostHealth(player1Ships.get(2));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceHealth(player1Ships.get(2));
-					}
-				}
-				
-				else if (checkP1Ship[3] == true && key == KeyEvent.VK_H)
-				{
-					selection = 4;
-					
-					if (key == KeyEvent.VK_UP)
-					{
-						custom.P1boostHealth(player1Ships.get(3));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceHealth(player1Ships.get(3));
-					}
-				}
-				
-				
 				
 				//Player 1 Attack
-				if (checkP1Ship[0] == true && key == KeyEvent.VK_A)
+				for (int i = 0; i < p1Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP1Ship[i] == true && key == KeyEvent.VK_A)
 					{
-						custom.P1boostAttack(player1Ships.get(0));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceAttack(player1Ships.get(0));
+						if (points > 0)
+						{
+							attackValP1[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				else if (checkP1Ship[1] == true && key == KeyEvent.VK_A)
+				//Player 1 Speed
+				for (int i = 0; i < p1Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP1Ship[i] == true && key == KeyEvent.VK_S)
 					{
-						custom.P1boostAttack(player1Ships.get(1));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceAttack(player1Ships.get(1));
+						if (points > 0)
+						{
+							speedValP1[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				else if (checkP1Ship[2] == true && key == KeyEvent.VK_A)
+				//Player 1 Range
+				for (int i = 0; i < p1Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP1Ship[i] == true && key == KeyEvent.VK_R)
 					{
-						custom.P1boostAttack(player1Ships.get(2));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceAttack(player1Ships.get(2));
+						if (points > 0)
+						{
+							rangeValP1[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				else if (checkP1Ship[3] == true && key == KeyEvent.VK_A)
+				//Player 1 Defense
+				for (int i = 0; i < p1Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP1Ship[i] == true && key == KeyEvent.VK_D)
 					{
-						custom.P1boostAttack(player1Ships.get(3));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P1reduceAttack(player1Ships.get(3));
+						if (points > 0)
+						{
+							shieldValP1[i]++;
+							points = points - 50;
+						}
 					}
 				}
-				
-				
 			}
 		}
 		
@@ -1101,124 +1037,67 @@ public class gui extends JPanel{
 				
 				
 				//Player 2 Health
-				if (checkP2Ship[0] == true && key == KeyEvent.VK_H)
+				for (int i = 0; i < p2Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP2Ship[i] == true && key == KeyEvent.VK_H)
 					{
-						custom.P2boostHealth(player2Ships.get(0));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceHealth(player2Ships.get(0));
+						if (points > 0)
+						{
+							healthValP2[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				else if (checkP2Ship[1] == true && key == KeyEvent.VK_H)
+				//Player 2 Attack
+				for (int i = 0; i < p2Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP2Ship[i] == true && key == KeyEvent.VK_A)
 					{
-						custom.P2boostHealth(player2Ships.get(1));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceHealth(player2Ships.get(1));
+						if (points > 0)
+						{
+							attackValP2[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				else if (checkP2Ship[2] == true && key == KeyEvent.VK_H)
+				//Player 2 Speed
+				for (int i = 0; i < p2Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP2Ship[i] == true && key == KeyEvent.VK_S)
 					{
-						custom.P2boostHealth(player2Ships.get(2));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceHealth(player2Ships.get(2));
+						if (points > 0)
+						{
+							speedValP2[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				else if (checkP2Ship[3] == true && key == KeyEvent.VK_H)
+				//Player 2 Range
+				for (int i = 0; i < p2Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP2Ship[i] == true && key == KeyEvent.VK_R)
 					{
-						custom.P2boostHealth(player2Ships.get(3));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceHealth(player2Ships.get(3));
+						if (points > 0)
+						{
+							rangeValP2[i]++;
+							points = points - 50;
+						}
 					}
 				}
 				
-				//Player 2 Attack				
-				if (checkP2Ship[0] == true && key == KeyEvent.VK_A)
+				//Player 2 Defense
+				for (int i = 0; i < p2Num; i++)
 				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
+					if (checkP2Ship[i] == true && key == KeyEvent.VK_D)
 					{
-						custom.P2boostAttack(player2Ships.get(0));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceAttack(player2Ships.get(0));
-					}
-				}
-				
-				else if (checkP2Ship[1] == true && key == KeyEvent.VK_A)
-				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
-					{
-						custom.P2boostAttack(player2Ships.get(1));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceAttack(player2Ships.get(1));
-					}
-				}
-				
-				else if (checkP2Ship[2] == true && key == KeyEvent.VK_A)
-				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
-					{
-						custom.P2boostAttack(player2Ships.get(2));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceAttack(player2Ships.get(2));
-					}
-				}
-				
-				else if (checkP2Ship[3] == true && key == KeyEvent.VK_A)
-				{
-					//selection = true;
-					
-					if (key == KeyEvent.VK_UP)
-					{
-						custom.P2boostAttack(player2Ships.get(3));
-					}
-					
-					else if (key == KeyEvent.VK_DOWN)
-					{
-						custom.P2reduceAttack(player2Ships.get(3));
+						if (points > 0)
+						{
+							shieldValP2[i]++;
+							points = points - 50;
+						}
 					}
 				}
 			}
@@ -1404,8 +1283,8 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 15, 145);
 				g.drawString("D to boost defense", 15, 160);
 				g.drawString("R to boost range", 15, 175);
-				g.drawString("Up arrow to Upgrade", 15, 190);
-				g.drawString("Down arrow to Downgrade", 15, 205);
+				//g.drawString("Up arrow to Upgrade", 15, 190);
+				//g.drawString("Down arrow to Downgrade", 15, 205);
 				
 				if (checkP1Ship[0] == true && selection == 1 && p1Num > 0)
 				{
@@ -1504,8 +1383,8 @@ public class gui extends JPanel{
 				g.drawString("S to boost speed", 15, 145);
 				g.drawString("D to boost defense", 15, 160);
 				g.drawString("R to boost range", 15, 175);
-				g.drawString("Up arrow to Upgrade", 15, 190);
-				g.drawString("Down arrow to Downgrade", 15, 205);
+				//g.drawString("Up arrow to Upgrade", 15, 190);
+				//g.drawString("Down arrow to Downgrade", 15, 205);
 				
 				if (checkP2Ship[0] == true && selection == 1 && p2Num > 0)
 				{
