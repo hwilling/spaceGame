@@ -1292,7 +1292,7 @@ if(startGame == true) {
 			
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(null, Font.PLAIN, 20));
-			g.drawString("Controls: Click to Move Ship" , 270, 460);
+			g.drawString("Controls: Arrows to Move Ship" , 270, 460);
 			g.drawString("Spacebar to Change Players" , 355, 485);
 			g.drawString("F to fire" , 355, 510);
 		}
