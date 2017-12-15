@@ -980,30 +980,49 @@ public class gui extends JPanel{
 			}
 			if(player1 == false) {
 				if(p1Target1 == true) {
-					p1Destroy1 = true;
-					player1Ships.remove(0);
-					p1Num = p1Num - 1;
+					player1Ships.get(0).setHP(
+							player1Ships.get(0).getHP() - (player2Ships.get(p2ActShip-1).getDamageValue() % player1Ships.get(0).getShield() + 4));
+					repaint();
+					if(player1Ships.get(0).getHP() <= 0) {
+						p1Destroy1 = true;
+						player1Ships.remove(0);
+						p1Num = p1Num - 1;
+					}
 					p1Target1 = false;
 				}
 				if(p1Target2 == true) {
-					p1Destroy2 = true;
-					player1Ships.remove(1);
-					p1Num = p1Num - 1;
+					player1Ships.get(1).setHP(
+							player1Ships.get(1).getHP() - (player2Ships.get(p2ActShip-1).getDamageValue() % player1Ships.get(1).getShield() + 4));
+					repaint();
+					if(player1Ships.get(1).getHP() <= 0) {
+						p1Destroy2 = true;
+						player1Ships.remove(1);
+						p1Num = p1Num - 1;
+					}
 					p1Target2 = false;
 				}
 				if(p1Target3 == true) {
-					p1Destroy3 = true;
-					player1Ships.remove(2);
-					p1Num = p1Num - 1;
+					player1Ships.get(2).setHP(
+							player1Ships.get(2).getHP() - (player2Ships.get(p2ActShip-1).getDamageValue() % player1Ships.get(2).getShield() + 4));
+					repaint();
+					if(player1Ships.get(2).getHP() <= 0) {
+						p1Destroy3 = true;
+						player1Ships.remove(2);
+						p1Num = p1Num - 1;
+					}
 					p1Target3 = false;
 				}
 				if(p1Target4 == true) {
-					p1Destroy4 = true;
-					player1Ships.remove(3);
-					p1Num = p1Num - 1;
+					player1Ships.get(3).setHP(
+							player1Ships.get(3).getHP() - (player2Ships.get(p2ActShip-1).getDamageValue() % player1Ships.get(3).getShield() + 4));
+					repaint();
+					if(player1Ships.get(3).getHP() <= 0) {
+						p1Destroy4 = true;
+						player1Ships.remove(3);
+						p1Num = p1Num - 1;
+					}
 					p1Target4 = false;
 				}
-				repaint();
 			}
 			if(player1Ships.isEmpty() || p1Num == 0) {
 				p1Destroyed = true;
@@ -1670,6 +1689,23 @@ if(startGame == true) {
 								if(p1Num == 0) {
 									p1Destroyed = true;
 									repaint();
+								}
+								
+								if(p1Target1 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player1Ships.get(0).getXCoord(), player1Ships.get(0).getYCoord(), 50, 50);
+								}
+								if(p1Target2 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player1Ships.get(1).getXCoord(), player1Ships.get(1).getYCoord(), 50, 50);
+								}
+								if(p1Target3 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player1Ships.get(2).getXCoord(), player1Ships.get(2).getYCoord(), 50, 50);
+								}
+								if(p1Target4 == true) {
+									g.setColor(Color.RED);
+									g.drawRect(player1Ships.get(3).getXCoord(), player1Ships.get(3).getYCoord(), 50, 50);
 								}
 								
 								if(p1ActShip > 0) {
