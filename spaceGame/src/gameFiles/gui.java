@@ -20,7 +20,16 @@ public class gui extends JPanel{
 	int p1ActShip = 0;
 	int p2ActShip = 0;
 	
-	int speed = 200;
+	int p1Speed1 = 0;
+	int p1Speed2 = 0;
+	int p1Speed3 = 0;
+	int p1Speed4 = 0;
+	
+	int p2Speed1 = 0;
+	int p2Speed2 = 0;
+	int p2Speed3 = 0;
+	int p2Speed4 = 0;
+	
 	boolean startTurn = false;
 	
 	boolean p1Targeted = false;
@@ -36,6 +45,7 @@ public class gui extends JPanel{
 	ArrayList<ship> player2Ships = new ArrayList<>();
 	
 	private ship Ship = new ship(name);
+	private ship Ship2 = new ship(name);
 	private board Board = new board(x, y);
 	private combatController combat = new combatController(numPlayers, player1Ships, player2Ships);
 	private Timer timer;
@@ -65,16 +75,6 @@ public class gui extends JPanel{
 	int p2Ship2Y = 25;
 	int p2Ship3Y = 25;
 	int p2Ship4Y = 25;
-	
-	int p1Ship1Speed = 200;
-	int p1Ship2Speed = 200;
-	int p1Ship3Speed = 200;
-	int p1Ship4Speed = 200;
-	
-	int p2Ship1Speed = 200;
-	int p2Ship2Speed = 200;
-	int p2Ship3Speed = 200;
-	int p2Ship4Speed = 200;
 	
 	int greenShipX = 125;
 	int greenShipY = 525;
@@ -372,481 +372,6 @@ public class gui extends JPanel{
 	protected void handleMouseReleased(MouseEvent e) {
 		// TODO: use controller to handle event and (if necessary) update model
 
-		//Player 2 Ships to move
-		/*if(((Math.abs(e.getX() - (player2Ships.get(p2ActShip-1).getXCoord()))) + (Math.abs(e.getY() - (player2Ships.get(p2ActShip-1).getYCoord())))) <= 200 && speed > 0 && player1 == false) {
-			if(e.getX() < 100) {
-				player2Ships.get(p2ActShip-1).setXCoord(25);
-				if(e.getY() < 100) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(25);
-					repaint();
-				}
-				if(e.getY() > 100 && e.getY() < 200) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(125);
-					repaint();
-				}
-				if(e.getY() > 200 && e.getY() < 300) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(225);
-					repaint();
-				}
-				if(e.getY() > 300 && e.getY() < 400) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(325);
-					repaint();
-				}
-				if(e.getY() > 400 && e.getY() < 500) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(425);
-					repaint();
-				}
-				if(e.getY() > 500 && e.getY() < 600) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(525);
-					repaint();
-				}
-			}
-			if(e.getX() > 100 && e.getX() < 200) {
-				player2Ships.get(p2ActShip-1).setXCoord(125);
-				if(e.getY() < 100) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(25);
-					repaint();
-				}
-				if(e.getY() > 100 && e.getY() < 200) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(125);
-					repaint();
-				}
-				if(e.getY() > 200 && e.getY() < 300) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(225);
-					repaint();
-				}
-				if(e.getY() > 300 && e.getY() < 400) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(325);
-					repaint();
-				}
-				if(e.getY() > 400 && e.getY() < 500) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(425);
-					repaint();
-				}
-				if(e.getY() > 500 && e.getY() < 600) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(525);
-					repaint();
-				}
-			}
-			if(e.getX() > 200 && e.getX() < 300) {
-				player2Ships.get(p2ActShip-1).setXCoord(225);
-				if(e.getY() < 100) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(25);
-					repaint();
-				}
-				if(e.getY() > 100 && e.getY() < 200) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(125);
-					repaint();
-				}
-				if(e.getY() > 200 && e.getY() < 300) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(225);
-					repaint();
-				}
-				if(e.getY() > 300 && e.getY() < 400) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(325);
-					repaint();
-				}
-				if(e.getY() > 400 && e.getY() < 500) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(425);
-					repaint();
-				}
-				if(e.getY() > 500 && e.getY() < 600) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(525);
-					repaint();
-				}
-			}
-			if(e.getX() > 300 && e.getX() < 400) {
-				player2Ships.get(p2ActShip-1).setXCoord(325);
-				if(e.getY() < 100) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(25);
-					repaint();
-				}
-				if(e.getY() > 100 && e.getY() < 200) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(125);
-					repaint();
-				}
-				if(e.getY() > 200 && e.getY() < 300) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(225);
-					repaint();
-				}
-				if(e.getY() > 300 && e.getY() < 400) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(325);
-					repaint();
-				}
-				if(e.getY() > 400 && e.getY() < 500) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(425);
-					repaint();
-				}
-				if(e.getY() > 500 && e.getY() < 600) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(525);
-					repaint();
-				}
-			}
-			if(e.getX() > 400 && e.getX() < 500) {
-				player2Ships.get(p2ActShip-1).setXCoord(425);
-				if(e.getY() < 100) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(25);
-					repaint();
-				}
-				if(e.getY() > 100 && e.getY() < 200) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(125);
-					repaint();
-				}
-				if(e.getY() > 200 && e.getY() < 300) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(225);
-					repaint();
-				}
-				if(e.getY() > 300 && e.getY() < 400) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(325);
-					repaint();
-				}
-				if(e.getY() > 400 && e.getY() < 500) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(425);
-					repaint();
-				}
-				if(e.getY() > 500 && e.getY() < 600) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(525);
-					repaint();
-				}
-			}
-			if(e.getX() > 500 && e.getX() < 600) {
-				player2Ships.get(p2ActShip-1).setXCoord(525);
-				if(e.getY() < 100) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(25);
-					repaint();
-				}
-				if(e.getY() > 100 && e.getY() < 200) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(125);
-					repaint();
-				}
-				if(e.getY() > 200 && e.getY() < 300) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(225);
-					repaint();
-				}
-				if(e.getY() > 300 && e.getY() < 400) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(325);
-					repaint();
-				}
-				if(e.getY() > 400 && e.getY() < 500) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(425);
-					repaint();
-				}
-				if(e.getY() > 500 && e.getY() < 600) {
-					speed = speed - 100;
-					//player2Ships.get(p2ActShip-1).setMovesRemaining(speed);
-					player2Ships.get(p2ActShip-1).setYCoord(525);
-					repaint();
-				}
-			}
-		}*/
-		
-	//Player 1 Ships to move
-			if(((Math.abs(e.getX() - (player1Ships.get(p1ActShip-1).getXCoord()))) + (Math.abs(e.getY() - (player1Ships.get(p1ActShip-1).getYCoord())))) <= 200 && speed > 0 && player1 == true) {
-				if(e.getX() < 100) {
-					player1Ships.get(p1ActShip-1).setXCoord(25);
-					if(e.getY() < 100) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(25);
-						repaint();
-					}
-					if(e.getY() > 100 && e.getY() < 200) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(125);
-						repaint();
-					}
-					if(e.getY() > 200 && e.getY() < 300) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(225);
-						repaint();
-					}
-					if(e.getY() > 300 && e.getY() < 400) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(325);
-						repaint();
-					}
-					if(e.getY() > 400 && e.getY() < 500) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(425);
-						repaint();
-					}
-					if(e.getY() > 500 && e.getY() < 600) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(525);
-						repaint();
-					}
-				}
-				if(e.getX() > 100 && e.getX() < 200) {
-					player1Ships.get(p1ActShip-1).setXCoord(125);
-					if(e.getY() < 100) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(25);
-						repaint();
-					}
-					if(e.getY() > 100 && e.getY() < 200) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(125);
-						repaint();
-					}
-					if(e.getY() > 200 && e.getY() < 300) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(225);
-						repaint();
-					}
-					if(e.getY() > 300 && e.getY() < 400) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(325);
-						repaint();
-					}
-					if(e.getY() > 400 && e.getY() < 500) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(425);
-						repaint();
-					}
-					if(e.getY() > 500 && e.getY() < 600) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(525);
-						repaint();
-					}
-				}
-				if(e.getX() > 200 && e.getX() < 300) {
-					player1Ships.get(p1ActShip-1).setXCoord(225);
-					if(e.getY() < 100) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(25);
-						repaint();
-					}
-					if(e.getY() > 100 && e.getY() < 200) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(125);
-						repaint();
-					}
-					if(e.getY() > 200 && e.getY() < 300) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(225);
-						repaint();
-					}
-					if(e.getY() > 300 && e.getY() < 400) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(325);
-						repaint();
-					}
-					if(e.getY() > 400 && e.getY() < 500) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(425);
-						repaint();
-					}
-					if(e.getY() > 500 && e.getY() < 600) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(525);
-						repaint();
-					}
-				}
-				if(e.getX() > 300 && e.getX() < 400) {
-					player1Ships.get(p1ActShip-1).setXCoord(325);
-					if(e.getY() < 100) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(25);
-						repaint();
-					}
-					if(e.getY() > 100 && e.getY() < 200) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(125);
-						repaint();
-					}
-					if(e.getY() > 200 && e.getY() < 300) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(225);
-						repaint();
-					}
-					if(e.getY() > 300 && e.getY() < 400) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(325);
-						repaint();
-					}
-					if(e.getY() > 400 && e.getY() < 500) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(425);
-						repaint();
-					}
-					if(e.getY() > 500 && e.getY() < 600) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(525);
-						repaint();
-					}
-				}
-				if(e.getX() > 400 && e.getX() < 500) {
-					player1Ships.get(p1ActShip-1).setXCoord(425);
-					if(e.getY() < 100) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(25);
-						repaint();
-					}
-					if(e.getY() > 100 && e.getY() < 200) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(125);
-						repaint();
-					}
-					if(e.getY() > 200 && e.getY() < 300) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(225);
-						repaint();
-					}
-					if(e.getY() > 300 && e.getY() < 400) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(325);
-						repaint();
-					}
-					if(e.getY() > 400 && e.getY() < 500) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(425);
-						repaint();
-					}
-					if(e.getY() > 500 && e.getY() < 600) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(525);
-						repaint();
-					}
-				}
-				if(e.getX() > 500 && e.getX() < 600) {
-					player1Ships.get(p1ActShip-1).setXCoord(525);
-					if(e.getY() < 100) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(25);
-						repaint();
-					}
-					if(e.getY() > 100 && e.getY() < 200) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(125);
-						repaint();
-					}
-					if(e.getY() > 200 && e.getY() < 300) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(225);
-						repaint();
-					}
-					if(e.getY() > 300 && e.getY() < 400) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(325);
-						repaint();
-					}
-					if(e.getY() > 400 && e.getY() < 500) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(425);
-						repaint();
-					}
-					if(e.getY() > 500 && e.getY() < 600) {
-						speed = speed - 100;
-						//player1Ships.get(p1ActShip-1).setMovesRemaining(speed);
-						player1Ships.get(p1ActShip-1).setYCoord(525);
-						repaint();
-					}
-				}
-			}
 	}
 		
 	// Event handler for animation timer tick events
@@ -982,6 +507,21 @@ public class gui extends JPanel{
 				player1Ships.get(i).setShield(shieldValP1[i]);
 				player1Ships.get(i).setHP(player1Ships.get(i).getMaxHP());
 			}
+			
+			for(int i = 0; i < p1Num; i++) {
+				if(i == 0) {
+					p1Speed1 = player1Ships.get(i).getSpeed();
+				}
+				if(i == 1) {
+					p1Speed2 = player1Ships.get(i).getSpeed();
+				}
+				if(i == 2) {
+					p1Speed3 = player1Ships.get(i).getSpeed();
+				}
+				if(i == 3) {
+					p1Speed4 = player1Ships.get(i).getSpeed();
+				}
+			}
 		}
 		
 		if(customizeScreenP2 == true && startGame == false) {
@@ -1021,9 +561,9 @@ public class gui extends JPanel{
 				
 				for(int i = 0; i < p2Num; i++) 
 				{
-					ship Ship = new ship(null);
+					ship Ship2 = new ship(null);
 					//Ship.setMovesRemaining(200); //CHANGE TO VARIABLE
-					player2Ships.add(Ship);
+					player2Ships.add(Ship2);
 				}
 				repaint();
 			}
@@ -1102,49 +642,56 @@ public class gui extends JPanel{
 				player2Ships.get(i).setShield(shieldValP2[i]);
 				player2Ships.get(i).setHP(player2Ships.get(i).getMaxHP());
 			}
+			
+			for(int i = 0; i < p2Num; i++) {
+				if(i == 0) {
+					p2Speed1 = player2Ships.get(i).getSpeed();
+				}
+				if(i == 1) {
+					p2Speed2 = player2Ships.get(i).getSpeed();
+				}
+				if(i == 2) {
+					p2Speed3 = player2Ships.get(i).getSpeed();
+				}
+				if(i == 3) {
+					p2Speed4 = player2Ships.get(i).getSpeed();
+				}
+			}
 		}
 				
 		//Player 1
 		if(key == KeyEvent.VK_1 && startGame == true && player1 == true) {
 			p1ActShip = 1;
-			speed = 200;
 			repaint();
 		}
 		if(key == KeyEvent.VK_2 && startGame == true && player1 == true) {
 			p1ActShip = 2;
-			speed = 200;
 			repaint();
 		}
 		if(key == KeyEvent.VK_3 && startGame == true && player1 == true) {
 			p1ActShip = 3;
-			speed = 200;
 			repaint();
 		}
 		if(key == KeyEvent.VK_4 && startGame == true && player1 == true) {
 			p1ActShip = 4;
-			speed = 200;
 			repaint();
 		}
 		
 		//Player 2
 		if(key == KeyEvent.VK_1 && startGame == true && player1 == false) {
 			p2ActShip = 1;
-			speed = 200;
 			repaint();
 		}
 		if(key == KeyEvent.VK_2 && startGame == true && player1 == false) {
 			p2ActShip = 2;
-			speed = 200;
 			repaint();
 		}
 		if(key == KeyEvent.VK_3 && startGame == true && player1 == false) {
 			p2ActShip = 3;
-			speed = 200;
 			repaint();
 		}
 		if(key == KeyEvent.VK_4 && startGame == true && player1 == false) {
 			p2ActShip = 4;
-			speed = 200;
 			repaint();
 		}
 		
@@ -1159,30 +706,49 @@ public class gui extends JPanel{
 				repaint();
 			}
 		}
-		if(key == KeyEvent.VK_0) {
+		if(key == KeyEvent.VK_ENTER && startGame == true) {
 			if(startTurn == false) {
 				startTurn = true;
 			}
+			repaint();
 		}
 		
 		if(key == KeyEvent.VK_SPACE) {
 			if(player1 == true) {
 				player1 = false;
 				p1ActShip = 0;
-				speed = 200;
-				p1Ship1Speed = 200;
-				p1Ship2Speed = 200;
-				p1Ship3Speed = 200;
-				p1Ship4Speed = 200;
+				for(int i = 0; i < p1Num; i++) {
+					if(i == 0) {
+						player1Ships.get(i).setSpeed(p1Speed1);
+					}
+					if(i == 1) {
+						player1Ships.get(i).setSpeed(p1Speed2);
+					}
+					if(i == 2) {
+						player1Ships.get(i).setSpeed(p1Speed3);
+					}
+					if(i == 3) {
+						player1Ships.get(i).setSpeed(p1Speed4);
+					}
+				}
 			}
 			else {
 				player1 = true;
 				p2ActShip = 0;
-				speed = 200;
-				p2Ship1Speed = 200;
-				p2Ship2Speed = 200;
-				p2Ship3Speed = 200;
-				p2Ship4Speed = 200;
+				for(int i = 0; i < p2Num; i++) {
+					if(i == 0) {
+						player2Ships.get(i).setSpeed(p2Speed1);
+					}
+					if(i == 1) {
+						player2Ships.get(i).setSpeed(p2Speed2);
+					}
+					if(i == 2) {
+						player2Ships.get(i).setSpeed(p2Speed3);
+					}
+					if(i == 3) {
+						player2Ships.get(i).setSpeed(p2Speed4);
+					}
+				}
 			}
 		}
 		
@@ -1214,6 +780,73 @@ public class gui extends JPanel{
 		else if(key == KeyEvent.VK_ENTER && customizeScreenP1 == false && customizeScreenP2 == true && startGame == false && startCustomize == false) {
 			startCustomize = true;
 			repaint();
+		}
+		
+if(startGame == true) {
+			
+			//Move Player 1 Ships
+			if(player1 == true) {
+				if(key == KeyEvent.VK_DOWN && player1Ships.get(p1ActShip-1).getSpeed() > 0) {
+					if(player1Ships.get(p1ActShip-1).getYCoord() + 100 <= 525) {
+						player1Ships.get(p1ActShip-1).setYCoord(player1Ships.get(p1ActShip-1).getYCoord() + 100);
+						player1Ships.get(p1ActShip-1).setSpeed(player1Ships.get(p1ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+				if(key == KeyEvent.VK_UP && player1Ships.get(p1ActShip-1).getSpeed() > 0) {
+					if(player1Ships.get(p1ActShip-1).getYCoord() - 100 >= 25) {
+						player1Ships.get(p1ActShip-1).setYCoord(player1Ships.get(p1ActShip-1).getYCoord() - 100);
+						player1Ships.get(p1ActShip-1).setSpeed(player1Ships.get(p1ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+				if(key == KeyEvent.VK_LEFT && player1Ships.get(p1ActShip-1).getSpeed() > 0) {
+					if(player1Ships.get(p1ActShip-1).getXCoord() - 100 >= 25) {
+						player1Ships.get(p1ActShip-1).setXCoord(player1Ships.get(p1ActShip-1).getXCoord() - 100);
+						player1Ships.get(p1ActShip-1).setSpeed(player1Ships.get(p1ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+				if(key == KeyEvent.VK_RIGHT && player1Ships.get(p1ActShip-1).getSpeed() > 0) {
+					if(player1Ships.get(p1ActShip-1).getXCoord() + 100 <= 525) {
+						player1Ships.get(p1ActShip-1).setXCoord(player1Ships.get(p1ActShip-1).getXCoord() + 100);
+						player1Ships.get(p1ActShip-1).setSpeed(player1Ships.get(p1ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+			}
+			
+			//Move Player 2 Ships
+			if(player1 == false) {
+				if(key == KeyEvent.VK_DOWN && player2Ships.get(p2ActShip-1).getSpeed() > 0) {
+					if(player2Ships.get(p2ActShip-1).getYCoord() + 100 <= 525) {
+						player2Ships.get(p2ActShip-1).setYCoord(player2Ships.get(p2ActShip-1).getYCoord() + 100);
+						player2Ships.get(p2ActShip-1).setSpeed(player2Ships.get(p2ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+				if(key == KeyEvent.VK_UP && player2Ships.get(p2ActShip-1).getSpeed() > 0) {
+					if(player2Ships.get(p2ActShip-1).getYCoord() - 100 >= 25) {
+						player2Ships.get(p2ActShip-1).setYCoord(player2Ships.get(p2ActShip-1).getYCoord() - 100);
+						player2Ships.get(p2ActShip-1).setSpeed(player2Ships.get(p2ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+				if(key == KeyEvent.VK_LEFT && player2Ships.get(p2ActShip-1).getSpeed() > 0) {
+					if(player2Ships.get(p2ActShip-1).getXCoord() - 100 >= 25) {
+						player2Ships.get(p2ActShip-1).setXCoord(player2Ships.get(p2ActShip-1).getXCoord() - 100);
+						player2Ships.get(p2ActShip-1).setSpeed(player2Ships.get(p2ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+				if(key == KeyEvent.VK_RIGHT && player2Ships.get(p2ActShip-1).getSpeed() > 0) {
+					if(player2Ships.get(p2ActShip-1).getXCoord() + 100 <= 525) {
+						player2Ships.get(p2ActShip-1).setXCoord(player2Ships.get(p2ActShip-1).getXCoord() + 100);
+						player2Ships.get(p2ActShip-1).setSpeed(player2Ships.get(p2ActShip-1).getSpeed() - 1);
+						repaint();
+					}
+				}
+			}
 		}
 	}
 	
@@ -1455,6 +1088,12 @@ public class gui extends JPanel{
 			// TODO: render the model
 			//background
 			g.drawImage(space, 0, 0, 800, 800, this);
+			
+			if(startTurn == false) {
+				g.setColor(Color.WHITE);
+				g.setFont(new Font(null, Font.BOLD, 30));
+				g.drawString("Press Enter to Start Game" , 100, 300);
+			}
 			
 			if (player1 == true)
 			{
@@ -1699,9 +1338,7 @@ public class gui extends JPanel{
 				g.drawLine(0, 600, 800, 600);
 
 			}
-			/*g.setFont(new Font(null, Font.BOLD, 15));
-			g.setColor(Color.BLACK);
-			g.fillRect(601, 0, 800, 800);*/
+			
 					if(p1Destroyed == false) {
 						for(int i = 0; i < p1Num; i++) {
 							if(startTurn == false) {
@@ -1725,145 +1362,16 @@ public class gui extends JPanel{
 								if(p1ActShip > 0) {
 									g.setColor(Color.GREEN);
 							 		g.drawRect(player1Ships.get(p1ActShip - 1).getXCoord(), player1Ships.get(p1ActShip - 1).getYCoord(), 50, 50);
-							 		g.drawImage(shipSprite, player1Ships.get(p1ActShip - 1).getXCoord(), player1Ships.get(p1ActShip - 1).getYCoord(), 50, 50, this);
 								}
+								g.setColor(Color.WHITE);
+								g.setFont(new Font(null, Font.BOLD, 15));
+								g.drawString(""+(i+1)+"", player1Ships.get(i).getXCoord(), player1Ships.get(i).getYCoord());
 								g.drawImage(shipSprite, player1Ships.get(i).getXCoord(), player1Ships.get(i).getYCoord(), 50, 50, this);
 							}
 						}
 					}
 						
 							
-							/*if(p1Num == 1) {
-								if(p1ActShip == 1) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship1X, p1Ship1Y, 50, 50);
-								}
-								g.setColor(Color.WHITE);
-								g.drawString("1", (p1Ship1X), (p1Ship1Y));
-								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
-								
-								if(player1 == true) {
-									g.setFont(new Font(null, Font.BOLD, 15));
-									g.drawString("PLAYER 1 SHIPS", 650, 75);
-									g.drawString("1", 675, 300);
-									g.drawImage(shipSprite, 675, 300, 50, 50, this);
-									g.setColor(Color.GREEN);
-									g.fillRect(675, 350, 50, 5);
-								}
-								
-							}
-							
-							if(p1Num == 2) {
-								if(p1ActShip == 1) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship1X, p1Ship1Y, 50, 50);
-								}
-								if(p1ActShip == 2) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship2X, p1Ship2Y, 50, 50);
-								}
-								g.setColor(Color.WHITE);
-								g.drawString("1", (p1Ship1X), (p1Ship1Y));
-								g.drawString("2", (p1Ship2X), (p1Ship2Y));
-								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
-								g.drawImage(shipSprite, p1Ship2X, p1Ship2Y, 50, 50, this);
-								
-								if(player1 == true) {
-									g.setFont(new Font(null, Font.BOLD, 15));
-									g.drawString("PLAYER 1 SHIPS", 650, 75);
-									g.drawString("1", 675, 250);
-									g.drawString("2", 675, 350);
-									g.drawImage(shipSprite, 675, 250, 50, 50, this);
-									g.drawImage(shipSprite, 675, 350, 50, 50, this);
-									g.setColor(Color.GREEN);
-									g.fillRect(675, 300, 50, 5);
-									g.fillRect(675, 400, 50, 5);
-								}
-							}
-							
-							if(p1Num == 3) {
-								if(p1ActShip == 1) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship1X, p1Ship1Y, 50, 50);
-								}
-								if(p1ActShip == 2) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship2X, p1Ship2Y, 50, 50);
-								}
-								if(p1ActShip == 3) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship3X, p1Ship3Y, 50, 50);
-								}
-								g.setColor(Color.WHITE);
-								g.drawString("1", (p1Ship1X), (p1Ship1Y));
-								g.drawString("2", (p1Ship2X), (p1Ship2Y));
-								g.drawString("3", (p1Ship3X), (p1Ship3Y));
-								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
-								g.drawImage(shipSprite, p1Ship2X, p1Ship2Y, 50, 50, this);
-								g.drawImage(shipSprite, p1Ship3X, p1Ship3Y, 50, 50, this);
-								
-								if(player1 == true) {
-									g.setFont(new Font(null, Font.BOLD, 15));
-									g.drawString("PLAYER 1 SHIPS", 650, 75);
-									g.drawString("1", 675, 200);
-									g.drawString("2", 675, 300);
-									g.drawString("3", 675, 400);
-									g.drawImage(shipSprite, 675, 200, 50, 50, this);
-									g.drawImage(shipSprite, 675, 300, 50, 50, this);
-									g.drawImage(shipSprite, 675, 400, 50, 50, this);
-									g.setColor(Color.GREEN);
-									g.fillRect(675, 250, 50, 5);
-									g.fillRect(675, 350, 50, 5);
-									g.fillRect(675, 450, 50, 5);
-								}
-							}
-							
-							if(p1Num == 4) {
-								if(p1ActShip == 1) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship1X, p1Ship1Y, 50, 50);
-								}
-								if(p1ActShip == 2) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship2X, p1Ship2Y, 50, 50);
-								}
-								if(p1ActShip == 3) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship3X, p1Ship3Y, 50, 50);
-								}
-								if(p1ActShip == 4) {
-									g.setColor(Color.GREEN);
-									g.fillRect(p1Ship4X, p1Ship4Y, 50, 50);
-								}
-								g.setColor(Color.WHITE);
-								g.drawString("1", (p1Ship1X), (p1Ship1Y));
-								g.drawString("2", (p1Ship2X), (p1Ship2Y));
-								g.drawString("3", (p1Ship3X), (p1Ship3Y));
-								g.drawString("4", (p1Ship4X), (p1Ship4Y));
-								g.drawImage(shipSprite, p1Ship1X, p1Ship1Y, 50, 50, this);
-								g.drawImage(shipSprite, p1Ship2X, p1Ship2Y, 50, 50, this);
-								g.drawImage(shipSprite, p1Ship3X, p1Ship3Y, 50, 50, this);
-								g.drawImage(shipSprite, p1Ship4X, p1Ship4Y, 50, 50, this);
-								
-								if(player1 == true) {
-									g.setFont(new Font(null, Font.BOLD, 15));
-									g.drawString("PLAYER 1 SHIPS", 650, 75);
-									g.drawString("1", 675, 150);
-									g.drawString("2", 675, 250);
-									g.drawString("3", 675, 350);
-									g.drawString("4", 675, 450);
-									g.drawImage(shipSprite, 675, 150, 50, 50, this);
-									g.drawImage(shipSprite, 675, 250, 50, 50, this);
-									g.drawImage(shipSprite, 675, 350, 50, 50, this);
-									g.drawImage(shipSprite, 675, 450, 50, 50, this);
-									g.setColor(Color.GREEN);
-									g.fillRect(675, 200, 50, 5);
-									g.fillRect(675, 300, 50, 5);
-									g.fillRect(675, 400, 50, 5);
-									g.fillRect(675, 500, 50, 5);
-								}
-							}*/
-			
 					if(p2Destroyed == false) {
 						for(int i = 0; i < p2Num; i++) {
 							if(startTurn == false) {
@@ -1887,8 +1395,10 @@ public class gui extends JPanel{
 								if(p2ActShip > 0) {
 									g.setColor(Color.GREEN);
 							 		g.drawRect(player2Ships.get(p2ActShip - 1).getXCoord(), player2Ships.get(p2ActShip - 1).getYCoord(), 50, 50);
-							 		g.drawImage(shipSprite2, player2Ships.get(p2ActShip - 1).getXCoord(), player2Ships.get(p2ActShip - 1).getYCoord(), 50, 50, this);
 								}
+								g.setColor(Color.WHITE);
+								g.setFont(new Font(null, Font.BOLD, 15));
+								g.drawString(""+(i+1)+"", player2Ships.get(i).getXCoord(), player2Ships.get(i).getYCoord());
 								g.drawImage(shipSprite2, player2Ships.get(i).getXCoord(), player2Ships.get(i).getYCoord(), 50, 50, this);
 							}
 						}
