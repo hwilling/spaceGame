@@ -980,6 +980,7 @@ public class gui extends JPanel{
 				player1Ships.get(i).setSpeed(speedValP1[i]);
 				player1Ships.get(i).setRange(rangeValP1[i]);
 				player1Ships.get(i).setShield(shieldValP1[i]);
+				player1Ships.get(i).setHP(player1Ships.get(i).getMaxHP());
 			}
 		}
 		
@@ -1099,6 +1100,7 @@ public class gui extends JPanel{
 				player2Ships.get(i).setSpeed(speedValP2[i]);
 				player2Ships.get(i).setRange(rangeValP2[i]);
 				player2Ships.get(i).setShield(shieldValP2[i]);
+				player2Ships.get(i).setHP(player2Ships.get(i).getMaxHP());
 			}
 		}
 				
@@ -1456,52 +1458,225 @@ public class gui extends JPanel{
 			
 			if (player1 == true)
 			{
+				g.setColor(Color.WHITE);
+				g.setFont(new Font(null, Font.PLAIN, 40));
+				g.drawString("Player 1", 635, 700);
+				g.drawString("Turn", 660, 750);
+				
+				g.setColor(Color.GREEN);
+				g.setFont(new Font(null, Font.PLAIN, 20));
+				g.drawString("Player 1 Stats", 225, 640);
+				
+				if (p1Num > 0)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 1 Stats", 20, 680);
+					g.drawString("Health: " + player1Ships.get(0).getHP(), 35-10, 680+15);
+					g.drawString("Attack: " + player1Ships.get(0).getDamageValue(), 35-10, 680+30);
+					g.drawString("Defense: " + player1Ships.get(0).getShield(), 35-10, 680+45);
+					g.drawString("Speed: " + player1Ships.get(0).getSpeed(), 35-10, 680+60);
+					g.drawString("Range: " + player1Ships.get(0).getRange(), 35-10, 680+75);
+				}
+				
+				if (p1Num > 1)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 2 Stats", 175, 680);
+					g.drawString("Health: " + player1Ships.get(1).getHP(), 200-10, 680+15);
+					g.drawString("Attack: " + player1Ships.get(1).getDamageValue(), 200-10, 680+30);
+					g.drawString("Defense: " + player1Ships.get(1).getShield(), 200-10, 680+45);
+					g.drawString("Speed: " + player1Ships.get(1).getSpeed(), 200-10, 680+60);
+					g.drawString("Range: " + player1Ships.get(1).getRange(), 200-10, 680+75);
+				}
+				
+				if (p1Num > 2)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 3 Stats", 330, 680);
+					g.drawString("Health: " + player1Ships.get(2).getHP(), 365-10, 680+15);
+					g.drawString("Attack: " + player1Ships.get(2).getDamageValue(), 365-10, 680+30);
+					g.drawString("Defense: " + player1Ships.get(2).getShield(), 365-10, 680+45);
+					g.drawString("Speed: " + player1Ships.get(2).getSpeed(), 365-10, 680+60);
+					g.drawString("Range: " + player1Ships.get(2).getRange(), 365-10, 680+75);
+				}
+				
+				if (p1Num > 3)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 4 Stats", 495, 680);
+					g.drawString("Health: " + player1Ships.get(3).getHP(), 530-10, 680+15);
+					g.drawString("Attack: " + player1Ships.get(3).getDamageValue(), 530-10, 680+30);
+					g.drawString("Defense: " + player1Ships.get(3).getShield(), 530-10, 680+45);
+					g.drawString("Speed: " + player1Ships.get(3).getSpeed(), 530-10, 680+60);
+					g.drawString("Range: " + player1Ships.get(3).getRange(), 530-10, 680+75);
+				}
+				
+				g.setColor(Color.RED);
+				g.setFont(new Font(null, Font.PLAIN, 20));
+				g.drawString("Player 2 Stats", 635, 60);
+				
 				if (p2Num > 0)
 				{
-					g.setColor(Color.WHITE);
+					g.setColor(Color.RED);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Player 2 Ship 1 Stats", 625, 30+20);
-					g.drawString("Player 2 Health: " + player2Ships.get(0).getMaxHP(), 650, 45+20);
-					g.drawString("Player 2 Attack: " + player2Ships.get(0).getDamageValue(), 650, 60+20);
-					g.drawString("Player 2 Defense: " + player2Ships.get(0).getShield(), 650, 75+20);
-					g.drawString("Player 2 Speed: " + player2Ships.get(0).getSpeed(), 650, 90+20);
-					g.drawString("Player 2 Range: " + player2Ships.get(0).getRange(), 650, 105+20);
+					g.drawString("Ship 1 Stats", 625+20, 30+80);
+					g.drawString("Health: " + player2Ships.get(0).getHP(), 650+20, 45+80);
+					g.drawString("Attack: " + player2Ships.get(0).getDamageValue(), 650+20, 60+80);
+					g.drawString("Defense: " + player2Ships.get(0).getShield(), 650+20, 75+80);
+					g.drawString("Speed: " + player2Ships.get(0).getSpeed(), 650+20, 90+80);
+					g.drawString("Range: " + player2Ships.get(0).getRange(), 650+20, 105+80);
 				}
 				
 				if (p2Num > 1)
 				{
-					g.setColor(Color.WHITE);
+					g.setColor(Color.RED);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Player 2 Ship 2 Stats", 625, 150+20);
-					g.drawString("Player 2 Health: " + player2Ships.get(1).getMaxHP(), 650, 165+20);
-					g.drawString("Player 2 Attack: " + player2Ships.get(1).getDamageValue(), 650, 180+20);
-					g.drawString("Player 2 Defense: " + player2Ships.get(1).getShield(), 650, 195+20);
-					g.drawString("Player 2 Speed: " + player2Ships.get(1).getSpeed(), 650, 210+20);
-					g.drawString("Player 2 Range: " + player2Ships.get(1).getRange(), 650, 225+20);
+					g.drawString("Ship 2 Stats", 625+20, 150+80);
+					g.drawString("Health: " + player2Ships.get(1).getHP(), 650+20, 165+80);
+					g.drawString("Attack: " + player2Ships.get(1).getDamageValue(), 650+20, 180+80);
+					g.drawString("Defense: " + player2Ships.get(1).getShield(), 650+20, 195+80);
+					g.drawString("Speed: " + player2Ships.get(1).getSpeed(), 650+20, 210+80);
+					g.drawString("Range: " + player2Ships.get(1).getRange(), 650+20, 225+80);
 				}
 				
 				if (p2Num > 2)
 				{
-					g.setColor(Color.WHITE);
+					g.setColor(Color.RED);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Player 2 Ship 2 Stats", 625, 270+20);
-					g.drawString("Player 2 Health: " + player2Ships.get(2).getMaxHP(), 650, 285+20);
-					g.drawString("Player 2 Attack: " + player2Ships.get(2).getDamageValue(), 650, 300+20);
-					g.drawString("Player 2 Defense: " + player2Ships.get(2).getShield(), 650, 315+20);
-					g.drawString("Player 2 Speed: " + player2Ships.get(2).getSpeed(), 650, 330+20);
-					g.drawString("Player 2 Range: " + player2Ships.get(2).getRange(), 650, 345+20);
+					g.drawString("Ship 3 Stats", 625+20, 270+80);
+					g.drawString("Health: " + player2Ships.get(2).getHP(), 650+20, 285+80);
+					g.drawString("Attack: " + player2Ships.get(2).getDamageValue(), 650+20, 300+80);
+					g.drawString("Defense: " + player2Ships.get(2).getShield(), 650+20, 315+80);
+					g.drawString("Speed: " + player2Ships.get(2).getSpeed(), 650+20, 330+80);
+					g.drawString("Range: " + player2Ships.get(2).getRange(), 650+20, 345+80);
 				}
 				
 				if (p2Num > 3)
 				{
-					g.setColor(Color.WHITE);
+					g.setColor(Color.RED);
 					g.setFont(new Font(null, Font.PLAIN, 15));
-					g.drawString("Player 2 Ship 2 Stats", 625, 385);
-					g.drawString("Player 2 Health: " + player2Ships.get(3).getMaxHP(), 650, 400+20);
-					g.drawString("Player 2 Attack: " + player2Ships.get(3).getDamageValue(), 650, 415+20);
-					g.drawString("Player 2 Defense: " + player2Ships.get(3).getShield(), 650, 430+20);
-					g.drawString("Player 2 Speed: " + player2Ships.get(3).getSpeed(), 650, 445+20);
-					g.drawString("Player 2 Range: " + player2Ships.get(3).getRange(), 650, 460+20);
+					g.drawString("Ship 4 Stats", 625+20, 385+80);
+					g.drawString("Health: " + player2Ships.get(3).getHP(), 650+20, 400+80);
+					g.drawString("Attack: " + player2Ships.get(3).getDamageValue(), 650+20, 415+80);
+					g.drawString("Defense: " + player2Ships.get(3).getShield(), 650+20, 430+80);
+					g.drawString("Speed: " + player2Ships.get(3).getSpeed(), 650+20, 445+80);
+					g.drawString("Range: " + player2Ships.get(3).getRange(), 650+20, 460+80);
+				}
+			}
+			
+			if (player1 == false)
+			{
+				g.setColor(Color.WHITE);
+				g.setFont(new Font(null, Font.PLAIN, 40));
+				g.drawString("Player 2", 635, 700);
+				g.drawString("Turn", 660, 750);
+				
+				g.setColor(Color.GREEN);
+				g.setFont(new Font(null, Font.PLAIN, 20));
+				g.drawString("Player 1 Stats", 635, 60);
+				
+				if (p1Num > 0)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 1 Stats", 625+20, 30+80);
+					g.drawString("Health: " + player1Ships.get(0).getHP(), 650+20, 45+80);
+					g.drawString("Attack: " + player1Ships.get(0).getDamageValue(), 650+20, 60+80);
+					g.drawString("Defense: " + player1Ships.get(0).getShield(), 650+20, 75+80);
+					g.drawString("Speed: " + player1Ships.get(0).getSpeed(), 650+20, 90+80);
+					g.drawString("Range: " + player1Ships.get(0).getRange(), 650+20, 105+80);
+				}
+				
+				if (p1Num > 1)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 2 Stats", 625+20, 150+80);
+					g.drawString("Health: " + player1Ships.get(1).getHP(), 650+20, 165+80);
+					g.drawString("Attack: " + player1Ships.get(1).getDamageValue(), 650+20, 180+80);
+					g.drawString("Defense: " + player1Ships.get(1).getShield(), 650+20, 195+80);
+					g.drawString("Speed: " + player1Ships.get(1).getSpeed(), 650+20, 210+80);
+					g.drawString("Range: " + player1Ships.get(1).getRange(), 650+20, 225+80);
+				}
+				
+				if (p1Num > 2)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 3 Stats", 625+20, 270+80);
+					g.drawString("Health: " + player1Ships.get(2).getHP(), 650+20, 285+80);
+					g.drawString("Attack: " + player1Ships.get(2).getDamageValue(), 650+20, 300+80);
+					g.drawString("Defense: " + player1Ships.get(2).getShield(), 650+20, 315+80);
+					g.drawString("Speed: " + player1Ships.get(2).getSpeed(), 650+20, 330+80);
+					g.drawString("Range: " + player1Ships.get(2).getRange(), 650+20, 345+80);
+				}
+				
+				if (p1Num > 3)
+				{
+					g.setColor(Color.GREEN);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 4 Stats", 625+20, 385+80);
+					g.drawString("Health: " + player1Ships.get(3).getHP(), 650+20, 400+80);
+					g.drawString("Attack: " + player1Ships.get(3).getDamageValue(), 650+20, 415+80);
+					g.drawString("Defense: " + player1Ships.get(3).getShield(), 650+20, 430+80);
+					g.drawString("Speed: " + player1Ships.get(3).getSpeed(), 650+20, 445+80);
+					g.drawString("Range: " + player1Ships.get(3).getRange(), 650+20, 460+80);
+				}
+				
+				g.setColor(Color.RED);
+				g.setFont(new Font(null, Font.PLAIN, 20));
+				g.drawString("Player 2 Stats", 225, 640);
+				
+				if (p2Num > 0)
+				{
+					g.setColor(Color.RED);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 1 Stats", 20, 680);
+					g.drawString("Health: " + player2Ships.get(0).getHP(), 35-10, 680+15);
+					g.drawString("Attack: " + player2Ships.get(0).getDamageValue(), 35-10, 680+30);
+					g.drawString("Defense: " + player2Ships.get(0).getShield(), 35-10, 680+45);
+					g.drawString("Speed: " + player2Ships.get(0).getSpeed(), 35-10, 680+60);
+					g.drawString("Range: " + player2Ships.get(0).getRange(), 35-10, 680+75);
+				}
+				
+				if (p2Num > 1)
+				{
+					g.setColor(Color.RED);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 2 Stats", 175, 680);
+					g.drawString("Health: " + player2Ships.get(1).getHP(), 200-10, 680+15);
+					g.drawString("Attack: " + player2Ships.get(1).getDamageValue(), 200-10, 680+30);
+					g.drawString("Defense: " + player2Ships.get(1).getShield(), 200-10, 680+45);
+					g.drawString("Speed: " + player2Ships.get(1).getSpeed(), 200-10, 680+60);
+					g.drawString("Range: " + player2Ships.get(1).getRange(), 200-10, 680+75);
+				}
+				
+				if (p2Num > 2)
+				{
+					g.setColor(Color.RED);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 3 Stats", 330, 680);
+					g.drawString("Health: " + player2Ships.get(2).getHP(), 365-10, 680+15);
+					g.drawString("Attack: " + player2Ships.get(2).getDamageValue(), 365-10, 680+30);
+					g.drawString("Defense: " + player2Ships.get(2).getShield(), 365-10, 680+45);
+					g.drawString("Speed: " + player2Ships.get(2).getSpeed(), 365-10, 680+60);
+					g.drawString("Range: " + player2Ships.get(2).getRange(), 365-10, 680+75);
+				}
+				
+				if (p2Num > 3)
+				{
+					g.setColor(Color.RED);
+					g.setFont(new Font(null, Font.PLAIN, 15));
+					g.drawString("Ship 4 Stats", 495, 680);
+					g.drawString("Health: " + player2Ships.get(3).getHP(), 530-10, 680+15);
+					g.drawString("Attack: " + player2Ships.get(3).getDamageValue(), 530-10, 680+30);
+					g.drawString("Defense: " + player2Ships.get(3).getShield(), 530-10, 680+45);
+					g.drawString("Speed: " + player2Ships.get(3).getSpeed(), 530-10, 680+60);
+					g.drawString("Range: " + player2Ships.get(3).getRange(), 530-10, 680+75);
 				}
 			}
 			
