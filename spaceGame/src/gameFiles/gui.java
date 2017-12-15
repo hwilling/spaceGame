@@ -31,6 +31,7 @@ public class gui extends JPanel{
 	int p2Speed4 = 0;
 	
 	boolean startTurn = false;
+	boolean Firing = false;
 	
 	boolean p1Target1 = false;
 	boolean p1Target2 = false;
@@ -886,8 +887,10 @@ public class gui extends JPanel{
 			if(p1Destroyed == false && p2Destroyed == false) {
 				if(player1 == true) {
 					for(int i = 0; i < p2Num; i++) {
-						if(Math.abs((player1Ships.get(p1ActShip-1).getXCoord()) - player2Ships.get(i).getXCoord()) <= 100 && 
-								Math.abs((player1Ships.get(p1ActShip-1).getYCoord()) - player2Ships.get(i).getYCoord()) <= 100){
+						if(Math.abs((player1Ships.get(p1ActShip-1).getXCoord()) - player2Ships.get(i).getXCoord()) <= 
+								(player1Ships.get(p1ActShip-1).getRange() * 100) && 
+								Math.abs((player1Ships.get(p1ActShip-1).getYCoord()) - player2Ships.get(i).getYCoord()) <= 
+								(player1Ships.get(p1ActShip-1).getRange() * 100)){
 					
 							if(i == 0) {
 								p2Target1 = true;
@@ -908,8 +911,10 @@ public class gui extends JPanel{
 			
 				if(player1 == false) {
 					for(int i = 0; i < p1Num; i++) {
-						if(Math.abs((player2Ships.get(p2ActShip-1).getXCoord()) - player1Ships.get(i).getXCoord()) <= 100 && 
-								Math.abs((player2Ships.get(p2ActShip-1).getYCoord()) - player1Ships.get(i).getYCoord()) <= 100){
+						if(Math.abs((player2Ships.get(p2ActShip-1).getXCoord()) - player1Ships.get(i).getXCoord()) <= 
+								(player2Ships.get(p2ActShip-1).getRange() * 100) && 
+								Math.abs((player2Ships.get(p2ActShip-1).getYCoord()) - player1Ships.get(i).getYCoord()) <= 
+								(player2Ships.get(p2ActShip-1).getRange() * 100)){
 					
 							if(i == 0) {
 								p1Target1 = true;
@@ -931,6 +936,7 @@ public class gui extends JPanel{
 		}
 			
 		if(key == KeyEvent.VK_F && startGame == true) {
+			Firing = true;
 			
 			if(player1 == true) {
 				if(p2Target1 == true) {
@@ -1179,7 +1185,11 @@ if(startGame == true) {
 	
 	protected void handleKeyReleased(KeyEvent e){
 		
-		//int key = e.getKeyCode();
+		int key = e.getKeyCode();
+		if(key == KeyEvent.VK_F) {
+			Firing = false;
+			repaint();
+		}
 	}
 	
 	// Set the model
@@ -1665,6 +1675,91 @@ if(startGame == true) {
 				g.drawLine(0, 600, 800, 600);
 
 			}
+			if(Firing == true) {
+				if(player1 == true) {
+					for(int i = 0; i < p2Num; i++) {
+						if(Math.abs((player1Ships.get(p1ActShip-1).getXCoord()) - player2Ships.get(i).getXCoord()) <= 
+								(player1Ships.get(p1ActShip-1).getRange() * 100) && 
+								Math.abs((player1Ships.get(p1ActShip-1).getYCoord()) - player2Ships.get(i).getYCoord()) <= 
+								(player1Ships.get(p1ActShip-1).getRange() * 100)) {
+							
+							if(player2Ships.get(i).getXCoord() < player1Ships.get(p1ActShip-1).getXCoord() && 
+									player2Ships.get(i).getYCoord() == player1Ships.get(p1ActShip-1).getYCoord()) {
+								//Shoot Left
+								g.setColor(Color.GREEN);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()-25, player1Ships.get(p1ActShip-1).getYCoord()+10, 50, 2);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()-25, player1Ships.get(p1ActShip-1).getYCoord()+35, 50, 2);
+							}
+							
+							if(player2Ships.get(i).getXCoord() > player1Ships.get(p1ActShip-1).getXCoord() && 
+									player2Ships.get(i).getYCoord() == player1Ships.get(p1ActShip-1).getYCoord()) {
+								//Shoot Right
+								g.setColor(Color.GREEN);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()+35, player1Ships.get(p1ActShip-1).getYCoord()+10, 50, 2);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()+35, player1Ships.get(p1ActShip-1).getYCoord()+35, 50, 2);
+							}
+							
+							if(player2Ships.get(i).getXCoord() == player1Ships.get(p1ActShip-1).getXCoord() && 
+									player2Ships.get(i).getYCoord() < player1Ships.get(p1ActShip-1).getYCoord()) {
+								//Shoot Up
+								g.setColor(Color.GREEN);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()+5, player1Ships.get(p1ActShip-1).getYCoord()-30, 2, 50);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()+40, player1Ships.get(p1ActShip-1).getYCoord()-30, 2, 50);
+							}
+							
+							if(player2Ships.get(i).getXCoord() == player1Ships.get(p1ActShip-1).getXCoord() && 
+									player2Ships.get(i).getYCoord() > player1Ships.get(p1ActShip-1).getYCoord()) {
+								//Shoot Down
+								g.setColor(Color.GREEN);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()+5, player1Ships.get(p1ActShip-1).getYCoord()+30, 2, 50);
+								g.fillRect(player1Ships.get(p1ActShip-1).getXCoord()+40, player1Ships.get(p1ActShip-1).getYCoord()+30, 2, 50);
+							}
+						}
+					}
+				}
+				
+				if(player1 == false) {
+					for(int i = 0; i < p1Num; i++) {
+						if(Math.abs((player2Ships.get(p2ActShip-1).getXCoord()) - player1Ships.get(i).getXCoord()) <= 
+								(player2Ships.get(p2ActShip-1).getRange() * 100) && 
+								Math.abs((player2Ships.get(p2ActShip-1).getYCoord()) - player1Ships.get(i).getYCoord()) <= 
+								(player2Ships.get(p2ActShip-1).getRange() * 100)) {
+							
+							if(player1Ships.get(i).getXCoord() < player2Ships.get(p2ActShip-1).getXCoord() && 
+									player1Ships.get(i).getYCoord() == player2Ships.get(p2ActShip-1).getYCoord()) {
+								//Shoot Left
+								g.setColor(Color.RED);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()-25, player2Ships.get(p2ActShip-1).getYCoord()+10, 50, 2);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()-25, player2Ships.get(p2ActShip-1).getYCoord()+35, 50, 2);
+							}
+							
+							if(player1Ships.get(i).getXCoord() > player2Ships.get(p2ActShip-1).getXCoord() && 
+									player1Ships.get(i).getYCoord() == player2Ships.get(p2ActShip-1).getYCoord()) {
+								//Shoot Right
+								g.setColor(Color.RED);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()+35, player2Ships.get(p2ActShip-1).getYCoord()+10, 50, 2);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()+35, player2Ships.get(p2ActShip-1).getYCoord()+35, 50, 2);
+							}
+							
+							if(player1Ships.get(i).getXCoord() == player2Ships.get(p2ActShip-1).getXCoord() && 
+									player1Ships.get(i).getYCoord() < player2Ships.get(p2ActShip-1).getYCoord()) {
+								//Shoot Up
+								g.setColor(Color.RED);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()+5, player2Ships.get(p2ActShip-1).getYCoord()-30, 2, 50);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()+40, player2Ships.get(p2ActShip-1).getYCoord()-30, 2, 50);
+							}
+							
+							if(player1Ships.get(i).getXCoord() == player2Ships.get(p2ActShip-1).getXCoord() && 
+									player1Ships.get(i).getYCoord() > player2Ships.get(p2ActShip-1).getYCoord()) {
+								//Shoot Down
+								g.setColor(Color.RED);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()+5, player2Ships.get(p2ActShip-1).getYCoord()+30, 2, 50);
+								g.fillRect(player2Ships.get(p2ActShip-1).getXCoord()+40, player2Ships.get(p2ActShip-1).getYCoord()+30, 2, 50);
+							}
+						}
+					}
+				}
+			}
 			
 					if(p1Destroyed == false) {
 						for(int i = 0; i < p1Num; i++) {
@@ -1692,24 +1787,24 @@ if(startGame == true) {
 								}
 								
 								if(p1Target1 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player1Ships.get(0).getXCoord(), player1Ships.get(0).getYCoord(), 50, 50);
 								}
 								if(p1Target2 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player1Ships.get(1).getXCoord(), player1Ships.get(1).getYCoord(), 50, 50);
 								}
 								if(p1Target3 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player1Ships.get(2).getXCoord(), player1Ships.get(2).getYCoord(), 50, 50);
 								}
 								if(p1Target4 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player1Ships.get(3).getXCoord(), player1Ships.get(3).getYCoord(), 50, 50);
 								}
 								
 								if(p1ActShip > 0) {
-									g.setColor(Color.GREEN);
+									g.setColor(Color.CYAN);
 							 		g.drawRect(player1Ships.get(p1ActShip - 1).getXCoord(), player1Ships.get(p1ActShip - 1).getYCoord(), 50, 50);
 								}
 								g.setColor(Color.WHITE);
@@ -1748,24 +1843,24 @@ if(startGame == true) {
 								}
 								
 								if(p2Target1 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player2Ships.get(0).getXCoord(), player2Ships.get(0).getYCoord(), 50, 50);
 								}
 								if(p2Target2 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player2Ships.get(1).getXCoord(), player2Ships.get(1).getYCoord(), 50, 50);
 								}
 								if(p2Target3 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player2Ships.get(2).getXCoord(), player2Ships.get(2).getYCoord(), 50, 50);
 								}
 								if(p2Target4 == true) {
-									g.setColor(Color.RED);
+									g.setColor(Color.YELLOW);
 									g.drawRect(player2Ships.get(3).getXCoord(), player2Ships.get(3).getYCoord(), 50, 50);
 								}
 								
 								if(p2ActShip > 0) {
-									g.setColor(Color.GREEN);
+									g.setColor(Color.CYAN);
 							 		g.drawRect(player2Ships.get(p2ActShip - 1).getXCoord(), player2Ships.get(p2ActShip - 1).getYCoord(), 50, 50);
 								}
 								g.setColor(Color.WHITE);
