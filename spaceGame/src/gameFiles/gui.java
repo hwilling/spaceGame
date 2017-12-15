@@ -465,34 +465,139 @@ public class gui extends JPanel{
 				{
 					if (pointsP1 > 0)
 					{			
-						if (checkP1Ship[i] == true && key == KeyEvent.VK_H && healthValP1[i] < HP)
+						if (checkP1Ship[i] == true && key == KeyEvent.VK_H)
 						{
-							healthValP1[i]++;
-							pointsP1 = pointsP1 - 50;
+							if (selection == 1 && healthValP1[0] < HP)
+							{
+								healthValP1[0]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 2 && healthValP1[1] < HP)
+							{
+								healthValP1[1]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 3 && healthValP1[2] < HP)
+							{
+								healthValP1[2]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 4 && healthValP1[3] < HP)
+							{
+								healthValP1[3]++;
+								pointsP1 = pointsP1 - 50;
+							}
 						}
 						
-						else if (checkP1Ship[i] == true && key == KeyEvent.VK_A && attackValP1[i] < attack)
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_A)
 						{
-							attackValP1[i]++;
-							pointsP1 = pointsP1 - 50;
+							if (selection == 1 && attackValP1[0] < attack)
+							{
+								attackValP1[0]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 2 && attackValP1[1] < attack)
+							{
+								attackValP1[1]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 3 && attackValP1[2] < attack)
+							{
+								attackValP1[2]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 4 && attackValP1[3] < attack)
+							{
+								attackValP1[3]++;
+								pointsP1 = pointsP1 - 50;
+							}
 						}
 						
-						else if (checkP1Ship[i] == true && key == KeyEvent.VK_S && speedValP1[i] < 4)
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_S)
 						{
-							speedValP1[i]++;
-							pointsP1 = pointsP1 - 50;
+							if (selection == 1 && speedValP1[0] < 4)
+							{
+								speedValP1[0]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 2 && speedValP1[1] < 4)
+							{
+								speedValP1[1]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 3 && speedValP1[2] < 4)
+							{
+								speedValP1[2]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 4 && speedValP1[3] < 4)
+							{
+								speedValP1[3]++;
+								pointsP1 = pointsP1 - 50;
+							}
 						}
 						
-						else if (checkP1Ship[i] == true && key == KeyEvent.VK_R && rangeValP1[i] < 3)
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_R)
 						{
-							rangeValP1[i]++;
-							pointsP1 = pointsP1 - 50;
+							if (selection == 1 && rangeValP1[0] < 3)
+							{
+								rangeValP1[0]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 2 && rangeValP1[1] < 3)
+							{
+								rangeValP1[1]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 3 && rangeValP1[2] < 3)
+							{
+								rangeValP1[2]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 4 && rangeValP1[3] < 3)
+							{
+								rangeValP1[3]++;
+								pointsP1 = pointsP1 - 50;
+							}
 						}
 						
-						else if (checkP1Ship[i] == true && key == KeyEvent.VK_D && shieldValP1[i] < shield)
+						else if (checkP1Ship[i] == true && key == KeyEvent.VK_D)
 						{
-							shieldValP1[i]++;
-							pointsP1 = pointsP1 - 50;
+							if (selection == 1 && shieldValP1[0] < shield)
+							{
+								shieldValP1[0]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 2 && shieldValP1[1] < shield)
+							{
+								shieldValP1[1]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 3 && shieldValP1[2] < shield)
+							{
+								shieldValP1[2]++;
+								pointsP1 = pointsP1 - 50;
+							}
+							
+							else if (selection == 4 && shieldValP1[3] < shield)
+							{
+								shieldValP1[3]++;
+								pointsP1 = pointsP1 - 50;
+							}
 						}
 					}
 				}
@@ -507,6 +612,7 @@ public class gui extends JPanel{
 				player1Ships.get(i).setShield(shieldValP1[i]);
 				player1Ships.get(i).setHP(player1Ships.get(i).getMaxHP());
 			}
+		
 			
 			for(int i = 0; i < p1Num; i++) {
 				if(i == 0) {
@@ -561,9 +667,9 @@ public class gui extends JPanel{
 				
 				for(int i = 0; i < p2Num; i++) 
 				{
-					ship Ship2 = new ship(null);
+					ship Ship = new ship(null);
 					//Ship.setMovesRemaining(200); //CHANGE TO VARIABLE
-					player2Ships.add(Ship2);
+					player2Ships.add(Ship);
 				}
 				repaint();
 			}
@@ -582,11 +688,13 @@ public class gui extends JPanel{
 					checkP2Ship[1] = true;
 					selection = 2;
 				}
+				
 				else if(key == KeyEvent.VK_3) 
 				{
 					checkP2Ship[2] = true;
 					selection = 3;
 				}
+				
 				else if(key == KeyEvent.VK_4) 
 				{
 					checkP2Ship[3] = true;
@@ -600,38 +708,142 @@ public class gui extends JPanel{
 				{
 					if (pointsP2 > 0)
 					{
-						if (checkP2Ship[i] == true && key == KeyEvent.VK_H && healthValP2[i] < HP)
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_H)
 						{
-							healthValP2[i]++;
-							pointsP2 = pointsP2 - 50;
+							if (selection == 1 && healthValP2[0] < HP)
+							{
+								healthValP2[0]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 2 && healthValP2[1] < HP)
+							{
+								healthValP2[1]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 3 && healthValP2[2] < HP)
+							{
+								healthValP2[2]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 4 && healthValP2[3] < HP)
+							{
+								healthValP2[3]++;
+								pointsP2 = pointsP2 - 50;
+							}
 						}
 						
-						if (checkP2Ship[i] == true && key == KeyEvent.VK_A && attackValP2[i] < attack)
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_A)
 						{
-							attackValP2[i]++;
-							pointsP2 = pointsP2 - 50;
+							if (selection == 1 && attackValP2[0] < attack)
+							{
+								attackValP2[0]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 2 && attackValP2[1] < attack)
+							{
+								attackValP2[1]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 3 && attackValP2[2] < attack)
+							{
+								attackValP2[2]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 4 && attackValP2[3] < attack)
+							{
+								attackValP2[3]++;
+								pointsP2 = pointsP2 - 50;
+							}
 						}
 						
-						if (checkP2Ship[i] == true && key == KeyEvent.VK_S && speedValP2[i] < 4)
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_S)
 						{
-							speedValP2[i]++;
-							pointsP2 = pointsP2 - 50;
+							if (selection == 1 && speedValP2[0] < 4)
+							{
+								speedValP2[0]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 2 && speedValP2[1] < 4)
+							{
+								speedValP2[1]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 3 && speedValP2[2] < 4)
+							{
+								speedValP2[2]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 4 && speedValP2[3] < 4)
+							{
+								speedValP2[3]++;
+								pointsP2 = pointsP2 - 50;
+							}
 						}
 						
-						if (checkP2Ship[i] == true && key == KeyEvent.VK_R && rangeValP2[i] < 3)
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_R)
 						{
-							rangeValP2[i]++;
-							pointsP2 = pointsP2 - 50;
+							if (selection == 1 && rangeValP2[0] < 3)
+							{
+								rangeValP2[0]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 2 && rangeValP2[1] < 3)
+							{
+								rangeValP2[1]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 3 && rangeValP2[2] < 3)
+							{
+								rangeValP2[2]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 4 && rangeValP2[3] < 3)
+							{
+								rangeValP2[3]++;
+								pointsP2 = pointsP2 - 50;
+							}
 						}
 						
-						if (checkP2Ship[i] == true && key == KeyEvent.VK_D && shieldValP2[i] < shield)
+						if (checkP2Ship[i] == true && key == KeyEvent.VK_D)
 						{
-							shieldValP2[i]++;
-							pointsP2 = pointsP2 - 50;
+							if (selection == 1 && shieldValP2[0] < shield)
+							{
+								shieldValP2[0]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 2 && shieldValP2[1] < shield)
+							{
+								shieldValP2[1]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 3 && shieldValP2[2] < shield)
+							{
+								shieldValP2[2]++;
+								pointsP2 = pointsP2 - 50;
+							}
+							
+							else if (selection == 4 && shieldValP2[3] < shield)
+							{
+								shieldValP2[3]++;
+								pointsP2 = pointsP2 - 50;
+							}
 						}
 					}
 				}
-			}
 			
 			for (int i = 0; i < p2Num; i++)
 			{
@@ -642,6 +854,7 @@ public class gui extends JPanel{
 				player2Ships.get(i).setShield(shieldValP2[i]);
 				player2Ships.get(i).setHP(player2Ships.get(i).getMaxHP());
 			}
+		}
 			
 			for(int i = 0; i < p2Num; i++) {
 				if(i == 0) {
